@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B5ZWw8oIE+0=",
+  "dgSpecHash": "zfuHKGy6lkA=",
   "success": true,
   "projectFilePath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/RentalPlatform.Web.csproj",
   "expectedPackageFiles": [
@@ -64,7 +64,8 @@
     "/home/cohorte6/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/system.text.json/9.0.4/system.text.json.9.0.4.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
-    "/home/cohorte6/.nuget/packages/tesseract/4.1.1/tesseract.4.1.1.nupkg.sha512"
+    "/home/cohorte6/.nuget/packages/tesseract/4.1.1/tesseract.4.1.1.nupkg.sha512",
+    "/home/cohorte6/.nuget/packages/microsoft.netcore.app.host.linux-x64/9.0.17/microsoft.netcore.app.host.linux-x64.9.0.17.nupkg.sha512"
   ],
   "logs": []
 }
