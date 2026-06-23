@@ -24,7 +24,7 @@ services:
       Jwt__Issuer: RentalPlatform
       Jwt__Audience: RentalPlatform
       Mailer__BaseUrl: http://mailer:8081
-      Gemini__ApiKey: ${GEMINI_API_KEY}
+      Gemini__ApiKey: AIzaSyAb8RN6JgQNbqheB3UJ-TJHxc1vGFPruGyEvbMJQKnM9d-lZ7Lw
     ports:
       - "8080:8080"
     depends_on:
