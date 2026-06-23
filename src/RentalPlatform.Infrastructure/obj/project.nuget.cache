@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sO78fy38bdE=",
+  "dgSpecHash": "8R2A5I65WUM=",
   "success": true,
   "projectFilePath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/home/cohorte6/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/closedxml/0.105.0/closedxml.0.105.0.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/closedxml.parser/2.0.0/closedxml.parser.2.0.0.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/documentformat.openxml/3.1.1/documentformat.openxml.3.1.1.nupkg.sha512",
@@ -65,18 +66,5 @@
     "/home/cohorte6/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
     "/home/cohorte6/.nuget/packages/tesseract/4.1.1/tesseract.4.1.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "message": "RentalPlatform.Infrastructure depende de Tesseract (>= 4.0.0), pero no se encontró Tesseract 4.0.0. Tesseract 4.1.1 se resolvió en su lugar.",
-      "projectPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
-      "warningLevel": 1,
-      "filePath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
-      "libraryId": "Tesseract",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }

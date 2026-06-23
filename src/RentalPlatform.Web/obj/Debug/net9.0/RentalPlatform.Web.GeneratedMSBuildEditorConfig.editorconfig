@@ -72,12 +72,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_FrontNavigation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2hhcmVkL19Gcm9udE5hdmlnYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2lnbkluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Privacy.cshtml]

@@ -222,3 +222,4 @@
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/obj/Debug/net9.0/RentalPlatform.Web.pdb
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/obj/Debug/net9.0/RentalPlatform.Web.genruntimeconfig.cache
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/obj/Debug/net9.0/ref/RentalPlatform.Web.dll
+/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/bin/Debug/net9.0/BCrypt.Net-Next.dll
