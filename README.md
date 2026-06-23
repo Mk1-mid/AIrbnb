@@ -35,13 +35,34 @@ The application will be available at:
 │
 └── src/
     ├── RentalPlatform.Domain/          # Entities, Value Objects, Enums, Domain Services
+    │   ├── Entities/
+    │   ├── Enums/
+    │   ├── Services/
+    │   └── ValueObjects/
+    │
     ├── RentalPlatform.Application/     # Use Cases, DTOs, Interfaces, Validators
+    │
     ├── RentalPlatform.Infrastructure/  # EF Core, Repositories, KYC, Reports, Identity
+    │
     ├── RentalPlatform.Web/             # Razor Pages, Controllers, Program.cs
+    │   ├── Pages/                      # Razor Pages UI
+    │   │   └── Front/                  # Converted Stitch front pages
+    │   │       └── Shared/             # Shared front layout + navigation
+    │   ├── wwwroot/                    # Static assets (shared CSS, JS, images)
+    │   └── Program.cs
+    │
     └── RentalPlatform.Tests/           # Unit and integration tests
 └── services/
     └── mailer/                         # Laravel microservice — email dispatch only
 ```
+
+## Frontend Organization
+
+The Stitch export lives in `front/` as the original design source. The runnable UI is now under `src/RentalPlatform.Web/Pages/Front/`, with the main landing page mapped to `src/RentalPlatform.Web/Pages/Index.cshtml`.
+
+`/Index` now redirects to `/Front/Index` so the stitched home remains the canonical landing screen while the root route stays valid.
+
+If you later extract shared styles or scripts from the Stitch pages, place them in `src/RentalPlatform.Web/wwwroot/` and reference them from the Razor pages.
 
 ## Architecture
 

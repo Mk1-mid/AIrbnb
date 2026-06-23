@@ -1,0 +1,288 @@
+@page
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Detalle de Inmueble - LuxeStay";
+    ViewData["HtmlLang"] = "es";
+    ViewData["HtmlClass"] = "light";
+    ViewData["BodyClass"] = "bg-surface text-on-surface font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container";
+    ViewData["FrontNavVariant"] = "public";
+    ViewData["FrontActiveNav"] = "browse";
+}
+
+@section Head {
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+}
+
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col gap-stack-lg">
+<!-- Header Section -->
+<header class="flex flex-col gap-stack-sm md:flex-row md:justify-between md:items-end">
+<div class="flex flex-col gap-2">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">
+                    Villa Serenity - Panoramic Ocean Views
+                </h1>
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="underline cursor-pointer hover:text-primary transition-colors">Santa Barbara, California</span>
+<span class="px-2">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-primary">4.96</span>
+<span class="underline cursor-pointer">(128 reviews)</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-sm mt-4 md:mt-0">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                    Share
+                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface-variant group">
+<span class="material-symbols-outlined text-[18px] group-hover:text-error transition-colors" data-icon="favorite">favorite</span>
+                    Save
+                </button>
+</div>
+</header>
+<!-- Bento Grid Gallery -->
+<section class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-stack-sm h-[409px] md:h-[614px] rounded-xl overflow-hidden">
+<div class="md:col-span-2 md:row-span-2 relative group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A spectacular wide-angle view of a luxurious modern villa exterior at golden hour. The architecture is sleek and minimalist with large floor-to-ceiling glass windows reflecting the warm setting sun. A pristine infinity pool seamlessly blends into the panoramic ocean background. The lighting is dramatic and elegant, emphasizing the clean lines and premium materials of the property. The mood is tranquil and highly exclusive, perfectly fitting a high-end corporate rental aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPhrz8Wh7zn5N_SwdKClAorEPkiUYBKIHg0cKX0H78-CcoSTvRLoLoUj3mL5GoMaR8VHhMOxoXaeGy9rvO7wdtoxNKPJmX3CPRSt18bJdqV1-ghQT-fBhg6Y1VNVP50FkZnX5xPTbi32klZZnGo1Aidd7-_cQid_ILzLRWDEcjoFk3D7TIv3wfPtNVo_iWXPZQC7exAh4Pj98yfVb5J9Sp_kV3b1zho15shoRy9Hvt36Ai6lwo2cBCzLPeDBv3-_K4EFYg2oyRAhQ"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="hidden md:block relative group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated minimalist living room interior with contemporary low-profile furniture. The color palette is strictly monochromatic with varying shades of white, cream, and charcoal. Large sliding glass doors open to an expansive ocean view. Natural light floods the space, highlighting the rigorous alignment of architectural details. The atmosphere is professional, serene, and immaculately clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCVsxLi8wglW3o-K8Ls1yjEBeQnhxJdAkOeOZQRj72N187vk4gU-yl4276Q_VEMwIK2cRoa_UzscMzGig60Zus_BSL9scQ_yGFI9tudGKWmyuaDCIjPOAthVd2iE1BP4gikhT8AmRrqnxbMPzBkqhjTLvqDC7WNPya0ytSIC4WgVfF1nkk4EcQgjjbIa1ZFcDYz2K1580BCkyQYNY0qOBcvwNygeqVSZnkmKCyJEjgp9jjaqhsbw595IO7-_aSd6-cSlzNpFNxPDk"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="hidden md:block relative group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A detail shot of a premium modern kitchen. Dark matte cabinetry contrasts with a pristine white quartz waterfall countertop. High-end built-in stainless steel appliances are perfectly aligned. Minimalist decor, such as a simple sculptural vase, sits on the counter. The lighting is cool, bright, and task-focused, conveying a sense of efficiency and luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB37ESXY4r0QEjyXU0rXwI9y2BvxK7jX95HyNCzseyTFQiXcxeDKAGI-o1F2TKbHBGYlqtCSYEdTz8eeT6JrVaSG-xueR6ouHy1cWf90VSHe_G812XWsi9ZwR4T9DqfKQLgLOrv1RwDyPoJATNvwh-R9btN0qWINRJpGyuL0nHJRj4zNqxgC8CTPqi0XJsv6kUhlhvyyqOkZVTuwLIFvJIYVddV6LG79RBawawehaeZlfjGPnA1X1RfFcmhWdfN1H0Ms_YYNdLSwyA"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="hidden md:block relative group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An elegant, understated master bedroom suite. A crisp white king-sized bed with perfectly pressed linens sits against a textured dark gray accent wall. The styling is strictly minimalist, with only essential, high-quality furnishings. Large windows offer a serene view of coastal greenery. Soft, diffused daylight creates a calm, resting atmosphere suitable for discerning corporate travelers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLtQiDTMYIsGhOL_DA30QkwFSUCD4l4XMTqyqdbVym-ZXUkyyPlGG4QHusfKx-QXw6KAV5M762IY1_37jef7eQkLhFL4i1N79yv5PmN-6eAgQa18UGpJv2bs_Dm4gJNr98KUtZ2Xp6qf3_TydExvtvBdPrNn2OZMbz8F6v4w__OmXgwgnWx-buMfoy2nrE6IdUNt3hh8VhApLGv1DopH9ZfU9Vpb5MGjOo5CEeH3DQxAtgdnOnWJf66tZyDA3Xv0waL-fY6VsGwoM"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="hidden md:block relative group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sleek, spa-like luxury bathroom. Featuring a freestanding sculptural soaking tub and a walk-in glass shower with matte black fixtures. The walls are clad in large-format stone tiles in neutral gray tones. High-key, even lighting illuminates the pristine surfaces, emphasizing cleanliness and premium architectural design. The vibe is institutional trust and private luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8QZ9bxYEsxgKQan1FumImVt0RbSTGsFL_JdiN8KGTfOH7JyroZYX8V3C7DERB0XTQ7P80UXg_bzPzcY8Bx8A6Gv-dXlguphTUNt8u2qK0Zsosibd79FUtqPY5RdqQRsHY1LL1sqi1ujxmcqyUKuY7u75uUQLrHHycJ8lnTZTM0CvhdOIxr84ginVgahV9gjZXzvT8oCa3AjZZjAyfhH6TKLCTR-AGcGbtrwBKRx0jZDzKeEgTTyfSF7wiPrTbDbEMcz4ywU6Hxo0"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+<button class="absolute bottom-4 right-4 bg-surface-container-lowest border border-outline-variant px-4 py-2 rounded-lg text-label-sm font-label-sm text-primary shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+                    Show all photos
+                </button>
+</div>
+</section>
+<!-- Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Details -->
+<div class="lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- Basic Info -->
+<section class="border-b border-outline-variant pb-stack-md flex justify-between items-start">
+<div class="flex flex-col gap-2">
+<h2 class="text-headline-md font-headline-md text-primary">Entire villa hosted by Luxe Management</h2>
+<ul class="flex flex-wrap items-center gap-2 text-body-md font-body-md text-on-surface-variant">
+<li>8 guests</li>
+<li><span class="px-1 text-outline-variant">•</span>4 bedrooms</li>
+<li><span class="px-1 text-outline-variant">•</span>5 beds</li>
+<li><span class="px-1 text-outline-variant">•</span>4.5 baths</li>
+</ul>
+</div>
+<div class="h-14 w-14 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant">domain</span>
+</div>
+</section>
+<!-- Description -->
+<section class="border-b border-outline-variant pb-stack-lg flex flex-col gap-stack-sm">
+<h3 class="text-body-lg font-body-lg text-primary font-semibold mb-2">About this space</h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                        Experience unparalleled luxury in this masterfully designed architectural gem. Situated on the bluffs of Santa Barbara, Villa Serenity offers expansive ocean views, meticulous attention to detail, and premium amenities curated for the discerning traveler.
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                        The open-concept living area features floor-to-ceiling glass that seamlessly blends indoor and outdoor living. Perfect for executive retreats or refined family getaways, the property ensures complete privacy while remaining minutes away from downtown.
+                    </p>
+<button class="text-primary font-medium flex items-center gap-1 mt-2 hover:underline w-fit">
+                        Show more <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</section>
+<!-- Features/Amenities Chips -->
+<section class="border-b border-outline-variant pb-stack-lg">
+<h3 class="text-body-lg font-body-lg text-primary font-semibold mb-stack-md">Premium Amenities</h3>
+<div class="flex flex-wrap gap-stack-sm">
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">wifi</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">High-speed WiFi</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">pool</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Infinity Pool</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">directions_car</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Private Parking</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">ac_unit</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Central AC</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">kitchen</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Chef's Kitchen</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">work</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Workspace</span>
+</div>
+</div>
+</section>
+<!-- Availability Calendar Mockup -->
+<section class="pb-stack-lg">
+<h3 class="text-body-lg font-body-lg text-primary font-semibold mb-stack-md">Availability</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-sm">
+<div class="flex justify-between items-center mb-stack-md">
+<h4 class="text-label-md font-label-md text-primary">November 2024</h4>
+<div class="flex gap-2">
+<button class="h-8 w-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="h-8 w-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center">
+<!-- Days Header -->
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Su</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Mo</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Tu</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">We</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Th</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Fr</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant py-2">Sa</div>
+<!-- Mock Dates -->
+<div class="py-3 text-body-sm text-outline-variant">29</div>
+<div class="py-3 text-body-sm text-outline-variant">30</div>
+<div class="py-3 text-body-sm text-outline-variant">31</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">1</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">2</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">3</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">4</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">5</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">6</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">7</div>
+<div class="py-3 text-body-sm font-medium text-on-surface-variant bg-surface-container-high line-through rounded-lg">8</div>
+<div class="py-3 text-body-sm font-medium text-on-surface-variant bg-surface-container-high line-through rounded-lg">9</div>
+<div class="py-3 text-body-sm font-medium text-on-surface-variant bg-surface-container-high line-through rounded-lg">10</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">11</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">12</div>
+<div class="py-3 text-body-sm font-medium text-primary bg-primary text-on-primary rounded-lg cursor-pointer">13</div>
+<div class="py-3 text-body-sm font-medium text-primary bg-surface-container-highest cursor-pointer">14</div>
+<div class="py-3 text-body-sm font-medium text-primary bg-surface-container-highest cursor-pointer">15</div>
+<div class="py-3 text-body-sm font-medium text-primary bg-primary text-on-primary rounded-lg cursor-pointer">16</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">17</div>
+<div class="py-3 text-body-sm font-medium text-primary hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">18</div>
+</div>
+<div class="mt-4 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Minimum stay: 3 nights</span>
+<button class="text-primary underline">Clear dates</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking Card -->
+<div class="lg:col-span-4 relative">
+<div class="sticky top-[100px] bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-[0_4px_12px_rgba(15,23,42,0.08)] flex flex-col gap-stack-md">
+<div class="flex items-end gap-1">
+<span class="text-headline-md font-headline-md text-primary">$1,250</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mb-1">/ night</span>
+</div>
+<!-- Inputs -->
+<div class="border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="flex border-b border-outline-variant">
+<div class="flex-1 p-3 border-r border-outline-variant cursor-pointer hover:bg-surface-container-low transition-colors">
+<label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Check-in</label>
+<span class="text-label-md font-label-md text-on-surface-variant">Nov 13, 2024</span>
+</div>
+<div class="flex-1 p-3 cursor-pointer hover:bg-surface-container-low transition-colors">
+<label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Checkout</label>
+<span class="text-label-md font-label-md text-on-surface-variant">Nov 16, 2024</span>
+</div>
+</div>
+<div class="p-3 cursor-pointer hover:bg-surface-container-low transition-colors flex justify-between items-center">
+<div>
+<label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Guests</label>
+<span class="text-label-md font-label-md text-on-surface-variant">2 guests</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg text-label-md font-label-md hover:bg-inverse-surface transition-colors flex items-center justify-center gap-2">
+                        Reservar
+                    </button>
+<div class="text-center text-body-sm font-body-sm text-on-surface-variant">
+                        You won't be charged yet
+                    </div>
+<!-- Price Breakdown -->
+<div class="flex flex-col gap-2 border-t border-outline-variant pt-stack-md mt-2">
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span class="underline cursor-pointer">$1,250 x 3 nights</span>
+<span>$3,750</span>
+</div>
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span class="underline cursor-pointer">Cleaning fee</span>
+<span>$250</span>
+</div>
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span class="underline cursor-pointer">LuxeStay service fee</span>
+<span>$400</span>
+</div>
+</div>
+<div class="flex justify-between text-body-lg font-body-lg font-semibold text-primary border-t border-outline-variant pt-stack-md mt-2">
+<span>Total</span>
+<span>$4,400</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full bottom-0 border-t border-outline-variant dark:border-outline-variant mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-stack-lg max-w-container-max mx-auto gap-stack-md md:gap-0">
+<div class="flex items-center gap-4">
+<span class="text-label-md font-label-md font-bold text-primary dark:text-primary-fixed-dim">
+                    LuxeStay
+                </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant dark:text-on-surface-variant">
+                    © 2024 LuxeStay Rentals. All rights reserved.
+                </span>
+</div>
+<div class="flex space-x-stack-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-opacity duration-200" href="#">
+                    Terms
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-opacity duration-200" href="#">
+                    Privacy
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-opacity duration-200" href="#">
+                    Sitemap
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-opacity duration-200" href="#">
+                    Support
+                </a>
+</div>
+</div>
+</footer>
+

@@ -1,0 +1,53 @@
+@{
+    var title = ViewData["Title"] as string ?? "LuxeStay";
+    var htmlLang = ViewData["HtmlLang"] as string ?? "en";
+    var htmlClass = ViewData["HtmlClass"] as string ?? string.Empty;
+    var bodyClass = ViewData["BodyClass"] as string ?? "bg-background text-on-background antialiased min-h-screen";
+}
+<!DOCTYPE html>
+<html lang="@htmlLang" class="@htmlClass">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@title</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL&#64;100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght&#64;400;500;600;700&family=Inter:wght&#64;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .font-geist,
+        .font-headline-md,
+        .font-headline-lg,
+        .font-label-md,
+        .font-label-sm {
+            font-family: 'Geist', sans-serif;
+        }
+    </style>
+    @RenderSection("Head", required: false)
+</head>
+<body class="@bodyClass">
+    @await Html.PartialAsync("_FrontNavigation")
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

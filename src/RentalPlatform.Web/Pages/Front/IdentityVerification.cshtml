@@ -1,0 +1,211 @@
+@page
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "LuxeStay - Identity Verification";
+    ViewData["HtmlLang"] = "en";
+    ViewData["HtmlClass"] = "";
+    ViewData["BodyClass"] = "bg-background text-on-background font-body-md min-h-screen flex flex-col md:flex-row";
+    ViewData["FrontNavVariant"] = "guest";
+    ViewData["FrontActiveNav"] = "verification";
+}
+
+@section Head {
+}
+
+<!-- SideNavBar for Desktop -->
+<nav class="hidden md:flex h-screen w-64 sticky left-0 top-0 bg-surface-container-low flex-col p-stack-md gap-stack-sm z-40 border-r border-outline-variant">
+<div class="mb-stack-lg px-4">
+<div class="text-headline-sm font-headline-sm font-bold text-primary mb-stack-md">LuxeStay</div>
+<div class="flex items-center gap-stack-sm mt-stack-md">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant border border-outline-variant">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A small, professional profile picture of a young adult looking directly at the camera, neutral expression, white background, well-lit, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNC5kjmIPdKRzO8BFurGxNP6SV2mNufKfWWennb2mbxtQqpq37FrWO7cFTiIUmNvKRu_Knb7_HeK2Fnlr6g8ojrXNYIHZVXyF71dJRvKNh8u9Gf-OcIYsmVqBVb7MGkotLunZ0OfW1agPENs3MX7Brm103IA8ZjQ50lcLbjYPW6yDoV2GB4CiN0j-r7MUG0dFKxcFu3ooc4UdNvoqqROv1STuSgZ0PTro-XzUeFQ1eNl1o-cr92G0Cxq6eu4Pvy57DNDjpjqB2-Wo"/>
+</div>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Guest Dashboard</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Identity Verification</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-base">
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
+<span class="text-label-md font-label-md">My Bookings</span>
+</a>
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="text-label-md font-label-md">Favorites</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container px-4 py-2 rounded-lg font-bold transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-label-md font-label-md">Verification</span>
+</a>
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-base pt-stack-md border-t border-outline-variant">
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<a class="text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-lg transition-transform duration-150 flex items-center gap-stack-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto overflow-y-auto">
+<div class="w-full max-w-2xl mb-stack-lg text-center">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-stack-sm">Identity Verification</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">To ensure the safety of our community, we require all guests to verify their identity before their first booking. This process is secure and encrypted.</p>
+</div>
+<!-- Verification Status Banner - Pendiente -->
+<div class="w-full max-w-2xl bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-center gap-stack-md mb-stack-lg shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-2xl" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<div class="flex-1">
+<h3 class="text-headline-md font-headline-md text-on-surface">Status: <span class="text-secondary">Pendiente</span></h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Please upload a valid government-issued ID to complete your profile verification.</p>
+</div>
+</div>
+<!-- File Upload Form -->
+<form class="w-full max-w-2xl bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_1px_3px_rgba(15,23,42,0.05)] flex flex-col gap-stack-lg">
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Document Type</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed appearance-none">
+<option value="passport">Passport</option>
+<option value="id_card">National ID Card</option>
+<option value="driver_license">Driver's License</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Upload Document Front</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl bg-surface p-stack-lg flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-4xl text-outline mb-stack-sm group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">upload_file</span>
+<p class="text-body-md font-body-md text-on-surface mb-1">Click to upload or drag and drop</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">SVG, PNG, JPG or PDF (max. 10MB)</p>
+<input accept="image/png, image/jpeg, application/pdf" class="hidden" type="file"/>
+</div>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Upload Document Back (Optional)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl bg-surface p-stack-lg flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-4xl text-outline mb-stack-sm group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">upload_file</span>
+<p class="text-body-md font-body-md text-on-surface mb-1">Click to upload or drag and drop</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">SVG, PNG, JPG or PDF (max. 10MB)</p>
+<input accept="image/png, image/jpeg, application/pdf" class="hidden" type="file"/>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-stack-md flex gap-stack-sm items-start">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5" style="font-variation-settings: 'FILL' 1;">lock</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Your connection is secure. Data is encrypted and stored safely. We only use this information to verify your identity as per our <a class="underline hover:text-primary" href="#">Privacy Policy</a>.</p>
+</div>
+<div class="flex justify-end gap-stack-md pt-stack-md border-t border-outline-variant mt-stack-sm">
+<button class="px-6 py-3 rounded-lg border border-outline-variant bg-transparent text-on-secondary-fixed-variant text-label-md font-label-md hover:bg-surface-container-low transition-colors" type="button">Cancel</button>
+<button class="px-6 py-3 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-inverse-surface transition-colors shadow-[0_1px_3px_rgba(15,23,42,0.1)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.15)] flex items-center gap-2" type="submit">
+                    Submit Verification
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Example Status Cards (Hidden by default, meant to show state variations) -->
+<div class="w-full max-w-2xl mt-stack-lg flex flex-col gap-stack-md opacity-50 pointer-events-none">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-2">Example States:</p>
+<!-- Aprobado State -->
+<div class="bg-surface-container-lowest border border-[#10b981]/30 rounded-xl p-stack-md flex items-center gap-stack-md shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+<div class="w-12 h-12 rounded-full bg-[#10b981]/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#10b981] text-2xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h3 class="text-headline-md font-headline-md text-on-surface">Status: <span class="text-[#10b981]">Aprobado</span></h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Your identity has been successfully verified. You are ready to book!</p>
+</div>
+</div>
+<!-- Rechazado State -->
+<div class="bg-surface-container-lowest border border-error/30 rounded-xl p-stack-md flex items-center gap-stack-md shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error text-2xl" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<div class="flex-1">
+<h3 class="text-headline-md font-headline-md text-on-surface">Status: <span class="text-error">Rechazado</span></h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">We could not verify the document provided. Ensure the image is clear, edges are visible, and details match your profile.</p>
+</div>
+<button class="px-4 py-2 rounded-lg border border-outline-variant bg-transparent text-on-secondary-fixed-variant text-label-sm font-label-sm hover:bg-surface-container-low transition-colors whitespace-nowrap">Try Again</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile (Not showing FAB as this is a focused task) -->
+<nav class="md:hidden w-full bottom-0 sticky bg-surface-container-lowest border-t border-outline-variant shadow-[0_-1px_3px_rgba(15,23,42,0.05)] z-50">
+<div class="flex justify-around items-center w-full px-margin-mobile py-stack-sm max-w-container-max mx-auto">
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="text-[10px] mt-1 font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
+<span class="text-[10px] mt-1 font-medium">Bookings</span>
+</a>
+<a class="flex flex-col items-center p-2 text-primary" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="text-[10px] mt-1 font-bold">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple script to handle file input click area
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            const dropzone = input.parentElement;
+            dropzone.addEventListener('click', () => input.click());
+            
+            // Highlight on drag over
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropzone.classList.add('border-primary', 'bg-surface-container-low');
+            });
+            
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.classList.remove('border-primary', 'bg-surface-container-low');
+            });
+            
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('border-primary', 'bg-surface-container-low');
+                if (e.dataTransfer.files.length) {
+                    input.files = e.dataTransfer.files;
+                    updateUI(dropzone, e.dataTransfer.files[0].name);
+                }
+            });
+
+            input.addEventListener('change', () => {
+                if (input.files.length) {
+                    updateUI(dropzone, input.files[0].name);
+                }
+            });
+        });
+
+        function updateUI(dropzone, filename) {
+            const textElement = dropzone.querySelector('p.text-on-surface');
+            const icon = dropzone.querySelector('.material-symbols-outlined');
+            if(textElement && icon) {
+                textElement.textContent = filename;
+                textElement.classList.add('text-primary', 'font-bold');
+                icon.textContent = 'check_circle';
+                icon.classList.replace('text-outline', 'text-[#10b981]');
+                icon.style.fontVariationSettings = "'FILL' 1";
+            }
+        }
+    </script>
+
