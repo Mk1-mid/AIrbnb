@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3RGYXZvcml0ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3ROb3RpZmljYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestReservations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3RSZXNlcnZhdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

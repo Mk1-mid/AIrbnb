@@ -205,7 +205,7 @@
 <!-- Right Column: Booking Card -->
 <div class="lg:col-span-4 relative">
 <div class="sticky top-[100px] bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-[0_4px_12px_rgba(15,23,42,0.08)] flex flex-col gap-stack-md">
-<form method="post" asp-page="/Front/PropertyDetails" asp-route-PropertyId="@Model.PropertyId">
+<form method="post" asp-page="/Front/PropertyDetails" asp-route-PropertyId="@Model.PropertyId" asp-page-handler="Reserve">
 <div class="flex items-end gap-1">
 <span class="text-headline-md font-headline-md text-primary">$1,250</span>
 <span class="text-body-sm font-body-sm text-on-surface-variant mb-1">/ night</span>

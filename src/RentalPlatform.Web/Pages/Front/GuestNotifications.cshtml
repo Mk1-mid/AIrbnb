@@ -1,0 +1,42 @@
+@page
+@model RentalPlatform.Web.Pages.Front.GuestNotificationsModel
+@using RentalPlatform.Domain.Entities
+@using RentalPlatform.Domain.Enums
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Mis Notificaciones";
+    ViewData["FrontNavVariant"] = "guest";
+    ViewData["FrontActiveNav"] = "notifications";
+}
+
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <h1 class="text-headline-lg font-headline-lg text-primary mb-stack-lg">Notificaciones</h1>
+
+    @if (!Model.Notifications.Any())
+    {
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 text-center">
+            <span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-4 block">notifications_off</span>
+            <p class="text-body-md font-body-md text-on-surface-variant">No tienes notificaciones nuevas.</p>
+        </div>
+    }
+    else
+    {
+        <div class="flex flex-col gap-stack-sm">
+            @foreach (var n in Model.Notifications)
+            {
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-start gap-4">
+                    <span class="material-symbols-outlined text-[24px] text-primary mt-0.5">
+                        @(n.Type == NotificationType.KycApproved ? "check_circle" :
+                          n.Type == NotificationType.KycRejected ? "cancel" :
+                          n.Type == NotificationType.ReservationConfirmed ? "event_available" :
+                          "info")
+                    </span>
+                    <div class="flex-1">
+                        <p class="text-body-md font-body-md text-primary">@n.Message</p>
+                        <span class="text-label-sm font-label-sm text-on-surface-variant">@n.CreatedAt.ToString("g")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</main>
