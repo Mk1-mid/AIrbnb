@@ -104,7 +104,7 @@ The entire reservation flow executes inside a serializable transaction to elimin
 
 ### KYC — Identity Validation Without Data Retention
 
-Identity documents are processed using **Tesseract OCR** (fully dockerized, no external API keys required). The image is deleted immediately after extraction. Only structured data is persisted: first name, last name, document number, and date of birth. This follows the data minimization principle and protects user privacy by design.
+Identity documents are processed using **Gemini Vision AI** (calls Google Generative AI API). The image is deleted immediately after extraction. Only structured data is persisted: first name, last name, document number, and date of birth. This follows the data minimization principle and protects user privacy by design.
 
 ### Omnichannel Notifications
 
@@ -138,6 +138,7 @@ Configured via `docker-compose.yml`. No `.env` file required for local setup.
 | `POSTGRES_PASSWORD`     | Database password                        |
 | `ConnectionStrings__Default` | Full connection string for EF Core   |
 | `Mailer__BaseUrl`       | Internal URL of the Laravel mailer service |
+| `Gemini__ApiKey`        | API key for Gemini Vision AI (KYC)         |
 
 ## Running Tests
 
@@ -152,7 +153,7 @@ docker compose run web dotnet test
 | ASP.NET Core (.NET 9) | Core backend + Razor Pages frontend    |
 | Entity Framework Core | ORM + Code First migrations            |
 | PostgreSQL 16 | Primary database                        |
-| Tesseract OCR | KYC document processing                  |
+| Gemini Vision AI | KYC document processing (structured extraction) |
 | ClosedXML    | Excel report generation                   |
 | Laravel      | Email microservice                        |
 | Tailwind CSS | UI styling                                |
