@@ -12,7 +12,7 @@ A unified short-term rental platform built with ASP.NET Core (.NET 9), Razor Pag
 Clone the repository and run:
 
 ```bash
-git clone https://github.com/your-username/rental-platform.git
+git clone https://github.com/Mk1-mid/AIrbnb.git
 cd rental-platform
 docker compose up --build
 ```
