@@ -39,7 +39,7 @@ public static class SeedData
                 FirstName = firstName,
                 LastName = lastName,
                 Email = new Email(email),
-                PasswordHash = BCrypt.HashPassword("Password123!"),
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!"),
                 Role = UserRole.Owner,
                 KycVerified = false,
                 CreatedAt = DateTime.UtcNow
@@ -54,7 +54,7 @@ public static class SeedData
                 FirstName = firstName,
                 LastName = lastName,
                 Email = new Email(email),
-                PasswordHash = BCrypt.HashPassword("Password123!"),
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!"),
                 Role = UserRole.Guest,
                 KycVerified = true,
                 CreatedAt = DateTime.UtcNow
