@@ -9,7 +9,15 @@ public class TesseractOcrService : IOcrService
 
     public TesseractOcrService(IWebHostEnvironment environment)
     {
-        _tessdataPath = Path.Combine(environment.ContentRootPath, "tessdata");
+        var candidates = new[]
+        {
+            Path.Combine(environment.ContentRootPath, "tessdata"),
+            "/usr/share/tesseract-ocr/5/tessdata",
+            "/usr/share/tesseract-ocr/4.00/tessdata"
+        };
+
+        _tessdataPath = candidates.FirstOrDefault(Directory.Exists)
+            ?? candidates[0];
     }
 
     public Task<string> ExtractTextAsync(string imagePath)
