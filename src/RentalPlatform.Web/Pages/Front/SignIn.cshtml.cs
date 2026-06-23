@@ -27,6 +27,13 @@ public class SignInModel : PageModel
         try
         {
             Result = await _loginUser.ExecuteAsync(new LoginUserCommand(Email, Password));
+            Response.Cookies.Append("jwt", Result.Token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddHours(8)
+            });
         }
         catch (Exception ex)
         {

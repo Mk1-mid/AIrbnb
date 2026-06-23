@@ -32,8 +32,10 @@ public class JwtTokenService : ITokenService
 
         var claims = new[]
         {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email.Value),
+            new Claim("role", user.Role.ToString()),
             new Claim(ClaimTypes.Role, user.Role.ToString()),
             new Claim("kyc_verified", user.KycVerified ? "true" : "false")
         };

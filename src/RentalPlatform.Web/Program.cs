@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using RentalPlatform.Application.Interfaces;
 using RentalPlatform.Application.UseCases.Identity;
 using RentalPlatform.Application.UseCases.Kyc;
+using RentalPlatform.Application.UseCases.Reports;
 using RentalPlatform.Application.UseCases.Reservations;
 using RentalPlatform.Infrastructure.Persistence;
 using RentalPlatform.Infrastructure.Persistence.Repositories;
@@ -20,12 +22,19 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IKycRepository, KycRepository>();
 builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<ExportReportUseCase>();
 builder.Services.AddScoped<INotificationService, NoOpNotificationService>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 builder.Services.AddScoped<IOcrService, TesseractOcrService>();
 builder.Services.AddScoped<LoginUserUseCase>();
 builder.Services.AddScoped<RegisterUserUseCase>();
 builder.Services.AddScoped<ProcessKycUseCase>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("OwnerOnly", policy =>
+        policy.RequireClaim("role", "Owner"));
+});
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -43,6 +52,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = audience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
         };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                if (context.Request.Cookies.TryGetValue("jwt", out var token))
+                {
+                    context.Token = token;
+                }
+
+                return Task.CompletedTask;
+            }
+        };
     });
 
 var app = builder.Build();
@@ -51,9 +73,11 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<RentalDbContext>();
 
+    db.Database.Migrate();
+
     if (app.Environment.IsDevelopment())
     {
-        db.Database.Migrate();
+        db.Database.EnsureCreated();
     }
 
     await SeedData.InitializeAsync(db);

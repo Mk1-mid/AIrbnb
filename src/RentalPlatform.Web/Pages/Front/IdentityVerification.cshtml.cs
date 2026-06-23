@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using RentalPlatform.Application.UseCases.Kyc;
 using RentalPlatform.Domain.Enums;
 
 namespace RentalPlatform.Web.Pages.Front;
 
+[Authorize]
 public class IdentityVerificationModel : PageModel
 {
     private readonly ProcessKycUseCase _processKyc;
@@ -16,9 +19,6 @@ public class IdentityVerificationModel : PageModel
 
     [BindProperty]
     public IFormFile? Document { get; set; }
-
-    [BindProperty]
-    public Guid UserId { get; set; }
 
     public KycStatus? Status { get; private set; }
     public string Message { get; private set; } = "Please upload a valid government-issued ID to complete your profile verification.";
@@ -32,15 +32,16 @@ public class IdentityVerificationModel : PageModel
             return;
         }
 
-        if (UserId == Guid.Empty)
+        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
-            ModelState.AddModelError(string.Empty, "UserId is required for verification.");
+            ModelState.AddModelError(string.Empty, "User not authenticated.");
             Status = KycStatus.Pending;
             return;
         }
 
         await using var stream = Document.OpenReadStream();
-        var result = await _processKyc.ExecuteAsync(new ProcessKycCommand(UserId, stream, Document.FileName));
+        var result = await _processKyc.ExecuteAsync(new ProcessKycCommand(userId, stream, Document.FileName));
 
         Status = result.Status;
         Message = result.Message;
