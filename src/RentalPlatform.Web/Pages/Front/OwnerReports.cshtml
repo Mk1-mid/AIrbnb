@@ -50,7 +50,7 @@
 </header>
 <!-- Configuration Card -->
 <div class="bg-surface-container-lowest border border-[#E2E8F0] rounded-xl shadow-level-1 p-6 md:p-8 mb-stack-lg max-w-4xl">
-<form class="space-y-stack-lg" id="exportForm">
+<form method="post" asp-page="/Front/OwnerReports" class="space-y-stack-lg">
 <!-- Report Type Selection -->
 <section>
 <h2 class="text-headline-md font-headline-md text-primary mb-stack-md flex items-center gap-2">
@@ -58,7 +58,6 @@
                         Report Type
                     </h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
-<!-- Option 1 -->
 <label class="relative flex flex-col bg-surface border border-[#E2E8F0] rounded-lg p-4 cursor-pointer hover:border-outline-variant transition-colors group">
 <input checked="" class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="financial"/>
 <span class="material-symbols-outlined text-secondary mb-2" data-icon="account_balance">account_balance</span>
@@ -92,11 +91,11 @@
                         </label>
 <div class="flex items-center gap-2">
 <div class="flex-1 input-focus-ring bg-surface-container-lowest border border-[#E2E8F0] rounded-lg px-3 py-2 flex items-center transition-colors">
-<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" value="2023-01-01"/>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" name="From" value="2023-01-01" required />
 </div>
 <span class="text-on-surface-variant">to</span>
 <div class="flex-1 input-focus-ring bg-surface-container-lowest border border-[#E2E8F0] rounded-lg px-3 py-2 flex items-center transition-colors">
-<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" value="2023-12-31"/>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" name="To" value="2023-12-31" required />
 </div>
 </div>
 </div>
@@ -107,8 +106,8 @@
                             Property Selection
                         </label>
 <div class="input-focus-ring bg-surface-container-lowest border border-[#E2E8F0] rounded-lg px-3 py-2 flex items-center transition-colors relative">
-<select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary appearance-none pr-8">
-<option value="all">All Properties (Portfolio Wide)</option>
+<select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary appearance-none pr-8" name="PropertyId">
+<option value="">All Properties (Portfolio Wide)</option>
 <option value="p1">Villa Paradiso - Miami</option>
 <option value="p2">The Alpine Loft - Aspen</option>
 <option value="p3">Downtown Penthouse - NYC</option>
@@ -130,7 +129,7 @@
                             Preview Data
                         </button>
 <!-- Primary CTA -->
-<button class="flex-1 sm:flex-none px-8 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2 interactive-lift" onclick="triggerDownload()" type="button">
+<button class="flex-1 sm:flex-none px-8 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2 interactive-lift" type="submit">
 <span class="material-symbols-outlined" data-icon="download">download</span>
                             Descargar Excel
                         </button>
@@ -194,36 +193,3 @@
 </div>
 </div>
 </main>
-<!-- Overlay/Toast for Download Simulation (Hidden by default) -->
-<div class="fixed bottom-margin-mobile right-margin-mobile md:bottom-margin-desktop md:right-margin-desktop bg-primary text-on-primary px-6 py-4 rounded-lg shadow-level-2 transform translate-y-full opacity-0 transition-all duration-300 flex items-center gap-3 z-50" id="toast">
-<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
-<span class="font-body-md text-body-md">Descarga iniciada... Preparando Excel.</span>
-</div>
-<script>
-        function triggerDownload() {
-            const btn = document.querySelector('button[onclick="triggerDownload()"]');
-            const originalText = btn.innerHTML;
-            const toast = document.getElementById('toast');
-            
-            // Loading state
-            btn.innerHTML = `<span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span> Processing...`;
-            btn.disabled = true;
-            btn.classList.add('opacity-80');
-
-            // Simulate generation delay
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                btn.classList.remove('opacity-80');
-                
-                // Show toast
-                toast.classList.remove('translate-y-full', 'opacity-0');
-                
-                // Hide toast after a few seconds
-                setTimeout(() => {
-                    toast.classList.add('translate-y-full', 'opacity-0');
-                }, 3000);
-            }, 1500);
-        }
-    </script>
-
