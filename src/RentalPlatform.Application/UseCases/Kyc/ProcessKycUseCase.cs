@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using RentalPlatform.Application.Interfaces;
 using RentalPlatform.Domain.Entities;
 using RentalPlatform.Domain.Enums;
@@ -67,18 +66,36 @@ public class ProcessKycUseCase
                 await cmd.ImageStream.CopyToAsync(fs);
             }
 
-            var extractedText = await _ocrService.ExtractTextAsync(tempPath);
-            var parsed = ParseColombianId(extractedText);
-            var status = parsed.IsComplete ? KycStatus.Approved : KycStatus.Rejected;
+            var extracted = await _ocrService.ExtractAsync(tempPath);
+
+            var firstNameMatch = FuzzyMatch(user.FirstName, extracted.FirstName);
+            var lastNameMatch = FuzzyMatch(user.LastName, extracted.LastName);
+            var documentMatch = string.Equals(
+                user.KycRecord?.DocumentNumber,
+                extracted.DocumentNumber,
+                StringComparison.OrdinalIgnoreCase);
+
+            var mismatches = new List<string>();
+            if (!firstNameMatch) mismatches.Add("first name");
+            if (!lastNameMatch) mismatches.Add("last name");
+            if (!documentMatch) mismatches.Add("document number");
+
+            var status = mismatches.Count == 0
+                ? KycStatus.Approved
+                : KycStatus.Rejected;
+
+            var message = status == KycStatus.Approved
+                ? "Your identity has been verified. You can now make reservations."
+                : $"We could not verify your identity. Mismatched fields: {string.Join(", ", mismatches)}.";
 
             var record = new KycRecord
             {
                 Id = Guid.NewGuid(),
                 UserId = cmd.UserId,
-                DocumentNumber = parsed.DocumentNumber ?? "UNKNOWN",
-                FirstName = parsed.FirstName ?? string.Empty,
-                LastName = parsed.LastName ?? string.Empty,
-                BirthDate = parsed.BirthDate ?? DateOnly.MinValue,
+                FirstName = extracted.FirstName ?? user.FirstName,
+                LastName = extracted.LastName ?? user.LastName,
+                DocumentNumber = extracted.DocumentNumber ?? string.Empty,
+                BirthDate = extracted.BirthDate ?? DateOnly.MinValue,
                 Status = status,
                 CreatedAt = DateTime.UtcNow,
                 ValidatedAt = DateTime.UtcNow
@@ -98,10 +115,6 @@ public class ProcessKycUseCase
                 ? NotificationType.KycApproved
                 : NotificationType.KycRejected;
 
-            var message = status == KycStatus.Approved
-                ? "Your identity has been verified. You can now make reservations."
-                : "We could not verify your identity. Please upload a clearer image.";
-
             await _notifications.SendInAppAsync(cmd.UserId, message, notificationType);
             await _notifications.SendEmailAsync(
                 user.Email.Value,
@@ -110,10 +123,10 @@ public class ProcessKycUseCase
 
             return new ProcessKycResult(
                 status,
-                parsed.DocumentNumber,
-                parsed.FirstName,
-                parsed.LastName,
-                parsed.BirthDate,
+                record.DocumentNumber,
+                record.FirstName,
+                record.LastName,
+                record.BirthDate,
                 message);
         }
         finally
@@ -125,55 +138,37 @@ public class ProcessKycUseCase
         }
     }
 
-    private static ParsedIdData ParseColombianId(string text)
+    private static bool FuzzyMatch(string? expected, string? actual)
     {
-        var result = new ParsedIdData();
-        var lines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries)
-            .Select(l => l.Trim())
-            .ToArray();
+        if (string.IsNullOrWhiteSpace(expected) || string.IsNullOrWhiteSpace(actual))
+            return false;
 
-        var docMatch = Regex.Match(text, @"\b(\d{8,10})\b");
-        if (docMatch.Success)
-        {
-            result.DocumentNumber = docMatch.Value;
-        }
-
-        var dateMatch = Regex.Match(text, @"\b(\d{1,2})[\/\-\s](\d{1,2})[\/\-\s](\d{4})\b");
-        if (dateMatch.Success &&
-            int.TryParse(dateMatch.Groups[1].Value, out var day) &&
-            int.TryParse(dateMatch.Groups[2].Value, out var month) &&
-            int.TryParse(dateMatch.Groups[3].Value, out var year))
-        {
-            result.BirthDate = new DateOnly(year, month, day);
-        }
-
-        for (var i = 0; i < lines.Length; i++)
-        {
-            if (lines[i].Contains("APELLIDOS", StringComparison.OrdinalIgnoreCase) && i + 1 < lines.Length)
-            {
-                result.LastName = lines[i + 1];
-            }
-
-            if (lines[i].Contains("NOMBRES", StringComparison.OrdinalIgnoreCase) && i + 1 < lines.Length)
-            {
-                result.FirstName = lines[i + 1];
-            }
-        }
-
-        return result;
+        return LevenshteinDistance(
+                   expected.Trim().ToLowerInvariant(),
+                   actual.Trim().ToLowerInvariant()) <= 1;
     }
 
-    private sealed class ParsedIdData
+    private static int LevenshteinDistance(string s, string t)
     {
-        public string? DocumentNumber { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public DateOnly? BirthDate { get; set; }
+        if (string.IsNullOrEmpty(s)) return t.Length;
+        if (string.IsNullOrEmpty(t)) return s.Length;
 
-        public bool IsComplete =>
-            !string.IsNullOrEmpty(DocumentNumber) &&
-            !string.IsNullOrEmpty(FirstName) &&
-            !string.IsNullOrEmpty(LastName) &&
-            BirthDate.HasValue;
+        var d = new int[s.Length + 1, t.Length + 1];
+
+        for (var i = 0; i <= s.Length; i++) d[i, 0] = i;
+        for (var j = 0; j <= t.Length; j++) d[0, j] = j;
+
+        for (var i = 1; i <= s.Length; i++)
+        {
+            for (var j = 1; j <= t.Length; j++)
+            {
+                var cost = s[i - 1] == t[j - 1] ? 0 : 1;
+                d[i, j] = Math.Min(
+                    Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                    d[i - 1, j - 1] + cost);
+            }
+        }
+
+        return d[s.Length, t.Length];
     }
 }

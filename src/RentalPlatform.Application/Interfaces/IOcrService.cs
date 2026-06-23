@@ -1,6 +1,13 @@
 namespace RentalPlatform.Application.Interfaces;
 
+public record OcrResult(
+    string? FirstName,
+    string? LastName,
+    string? DocumentNumber,
+    DateOnly? BirthDate
+);
+
 public interface IOcrService
 {
-    Task<string> ExtractTextAsync(string imagePath);
+    Task<OcrResult> ExtractAsync(string imagePath);
 }
