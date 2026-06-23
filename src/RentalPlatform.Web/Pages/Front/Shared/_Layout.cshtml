@@ -46,7 +46,7 @@
     @RenderSection("Head", required: false)
 </head>
 <body class="@bodyClass">
-    @await Html.PartialAsync("_FrontNavigation")
+    @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
     @RenderBody()
     @RenderSection("Scripts", required: false)
 </body>
