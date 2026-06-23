@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Hosting;
 using RentalPlatform.Application.Interfaces;
+using System.IO;
 using Tesseract;
 
 namespace RentalPlatform.Infrastructure.Kyc;
