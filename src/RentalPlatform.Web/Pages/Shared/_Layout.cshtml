@@ -1,61 +1,232 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    var title = ViewData["Title"] as string ?? "RentalPlatform";
+    var htmlLang = (ViewData["HtmlLang"] as string ?? "en").ToLowerInvariant();
+    var htmlClass = ViewData["HtmlClass"] as string ?? string.Empty;
+    var bodyClass = ViewData["BodyClass"] as string ?? "bg-background text-on-background antialiased min-h-screen";
+    var frontNavVariant = (ViewData["FrontNavVariant"] as string ?? string.Empty).ToLowerInvariant();
+    var frontActiveNav = (ViewData["FrontActiveNav"] as string ?? string.Empty).ToLowerInvariant();
+}
+<!DOCTYPE html>
+<html lang="@htmlLang" class="@htmlClass">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RentalPlatform</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RentalPlatform.Web.styles.css" asp-append-version="true" />
+    <title>@title</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "primary-fixed-dim": "#bec6e0",
+                        "background": "#f8f9ff",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#00201e",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed": "#d5e3fd",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "tertiary-fixed-dim": "#66d8d2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#57657b",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#dae2fd",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#00201e",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#213145",
+                        "secondary": "#515f74",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d5e3fd",
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed": "#84f5ee",
+                        "outline": "#76777d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-tertiary-container": "#00938e",
+                        "on-primary-fixed": "#131b2e"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                },
+                "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "base": "4px"
+                },
+                "fontFamily": {
+                        "label-sm": [
+                                "Geist"
+                        ],
+                        "display-lg": [
+                                "Geist"
+                        ],
+                        "headline-md": [
+                                "Geist"
+                        ],
+                        "headline-lg": [
+                                "Geist"
+                        ],
+                        "label-md": [
+                                "Geist"
+                        ],
+                        "headline-lg-mobile": [
+                                "Geist"
+                        ],
+                        "body-lg": [
+                                "Inter"
+                        ],
+                        "body-sm": [
+                                "Inter"
+                        ],
+                        "body-md": [
+                                "Inter"
+                        ]
+                },
+                "fontSize": {
+                        "label-sm": [
+                                "12px",
+                                {
+                                        "lineHeight": "1",
+                                        "fontWeight": "600"
+                                }
+                        ],
+                        "display-lg": [
+                                "48px",
+                                {
+                                        "lineHeight": "1.1",
+                                        "letterSpacing": "-0.02em",
+                                        "fontWeight": "700"
+                                }
+                        ],
+                        "headline-md": [
+                                "24px",
+                                {
+                                        "lineHeight": "1.3",
+                                        "fontWeight": "600"
+                                }
+                        ],
+                        "headline-lg": [
+                                "32px",
+                                {
+                                        "lineHeight": "1.2",
+                                        "letterSpacing": "-0.01em",
+                                        "fontWeight": "600"
+                                }
+                        ],
+                        "label-md": [
+                                "14px",
+                                {
+                                        "lineHeight": "1",
+                                        "letterSpacing": "0.01em",
+                                        "fontWeight": "500"
+                                }
+                        ],
+                        "headline-lg-mobile": [
+                                "24px",
+                                {
+                                        "lineHeight": "1.2",
+                                        "fontWeight": "600"
+                                }
+                        ],
+                        "body-lg": [
+                                "18px",
+                                {
+                                        "lineHeight": "1.6",
+                                        "fontWeight": "400"
+                                }
+                        ],
+                        "body-sm": [
+                                "14px",
+                                {
+                                        "lineHeight": "1.5",
+                                        "fontWeight": "400"
+                                }
+                        ],
+                        "body-md": [
+                                "16px",
+                                {
+                                        "lineHeight": "1.5",
+                                        "fontWeight": "400"
+                                }
+                        ]
+                }
+        },
+        },
+      }
+    </script>
+    <style>
+            body {
+                background-color: theme('colors.background');
+                color: theme('colors.on-background');
+            }
+            .ambient-shadow-lvl1 {
+                box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+            }
+            .ambient-shadow-lvl1-hover:hover {
+                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+                border-color: theme('colors.outline');
+            }
+    </style>
+    @RenderSection("Head", required: false)
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-            <div class="container">
-                <a class="navbar-brand fw-bold" asp-area="" asp-page="/Front/Index">RentalPlatform</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Front/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Front/PropertyDetails">Propiedades</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Front/IdentityVerification">KYC</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Front/SignIn">Ingresar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Front/Register">Registrarse</a>
-                        </li>
-                    </ul>
-                </div>
+<body class="@bodyClass">
+    @if (frontNavVariant == "auth")
+    {
+        <header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md flex items-center justify-between">
+                <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
+                    <span class="material-symbols-outlined text-[22px]">home</span>
+                    RentalPlatform
+                </a>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Index">
+                    Explore stays
+                </a>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted mt-5 py-3">
-        <div class="container">
-            &copy; 2026 - RentalPlatform - <a asp-area="" asp-page="/Front/Index">Home</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        </header>
+    }
+    else if (frontNavVariant == "guest" || frontNavVariant == "owner")
+    {
+        @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
+    }
+    else
+    {
+        @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
+    }
+    <main class="flex-1">
+        @RenderBody()
+    </main>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

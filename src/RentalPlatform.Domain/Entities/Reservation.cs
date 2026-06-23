@@ -11,8 +11,27 @@ public class Reservation
     public DateRange StayPeriod { get; private set; } = null!;
     public Money TotalPrice { get; private set; } = null!;
     public ReservationStatus Status { get; private set; }
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; private set; }
 
     public Property Property { get; private set; } = null!;
     public User Guest { get; private set; } = null!;
+
+    private Reservation() { }
+
+    public Reservation(
+        Guid id,
+        Guid propertyId,
+        Guid guestId,
+        DateRange stayPeriod,
+        Money totalPrice,
+        ReservationStatus status = ReservationStatus.Pending)
+    {
+        Id = id;
+        PropertyId = propertyId;
+        GuestId = guestId;
+        StayPeriod = stayPeriod;
+        TotalPrice = totalPrice;
+        Status = status;
+        CreatedAt = DateTime.UtcNow;
+    }
 }

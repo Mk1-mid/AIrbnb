@@ -1,3 +1,5 @@
+using RentalPlatform.Domain.ValueObjects;
+
 namespace RentalPlatform.Domain.Entities;
 
 public class Property
@@ -7,7 +9,7 @@ public class Property
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string City { get; set; } = null!;
-    public decimal PricePerNight { get; set; }
+    public Money PricePerNight { get; set; } = null!;
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
