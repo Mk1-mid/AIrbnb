@@ -1,11 +1,10 @@
 @page
 @model RentalPlatform.Web.Pages.Front.GuestReservationsModel
 @{
-    Layout = "Shared/_Layout";
     ViewData["Title"] = "Mis Reservas - LuxeStay";
     ViewData["HtmlLang"] = "en";
-    ViewData["HtmlClass"] = "light";
-    ViewData["BodyClass"] = "bg-background text-on-background antialiased flex h-screen overflow-hidden";
+    ViewData["HtmlClass"] = "dark";
+    ViewData["BodyClass"] = "bg-background text-on-background antialiased flex h-screen overflow-hidden font-body-md";
     ViewData["FrontNavVariant"] = "guest";
     ViewData["FrontActiveNav"] = "reservations";
 }
@@ -21,158 +20,95 @@
     </style>
 }
 
-<!-- Main Content Area -->
-<main class="flex-1 ml-64 overflow-y-auto bg-surface-container-lowest relative">
-<div class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
-<!-- Page Header -->
-<header class="mb-stack-lg flex justify-between items-end">
-<div>
-<h1 class="text-display-lg font-display-lg text-primary">Mis Reservas</h1>
-<p class="text-body-lg font-body-lg text-on-surface-variant mt-base">Manage your upcoming and past stays.</p>
-</div>
-<!-- Simple Filter Tabs -->
-<div class="hidden md:flex gap-base bg-surface-container-low p-1 rounded-lg border border-outline-variant/30">
-<button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface rounded-md shadow-sm text-label-md font-label-md font-bold">Todas</button>
-<button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Próximas</button>
-<button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Completadas</button>
-</div>
-</header>
-<!-- Bookings List -->
-<div class="flex flex-col gap-stack-md">
-<!-- Booking Card: Confirmada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
-<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A striking exterior shot of a modern, minimalist glass-and-steel architectural villa perched on a subtle hillside. The lighting is pristine daylight, casting sharp, clean shadows. The aesthetic is extremely high-end, utilizing a crisp corporate color palette of neutral whites, cool grays, and architectural steel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSJu88aKTbMee8PPT0XU78YPvG7Vci2UFsalZA1MZvYMoU6qbAYOh-Ze6KaLhbyWRnQxWPOZ2KaD0o9DDLurRy8wC6lymqrz4_sdC_FJU_TijY8D71kjdYoMdxR1e3C9b-uoHWeCipggyInntPdpoNaw1jlTOGLrTEw95Vh-uoIt47jwauLopIsFdKB9H5XgykRRfKHP6Fple1XF4jmRfswJHePgpY0gmov0C4qbw1oklZCv5E3kqrgFruFXg0j4a87es_FkwDw6Y"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-primary">The Glass Pavilion</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container border border-tertiary-fixed-dim/30">Confirmada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Beverly Hills, California
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30">
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md font-medium text-primary">Oct 12, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
-                                </p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md font-medium text-primary">Oct 18, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
-                                </p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Contact Host</button>
-<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity">View Itinerary</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Pendiente -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
-<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="An interior shot of a sophisticated, minimalist urban loft living room. Large industrial windows let in soft, diffused white light. The furniture consists of low-profile, structured pieces in muted charcoal and pristine white. The mood is calm, professional, and meticulously organized." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfETqDQAgE81ufI4wHvQ2N1NFq1UvT4VfNPo3-fyhFG0iSdI3293tFLytdQJhEy1glyKXpc8zaQldc_co4BdOGoaTjRFP0tMCcIsnwkCc8Z-HqJlNyizVpZkvBdUixYUgwljG1qXEO6Q9y1oxqVafjFqP7dtLHmLaYO3p4N2KBqRi_aQzswh-xJuKPtniHsYWsV9ctav1P_MJpp_1MMFlIPp4wQH9E52bMjbFJpZXtvP6PRtg9KUHUlHnsLk4DgYMdiLk5wcl8OPM"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-primary">Urban Loft 402</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-surface-variant text-on-surface border border-outline-variant/50">Pendiente</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Downtown Seattle, WA
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30 opacity-80">
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md font-medium text-primary">Nov 05, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
-                                </p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md font-medium text-primary">Nov 08, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
-                                </p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Cancel Request</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Completada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-low/30 border border-outline-variant/50 rounded-xl transition-all duration-200">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20 opacity-80 grayscale-[20%]">
-<img class="w-full h-full object-cover" data-alt="A serene, high-end bedroom interior in a modern coastal property. Crisp white linens on a minimalist bed frame, with abstract geometric art on the wall. The lighting is soft and inviting, emphasizing a clean, institutional quality over cluttered hominess." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-DoPpickgoMzQRSqEYxO6C6vtb9lGVyxJCF_KM5JlE4kwUbWbIKiN_eCUUkeUjmkM_2XnKIfqMR-qi7wsPiLwYXuon3dVyourxohpvbbECoFdQdVeJTployuQji5vZcX444yq228vtGz8ACLnl_fNqxF-Po17qGUkHNM_ulVM-ltju3RZKFFIhX-YdPIUdc6jL6tduyFvxbF3mtFOZ6UDhKKppYcs5Br_5q3KXsROFKsX1ZTREcj_1nmOjy5jPn7tonOEJHOdADE"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-on-surface-variant">Coastal Minimalist Retreat</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-secondary-container text-on-secondary-container border border-secondary-fixed-dim/30">Completada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant/80 flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Malibu, CA
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md p-4 rounded-lg">
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md text-on-surface-variant">Sep 01, 2024</p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md text-on-surface-variant">Sep 07, 2024</p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Book Again</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Cancelada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20 opacity-70">
-<img class="w-full h-full object-cover" data-alt="An abstract architectural detail shot of a concrete and glass facade. The lines are extremely rigid and structural, conveying a stark, corporate modernism. The lighting is overcast, creating a flat, low-contrast monochromatic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcXJYJoujAXkAC48fVJE2ZLD3Z24WYIIjIaD0FOFGqkD0pmim_NEqVMJ0NrmjmuvvYwv8ETFHfyzYaj2njo2ekGnzmXwzkhmcpiQwQr7h6DwU93GnpzZdqkIt5p-wLsZLMLeds2KuFuSBG89pN8-DIVfOCzqVHrGyTlYbeGIaup3mHJ0nUCWvXGl_cOJVS573CuCUZKuzVHJR-mPflYkAoKscwrGIvU5Q-PVeBvQj3aqs1zbCh7zmPdEnubLuWoOj5MLr-UZfFcOA"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-on-surface-variant">Alpine Corporate Chalet</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-error-container text-on-error-container border border-error/20">Cancelada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Aspen, CO
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/30 p-4 rounded-lg border border-outline-variant/20">
-<div>
-<p class="text-label-sm font-label-sm text-outline mb-1">ORIGINAL CHECK-IN</p>
-<p class="text-body-md font-body-md text-on-surface-variant line-through">Dec 15, 2024</p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 text-primary font-label-md text-label-md hover:underline">View Policy</button>
-</div>
-</div>
-</article>
-</div>
-</div>
-</main>
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low p-stack-md gap-stack-sm z-40 border-r border-outline-variant/30">
+    <div class="flex items-center gap-stack-sm mb-stack-lg">
+        <span class="material-symbols-outlined text-headline-md font-headline-md font-bold text-primary" data-icon="home_work">home_work</span>
+        <span class="text-headline-md font-headline-md font-bold text-primary">LuxeStay</span>
+    </div>
+    <div class="flex flex-col gap-2 flex-grow">
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/Index">
+            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+        </a>
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/GuestReservations">
+            <span class="material-symbols-outlined icon-fill" data-icon="calendar_today">calendar_today</span> My Bookings
+        </a>
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/Index">
+            <span class="material-symbols-outlined" data-icon="explore">explore</span> Explore
+        </a>
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/GuestFavorites">
+            <span class="material-symbols-outlined" data-icon="favorite">favorite</span> Favorites
+        </a>
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/IdentityVerification">
+            <span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+        </a>
+    </div>
+    <div class="mt-auto flex flex-col gap-2 border-t border-outline-variant pt-stack-md">
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" href="#">
+            <span class="material-symbols-outlined" data-icon="help">help</span> Help Center
+        </a>
+        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" href="#">
+            <span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
+        </a>
+    </div>
+</nav>
 
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 overflow-y-auto bg-surface-container-lowest relative">
+    <div class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
+        <!-- Page Header -->
+        <header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
+            <div>
+                <h1 class="text-display-lg font-display-lg text-primary">Mis Reservas</h1>
+                <p class="text-body-lg font-body-lg text-on-surface-variant">Manage your upcoming and past stays.</p>
+            </div>
+            <!-- Filter Tabs -->
+            <div class="hidden md:flex gap-base bg-surface-container-low p-1 rounded-lg border border-outline-variant/30">
+                <button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface rounded-md shadow-sm text-label-md font-label-md font-bold">Todas</button>
+                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Próximas</button>
+                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Completadas</button>
+            </div>
+        </header>
+
+        <!-- Bookings List -->
+        <div class="flex flex-col gap-stack-md">
+            <!-- Booking Card: Confirmada -->
+            <article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
+                <div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
+                    <img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSJu88aKTbMee8PPT0XU78YPvG7Vci2UFsalZA1MZvYMoU6qbAYOh-Ze6KaLhbyWRnQxWPOZ2KaD0o9DDLurRy8wC6lymqrz4_sdC_FJU_TijY8D71kjdYoMdxR1e3C9b-uoHWeCipggyInntPdpoNaw1jlTOGLrTEw95Vh-uoIt47jwauLopIsFdKB9H5XgykRRfKHP6Fple1XF4jmRfswJHePgpY0gmov0C4qbw1oklZCv5E3kqrgFruFXg0j4a87es_FkwDw6Y" alt="Property" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-headline-md font-headline-md text-primary">The Glass Pavilion</h3>
+                            <span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container border border-tertiary-fixed-dim/30">Confirmada</span>
+                        </div>
+                        <p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> Beverly Hills, California
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30">
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
+                            <p class="text-body-md font-body-md font-medium text-primary">Oct 12, 2024</p>
+                            <p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
+                            <p class="text-body-md font-body-md font-medium text-primary">Oct 18, 2024</p>
+                            <p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-stack-sm mt-stack-md justify-end">
+                        <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Contact Host</button>
+                        <button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors">View Itinerary</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</main>

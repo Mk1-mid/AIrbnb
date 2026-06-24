@@ -30,7 +30,7 @@ public class SignInModel : PageModel
             Response.Cookies.Append("jwt", Result.Token, new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true,
+                Secure = false,
                 SameSite = SameSiteMode.Strict,
                 Expires = DateTimeOffset.UtcNow.AddHours(8)
             });

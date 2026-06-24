@@ -1,6 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RentalPlatform.Application.Interfaces;
 using RentalPlatform.Application.UseCases.Identity;
@@ -37,37 +38,52 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("OwnerOnly", policy =>
         policy.RequireClaim("role", "Owner"));
 });
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/Front/SignIn";
+    options.AccessDeniedPath = "/Front/SignIn";
+})
+.AddJwtBearer(options =>
+{
+    var key = builder.Configuration["Jwt:Key"] ?? "dev-secret-change-me";
+    var issuer = builder.Configuration["Jwt:Issuer"] ?? "RentalPlatform";
+    var audience = builder.Configuration["Jwt:Audience"] ?? "RentalPlatformClients";
+
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        var key = builder.Configuration["Jwt:Key"] ?? "dev-secret-change-me";
-        var issuer = builder.Configuration["Jwt:Issuer"] ?? "RentalPlatform";
-        var audience = builder.Configuration["Jwt:Audience"] ?? "RentalPlatformClients";
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+    };
 
-        options.TokenValidationParameters = new TokenValidationParameters
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = issuer,
-            ValidAudience = audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
-        };
-
-        options.Events = new JwtBearerEvents
-        {
-            OnMessageReceived = context =>
+            if (context.Request.Cookies.TryGetValue("jwt", out var token))
             {
-                if (context.Request.Cookies.TryGetValue("jwt", out var token))
-                {
-                    context.Token = token;
-                }
-
-                return Task.CompletedTask;
+                context.Token = token;
             }
-        };
-    });
+
+            return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.Redirect("/Front/SignIn");
+            return Task.CompletedTask;
+        }
+    };
+});
 
 var app = builder.Build();
 

@@ -5,8 +5,15 @@
     "build:css": "tailwindcss -i ./src/RentalPlatform.Web/wwwroot/css/site.css -o ./src/RentalPlatform.Web/wwwroot/css/site.css --minify"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
-  }
+  },
+  "version": "1.0.0",
+  "description": "A unified short-term rental platform built with ASP.NET Core (.NET 9), Razor Pages, PostgreSQL, and Docker. Designed to eliminate booking friction, automate identity validation via AI (KYC), and empower property owners with real-time financial analytics.",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

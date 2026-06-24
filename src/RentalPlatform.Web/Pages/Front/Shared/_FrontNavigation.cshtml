@@ -16,23 +16,28 @@
             unreadCount = NotificationService.GetUnreadCountAsync(userId).GetAwaiter().GetResult();
         }
     }
+
+    var isOwner = variant == "owner";
+    var isGuest = variant == "guest";
+    var isAuth = variant == "auth";
 }
 
-@if (variant == "auth")
+@if (isAuth)
 {
-    <header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md flex items-center justify-between">
-            <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
+    <header class="sticky top-0 z-50 border-b border-primary/15 bg-background/80 backdrop-blur-xl">
+        <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-mobile md:px-margin-desktop py-md">
+            <a class="flex items-center gap-2 text-headline-md font-headline-md text-primary tracking-wide" asp-page="/Front/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
                 LuxeStay
             </a>
-            <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Index">
-                Explore stays
-            </a>
+            <div class="hidden md:flex items-center gap-lg">
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" asp-page="/Front/Index">Discover</a>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" asp-page="/Front/SignIn">Sign In</a>
+            </div>
         </div>
     </header>
 }
-else if (variant == "guest" || variant == "owner")
+else if (isGuest || isOwner)
 {
     var navItems = variant == "owner"
         ? new[]
@@ -44,53 +49,57 @@ else if (variant == "guest" || variant == "owner")
         }
         : new[]
         {
-            ("browse", "Explorar", "/Index", "search"),
+            ("browse", "Explorar", "/Front/Index", "search"),
             ("reservations", "Mis reservas", "/Front/GuestReservations", "event_note"),
             ("favorites", "Favoritos", "/Front/GuestFavorites", "favorite"),
             ("notifications", "Notificaciones", "/Front/GuestNotifications", "notifications"),
             ("verification", "Verificación", "/Front/IdentityVerification", "badge"),
         };
 
-    <header class="md:hidden w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
-        <div class="px-margin-mobile py-stack-md flex items-center justify-between">
-            <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
+    <header class="md:hidden sticky top-0 z-50 w-full border-b border-primary/15 bg-background/80 backdrop-blur-xl">
+        <div class="flex items-center justify-between px-margin-mobile py-md">
+            <a class="flex items-center gap-2 text-headline-md font-headline-md text-primary tracking-wide" asp-page="/Front/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
                 LuxeStay
             </a>
-            <button type="button" class="text-on-surface-variant">
+            <button type="button" class="text-on-surface-variant hover:text-primary transition-colors" aria-label="Open navigation">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
     </header>
 
-    <aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low p-stack-md gap-stack-sm z-40 border-r border-outline-variant/30">
-        <div class="flex items-center gap-stack-sm p-stack-sm mb-stack-md">
-            <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center">
+    <aside class="hidden md:flex flex-col fixed left-0 top-0 z-40 h-screen w-64 gap-stack-sm border-r border-primary/10 bg-surface-container-lowest/80 px-md py-xl backdrop-blur-2xl">
+        <div class="mb-lg flex items-center gap-stack-sm">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
                 <span class="material-symbols-outlined">home</span>
             </div>
             <div>
-                <div class="text-headline-md font-headline-md text-primary leading-tight">LuxeStay</div>
-                <div class="text-label-sm font-label-sm text-on-surface-variant">Rental platform</div>
+                <div class="text-headline-md font-headline-md leading-tight text-primary">LuxeStay</div>
+                <div class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">Nocturne Elite</div>
             </div>
         </div>
 
-        <nav class="flex flex-col gap-base">
+        <nav class="flex flex-col gap-xs">
             @foreach (var item in navItems)
             {
-                var linkClass = NavClass(item.Item1, "flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md", "bg-secondary-container text-on-secondary-container font-bold");
+                var linkClass = NavClass(
+                    item.Item1,
+                    "flex items-center gap-3 rounded-lg px-4 py-2 text-label-md font-label-md text-on-surface-variant transition-all duration-200 hover:bg-primary/5 hover:text-primary hover:translate-x-1",
+                    "border border-primary/20 bg-primary/5 text-primary shadow-[0_0_15px_rgba(242,202,80,0.08)]"
+                );
                 <a class="@linkClass" asp-page="@item.Item3">
                     <span class="material-symbols-outlined text-[20px]">@item.Item4</span>
                     @item.Item2
                 </a>
             }
         </nav>
-        @if (variant == "guest" && unreadCount > 0)
+        @if (isGuest && unreadCount > 0)
         {
-            <div class="mt-auto pt-4 border-t border-outline-variant/30">
+            <div class="mt-auto border-t border-outline-variant/10 pt-4">
                 <div class="flex items-center gap-3 px-4 py-2 text-on-surface-variant">
                     <span class="material-symbols-outlined text-[20px]">notifications</span>
                     <span class="text-label-md font-label-md">Notificaciones</span>
-                    <span class="ml-auto bg-error text-on-error text-label-sm font-label-sm px-2 py-0.5 rounded-full">@unreadCount</span>
+                    <span class="ml-auto rounded-full bg-primary text-on-primary px-2 py-0.5 text-label-sm font-label-sm">@unreadCount</span>
                 </div>
             </div>
         }
@@ -98,16 +107,16 @@ else if (variant == "guest" || variant == "owner")
 }
 else
 {
-    <nav class="bg-surface-container-lowest w-full top-0 sticky border-b border-outline-variant shadow-sm z-50">
-        <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-md max-w-container-max mx-auto">
-            <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
+    <nav class="sticky top-0 z-50 w-full border-b border-primary/15 bg-background/80 backdrop-blur-xl">
+        <div class="mx-auto flex w-full max-w-container-max items-center justify-between px-margin-mobile py-md md:px-margin-desktop">
+            <a class="flex items-center gap-2 text-headline-md font-headline-md text-primary tracking-wide" asp-page="/Front/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
                 LuxeStay
             </a>
-            <div class="hidden md:flex items-center space-x-stack-lg">
-                <a class="text-label-md font-label-md text-primary border-b-2 border-primary pb-1" asp-page="/Index">Explore</a>
-                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/GuestFavorites">Favorites</a>
-                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/SignIn">Sign In</a>
+            <div class="hidden items-center gap-lg md:flex">
+                <a class="border-b-2 border-primary pb-1 text-label-md font-label-md text-primary uppercase tracking-widest" asp-page="/Front/Index">Discover</a>
+                <a class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest transition-colors hover:text-primary" asp-page="/Front/GuestFavorites">Favorites</a>
+                <a class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest transition-colors hover:text-primary" asp-page="/Front/SignIn">Sign In</a>
             </div>
         </div>
     </nav>

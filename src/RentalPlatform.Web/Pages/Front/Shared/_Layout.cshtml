@@ -2,7 +2,7 @@
     var title = ViewData["Title"] as string ?? "LuxeStay";
     var htmlLang = (ViewData["HtmlLang"] as string ?? "en").ToLowerInvariant();
     var htmlClass = (ViewData["HtmlClass"] as string ?? string.Empty).ToLowerInvariant();
-    var bodyClass = ViewData["BodyClass"] as string ?? "bg-background text-on-background antialiased min-h-screen flex flex-col md:flex-row";
+    var bodyClass = ViewData["BodyClass"] as string ?? "bg-background text-on-background antialiased min-h-screen flex flex-col";
     var frontNavVariant = (ViewData["FrontNavVariant"] as string ?? string.Empty).ToLowerInvariant();
     var frontActiveNav = (ViewData["FrontActiveNav"] as string ?? string.Empty).ToLowerInvariant();
 }
@@ -18,34 +18,38 @@
     @RenderSection("Head", required: false)
 </head>
 <body class="@bodyClass">
-    @if (frontNavVariant == "auth")
-    {
-        <header class="md:hidden w-full top-0 sticky bg-surface-container-lowest border-b border-outline-variant shadow-sm transition-all duration-200 ease-in-out z-50">
-            <div class="flex justify-between items-center w-full px-margin-mobile py-stack-md max-w-container-max mx-auto">
-                <div class="text-headline-md font-headline-md font-bold text-primary">LuxeStay</div>
-                <div class="flex items-center gap-stack-sm">
-                    <button class="text-on-surface-variant hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined">notifications</span>
-                    </button>
-                    <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant border border-outline-variant">
-                        <img alt="Guest profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfvB3EbEuF0zgkA53vBmMN_MJ_8wuIIouCHSq0eT9IDGClqHFWFuu_TmjlM1GSD-Z9zem5nhdgIuxb-YveIuvKxuYmLS6qsBcbHc7X4Qz8vn8wpaoFYjQFYoqSYopMkUCVLKZQk5HwCe1GFzSqgylL5tL1FVnda3Jxz3cCT_fA3JTFHIfTwHIMs-Msz-ss2I9sGg8lAVKWbo4yWT6d4shdxerq8Yj2HWRCIzqCCjLN3YC5d20QDG_S34YLKE6_VCJBOF9t1Ym_h-w" />
-                    </div>
-                </div>
-            </div>
-        </header>
-    }
-    else if (frontNavVariant == "guest" || frontNavVariant == "owner")
-    {
-        @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
-    }
-    else
-    {
-        @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
-    }
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <div class="absolute inset-0 bg-background"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0b1b2b] via-background to-background opacity-80"></div>
+        <div class="absolute -top-40 right-0 h-[32rem] w-[32rem] rounded-full bg-primary/5 blur-[120px]"></div>
+        <div class="absolute bottom-0 left-0 h-[28rem] w-[28rem] rounded-full bg-secondary/5 blur-[120px]"></div>
+    </div>
+    @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
 
-    <main class="flex-1">
+    <main class="flex-1 relative z-10">
         @RenderBody()
     </main>
+
+    <footer class="relative z-10 mt-auto border-t border-outline-variant/10 bg-surface-container-lowest/80 backdrop-blur-xl">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-lg md:flex-row md:items-center md:justify-between">
+            <div>
+                <div class="text-headline-md font-headline-md text-on-surface tracking-wide">LuxeStay</div>
+                <p class="mt-2 text-body-sm font-body-sm text-on-surface-variant max-w-md">Atmósfera editorial, hospitalidad de alto nivel y una experiencia de reserva coherente en todo el front.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-md text-label-sm font-label-sm uppercase tracking-widest">
+                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/Index">Discover</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/GuestReservations">Reservations</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/OwnerDashboard">Dashboard</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Privacy">Privacy</a>
+            </div>
+        </div>
+        <div class="border-t border-outline-variant/10">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-md text-label-sm font-label-sm text-on-surface-variant flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <span>© 2026 LuxeStay. All rights reserved.</span>
+                <span class="uppercase tracking-widest">Nocturne Elite system</span>
+            </div>
+        </div>
+    </footer>
 
     @RenderSection("Scripts", required: false)
 </body>
