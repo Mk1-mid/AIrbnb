@@ -1,4 +1,5 @@
 @page
+@model RentalPlatform.Web.Pages.Front.PublishEditPropertyModel
 @{
     Layout = "Shared/_Layout";
     ViewData["Title"] = "LuxeStay - Publicar/Editar Inmueble";
@@ -39,43 +40,44 @@
 <div>
 <div class="flex items-center gap-2 text-on-surface-variant mb-2">
 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-<a class="text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Back to Properties</a>
+<a class="text-label-sm font-label-sm hover:text-primary transition-all duration-300" href="#">Back to Properties</a>
 </div>
 <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Edit Property Listing</h1>
 <p class="text-body-md font-body-md text-on-surface-variant mt-1">Update the details, pricing, and availability of your luxury rental.</p>
 </div>
 <div class="flex items-center gap-stack-sm">
-<button class="px-4 py-2 text-label-md font-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors bg-surface-container-lowest" type="button">Cancel</button>
-<button class="px-4 py-2 text-label-md font-label-md text-on-primary bg-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm" form="property-form" type="submit">Save Changes</button>
+<button class="px-4 py-2 text-label-md font-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container-low hover:border-primary/40 transition-all duration-300 bg-surface-container-lowest" type="button">Cancel</button>
+<button class="px-4 py-2 text-label-md font-label-md text-on-primary bg-primary rounded-lg hover:bg-primary/90 hover:opacity-95 hover:shadow-[0_0_14px_rgba(242,202,80,0.18)] transition-all duration-300 shadow-sm" form="property-form" type="submit">Save Changes</button>
 </div>
 </div>
 <!-- Form Layout (Bento Grid Style) -->
-<form class="grid grid-cols-1 lg:grid-cols-12 gap-gutter" id="property-form">
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-gutter" id="property-form" method="post" asp-page-handler="Save">
+<input type="hidden" asp-for="PropertyId" />
 <!-- Main Details Column -->
 <div class="lg:col-span-8 space-y-gutter">
 <!-- Basic Info Card -->
-<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6 ambient-shadow-lvl1">
 <h2 class="text-headline-md font-headline-md text-primary mb-stack-md">Basic Details</h2>
 <div class="space-y-stack-md">
 <div>
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="title">Property Title</label>
-<input class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-on-surface-variant/50" id="title" name="title" placeholder="e.g. Modern Loft in Downtown" type="text" value="Villa Océanique - Luxury Cliffside Retreat"/>
+<input asp-for="Title" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300 placeholder-on-surface-variant/50" placeholder="e.g. Modern Loft in Downtown" type="text"/>
 </div>
 <div>
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="description">Description</label>
-<textarea class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-on-surface-variant/50" id="description" name="description" placeholder="Describe the key features and atmosphere..." rows="5">Experience unparalleled luxury in this stunning cliffside villa overlooking the Pacific. Featuring floor-to-ceiling windows, an infinity pool, and modern minimalist architecture. Perfect for discerning guests seeking privacy and architectural beauty.</textarea>
+<textarea asp-for="Description" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300 placeholder-on-surface-variant/50" placeholder="Describe the key features and atmosphere..." rows="5"></textarea>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
 <div>
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="city">City / Location</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px]">location_on</span>
-<input class="w-full pl-10 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="city" name="city" type="text" value="Malibu, California"/>
+<input asp-for="City" class="w-full pl-10 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300" type="text"/>
 </div>
 </div>
 <div>
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="property_type">Property Type</label>
-<select class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none" id="property_type" name="property_type">
+<select asp-for="PropertyType" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300 appearance-none" id="property_type">
 <option selected="" value="villa">Villa</option>
 <option value="apartment">Luxury Apartment</option>
 <option value="house">House</option>
@@ -86,14 +88,14 @@
 </div>
 </section>
 <!-- Media Upload Card -->
-<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6 ambient-shadow-lvl1">
 <div class="flex items-center justify-between mb-stack-md">
 <h2 class="text-headline-md font-headline-md text-primary">Media Gallery</h2>
 <span class="text-label-sm font-label-sm text-on-surface-variant">5 Photos</span>
 </div>
 <!-- Upload Dropzone -->
-<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center bg-surface-container-low mb-stack-md hover:bg-surface-container transition-colors cursor-pointer group">
-<span class="material-symbols-outlined text-[32px] text-on-surface-variant mb-2 group-hover:text-primary transition-colors">cloud_upload</span>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center text-center bg-surface-container-low mb-stack-md hover:bg-surface-container transition-all duration-300 cursor-pointer group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant mb-2 group-hover:text-primary transition-all duration-300">cloud_upload</span>
 <div class="text-label-md font-label-md text-primary mb-1">Click to upload or drag and drop</div>
 <div class="text-body-sm font-body-sm text-on-surface-variant">High-resolution JPEG, PNG (max 10MB per image)</div>
 </div>
@@ -103,8 +105,8 @@
 <div class="col-span-2 row-span-2 relative rounded-lg overflow-hidden group border border-outline-variant">
 <img alt="Hero Photo" class="w-full h-full object-cover" data-alt="A sweeping wide-angle architectural shot of a modern luxury villa perched on a cliff edge at sunset. The building features massive floor-to-ceiling glass windows reflecting the warm orange light. An infinity pool seamlessly blends with the distant ocean horizon. The interior lighting is warm, contrasting with the cool twilight exterior. High-end, minimal, architectural style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqbGGxrNVeUKf6DUB0vdCVgFr1KGED5dmJAjLNT-HTTkjVaLn28EaBiF2MSKHApD7GUfdjVOtiUQZkt6W36MFVcJTUwmNIJwDNzhIps3eH66ltBRrffMpnW5N_gFTpb_otULMZsq8PSSwRQgijfyIugrxauGMV4JNjmMF8jbBDi01pkvQdxu5n0vPAozmNqkn-aYSDBIMPNd-6T1YH2qFM026iK7u7Z1Z7-iWdWlfX1gw3gHVLDp_eQP_Atf8uBeXMGZWMUOKTRlI"/>
 <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface hover:text-primary shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">star</span></button>
-<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="w-8 h-8 rounded-md bg-surface-container-lowest flex items-center justify-center text-on-surface hover:text-primary hover:bg-surface-container-lowest/80 transition-all duration-300 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">star</span></button>
+<button class="w-8 h-8 rounded-md bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 hover:bg-surface-container-lowest/80 transition-all duration-300 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
 <div class="absolute top-2 left-2 bg-primary text-on-primary text-label-sm font-label-sm px-2 py-1 rounded">Hero</div>
 </div>
@@ -112,25 +114,25 @@
 <div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
 <img alt="Living Room" class="w-full h-full object-cover" data-alt="Interior shot of a minimalist luxury living room. Wide plank oak flooring, a sleek low-profile light grey sofa, and a sculptural stone coffee table. Massive windows offer a view of the ocean. Bright, natural lighting, clean lines, professional real estate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCySVzA9EsbDnOYPLN4RSIToU0oJ1JE94nf1183-4oOj5NnIv6ER3ZaZsiel5YTHEuWXoKkGfirZzwDcu76iuTNdKsLRoeFfM7Dii4D4sXQvx0P8iI7ztgofxuMkKH0GYZ82GMsdxjSSzvh_dJjrHzyOeWN-rsG4Fx00DEPyxfTa55TMIkXLdEUlmMFC6Nv2Lu240EnJSupFu5NDmNf7NJmzb1VpBG1tfZ0Ou1czAZvTvce5FA9MS7lUjFyh6VUnE1hrNIvwOyuGz0"/>
 <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="w-8 h-8 rounded-md bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 hover:bg-surface-container-lowest/80 transition-all duration-300 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
 </div>
 <!-- Thumbnail 2 -->
 <div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
 <img alt="Kitchen" class="w-full h-full object-cover" data-alt="Close up architectural detail of a modern designer kitchen. Dark matte charcoal cabinetry contrasts with a stark white marble island. Sleek, handleless design. Professional, high-contrast, clean corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsilZ62fh9FQrMVG8IM-b4EPU5Txc87FyvXQ8XIvDpyUjbdHcGJSGjIDVFQR3ewxeF_IKA2AXCHdhr7-tKWt6xiefWa9hChLYVzI1Sf3CrzPDNYloTRygKt1NFlA7kTCVgR8ozdaV3KWZN8C-XAfA9Jwg9XhJaEDSnDOKj_vNx2szw6Y2KU1_cT5Q6DleY-SkLO0PCIpEAMj9PLVe2xMnseXpFb0wQNRl95edJzf6JRjAfdJ3_oZQh97VSJ98awB-ZVm_u5onS43U"/>
 <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="w-8 h-8 rounded-md bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 hover:bg-surface-container-lowest/80 transition-all duration-300 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
 </div>
 <!-- Thumbnail 3 -->
 <div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
 <img alt="Bedroom" class="w-full h-full object-cover" data-alt="A tranquil, high-end master bedroom. Minimalist platform bed with crisp white linens. A subtle textured beige accent wall. Large sliding glass doors lead to a private balcony. Soft, diffused daylight creating a serene, restful mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAchnEJV9LwZYU8cUbllUxYifKqI2HwMs8xsLz-Hvqv5rqKxZqarsOyFrHgK7jL-JER_9DBSOTP_WhH0UPhijClvXztMrAosVMOGyYewBXD9bqHI5H077dqrWTtc_Z1QFINNZ5s5xubNFUTJMHlUNR5eFCgQlN4pOFQ-G6a4nIAQYGY96RKnq1FshgSJEX05tWtdbYjLsL-JpWtllLg6dLIMoOPqdhwn2MjFy9mkpgAZee6r8hpwKXgYXUjqcHRQF1Zpp_g2Jc6kzI"/>
 <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="w-8 h-8 rounded-md bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 hover:bg-surface-container-lowest/80 transition-all duration-300 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
 </div>
 </div>
 <!-- Thumbnail 4 (Add more) -->
-<div class="relative rounded-lg overflow-hidden border border-dashed border-outline-variant aspect-square flex flex-col items-center justify-center bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<div class="relative rounded-lg overflow-hidden border border-dashed border-outline-variant aspect-square flex flex-col items-center justify-center bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all duration-300">
 <span class="material-symbols-outlined text-on-surface-variant text-[24px]">add_photo_alternate</span>
 </div>
 </div>
@@ -139,7 +141,7 @@
 <!-- Sidebar / Secondary Details Column -->
 <div class="lg:col-span-4 space-y-gutter">
 <!-- Publishing Status Card -->
-<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6 ambient-shadow-lvl1">
 <h2 class="text-headline-md font-headline-md text-primary mb-stack-md border-b border-outline-variant pb-2">Status &amp; Pricing</h2>
 <!-- Toggle Switch -->
 <div class="flex items-center justify-between mb-stack-lg bg-surface-container-low p-4 rounded-lg border border-outline-variant">
@@ -148,7 +150,7 @@
 <div class="text-body-sm font-body-sm text-on-surface-variant">Currently visible to guests</div>
 </div>
 <label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<input asp-for="IsActive" class="sr-only peer" type="checkbox" />
 <div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
 <span class="ml-3 text-label-sm font-label-sm text-primary">Active</span>
 </label>
@@ -159,7 +161,7 @@
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="price">Base Nightly Rate</label>
 <div class="relative">
 <span class="absolute left-3 top-2.5 text-on-surface-variant font-label-md">$</span>
-<input class="w-full pl-8 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 font-mono transition-all" id="price" name="price" type="number" value="1250"/>
+<input asp-for="Price" class="w-full pl-8 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 font-mono transition-all duration-300" type="number"/>
 </div>
 </div>
 <div class="pt-4 border-t border-outline-variant">
@@ -175,7 +177,7 @@
 </div>
 </section>
 <!-- Amenities Card -->
-<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6 ambient-shadow-lvl1">
 <h2 class="text-headline-md font-headline-md text-primary mb-stack-md">Key Amenities</h2>
 <div class="flex flex-wrap gap-2">
 <!-- Selected Chips -->
@@ -195,7 +197,7 @@
 <button class="ml-1 text-on-surface-variant hover:text-error" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
 </div>
 <!-- Add New -->
-<button class="inline-flex items-center gap-1 bg-surface px-3 py-1 rounded border border-dashed border-outline-variant hover:bg-surface-container transition-colors" type="button">
+<button class="inline-flex items-center gap-1 bg-surface px-3 py-1 rounded-md border border-dashed border-outline-variant hover:bg-surface-container hover:border-primary/40 transition-all duration-300" type="button">
 <span class="material-symbols-outlined text-[16px] text-on-surface-variant">add</span>
 <span class="text-label-sm font-label-sm text-on-surface-variant">Add Amenity</span>
 </button>

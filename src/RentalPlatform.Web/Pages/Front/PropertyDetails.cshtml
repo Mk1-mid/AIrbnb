@@ -31,14 +31,14 @@
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">An architectural masterpiece defined by stark geometric lines and floor-to-ceiling glass, offering uninterrupted views of the Los Angeles skyline enveloped in a midnight ambiance.</p>
 </header>
 <section class="grid grid-cols-1 md:grid-cols-2 gap-md h-[600px]">
-<div class="md:col-span-2 h-[400px] relative rounded-xl overflow-hidden group">
+<div class="md:col-span-2 h-[400px] relative rounded-lg overflow-hidden group">
 <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtM8UofTDkqBe5JlwJI-YU2AR4aiL73HFxKOAxNhwlb026KrXD4kKwtAS7-wZjdxz5Jw4f5g2QaMaPqHwaPcAzslcSX9yNWA181lk4kLlEfpl4rHN4X5h7AFdv0g1KGjHfDp29W-nFbKfa-w74xflMJUxI2IwVQwpJ4d5ZtCJOfqBna3Ek6JQW8Elijdkv2FHqMXBEApQGAQI87id5H_A0C3o8BlJZDfUqevWMCeYgwh1AuYy8X2fuzvIes1D7Q2NlYtr4A-9D3Gg" alt="Hero" />
 <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
 </div>
-<div class="h-[200px] relative rounded-xl overflow-hidden group">
+<div class="h-[200px] relative rounded-lg overflow-hidden group">
 <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSCyYAgAAhY5FHGrpDL3iiTk7LRzYAkvG6hNtFltGzWyFREgFxSMbWLflgznaH5tho6aiHfTnkisSop75_QwYVr1DaC0bJWlXeSMjQGBFMga4Fe4yP3buMwvJAhhC612lAvC9c4TMm4UpWLPOQWarVxduA2zq9hhgrtJ5sCsJXWqotkw3pJ9whOQGq69eQZiwiidYL9o6HXqJMtWxF9g8zUecWTRrh67zukQdwZ08PY55rtK2tlrpEe3xsW3QvSZ79EpLm9FkslKA" alt="Living room" />
 </div>
-<div class="h-[200px] relative rounded-xl overflow-hidden group">
+<div class="h-[200px] relative rounded-lg overflow-hidden group">
 <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5hPhq-UmsHJtQgtRtT0C9ysbat2_wYjtbGKkXCF3xTDWLR7UjccsRhiLG1Y-gpGPxTJ3B-NdNWPWhm-bzcCHWypQjR1mARmnupgwxPCFs7pWKLUDccoY2JryNIP6VLc9xczfdTENjw2bl4PcNTdA3TghRum4J73MB6Z0D7rWPLRM0E_wx4kbm4VNgkthW-iSpvlu_bYz1LM03XYhp94vkKnN9uLiqk7-VzmPVQXnvjX_LiR6iXTjV_SaX1PSq-VaGzPTFVp0FnYE" alt="Bathroom" />
 <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 <span class="font-label-md text-label-md text-primary uppercase tracking-widest flex items-center gap-xs"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">collections</span> View Gallery</span>
@@ -68,30 +68,31 @@
 </section>
 </div>
 <div class="lg:col-span-4 relative mt-xl lg:mt-0">
-<div class="sticky top-32 glass-panel rounded-xl p-lg flex flex-col gap-lg shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+<form class="sticky top-32 glass-panel rounded-lg p-lg flex flex-col gap-lg shadow-[0_0_30px_rgba(0,0,0,0.5)]" method="post" asp-page-handler="Reserve">
+<input type="hidden" asp-for="PropertyId" />
 <div class="flex justify-between items-baseline border-b border-gold-subtle pb-md">
 <span class="font-headline-md text-headline-md text-on-surface">$12,500 <span class="font-body-md text-body-md text-on-surface-variant">/ night</span></span>
 <span class="font-label-md text-label-md flex items-center gap-xs text-primary"><span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span> 5.0 Editorial Rating</span>
 </div>
 <div class="grid grid-cols-2 gap-sm">
-<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors">
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-all duration-300">
 <span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">CHECK-IN</span>
 <span class="font-body-md text-body-md text-on-surface">Oct 15, 2024</span>
 </div>
-<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors">
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-all duration-300">
 <span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">CHECK-OUT</span>
 <span class="font-body-md text-body-md text-on-surface">Oct 22, 2024</span>
 </div>
 </div>
-<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors flex justify-between items-center">
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-all duration-300 flex justify-between items-center">
 <div>
 <span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">GUESTS</span>
 <span class="font-body-md text-body-md text-on-surface">4 Guests</span>
 </div>
 <span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
 </div>
-<button class="w-full py-md rounded-lg btn-primary font-label-md text-label-md uppercase mt-sm" type="button">Request Booking</button>
-<p class="font-label-sm text-label-sm text-on-surface-variant text-center mt-xs">A concierge will contact you within 1 hour to finalize.</p>
-</div>
+<button class="w-full py-md rounded-lg btn-primary font-label-md text-label-md uppercase mt-sm" type="submit">Solicitar reserva</button>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center mt-xs">Un concierge te contactará dentro de 1 hora para finalizar.</p>
+</form>
 </div>
 </main>

@@ -25,6 +25,7 @@ builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 builder.Services.AddScoped<ExportReportUseCase>();
 builder.Services.AddScoped<INotificationService, PersistentNotificationService>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();

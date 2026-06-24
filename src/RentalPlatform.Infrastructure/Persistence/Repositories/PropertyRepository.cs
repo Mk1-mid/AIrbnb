@@ -16,6 +16,12 @@ public class PropertyRepository : IPropertyRepository
     public Task<Property?> GetByIdAsync(Guid id) =>
         _context.Properties.FirstOrDefaultAsync(p => p.Id == id);
 
+    public async Task<IEnumerable<Property>> GetByOwnerIdAsync(Guid ownerId) =>
+        await _context.Properties
+            .Where(p => p.OwnerId == ownerId)
+            .Include(p => p.Images)
+            .ToListAsync();
+
     public async Task<IEnumerable<Property>> SearchAsync(string? city, DateTime? checkIn, DateTime? checkOut)
     {
         var query = _context.Properties.AsQueryable().Where(p => p.IsActive);

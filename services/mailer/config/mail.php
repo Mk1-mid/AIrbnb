@@ -7,11 +7,12 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
-            'port' => env('MAIL_PORT', 2525),
+            'host' => env('MAIL_HOST', 'live.smtp.mailtrap.io'),
+            'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
+            'username' => env('MAIL_USERNAME', 'api'),
             'password' => env('MAIL_PASSWORD'),
+            'timeout' => 10,
         ],
 
         'log' => [
@@ -25,7 +26,7 @@ return [
     ],
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@rentalplatform.local'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@rentalplatform.com'),
         'name' => env('MAIL_FROM_NAME', 'RentalPlatform'),
     ],
 

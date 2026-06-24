@@ -7,8 +7,9 @@ RUN apk add --no-cache \
     oniguruma-dev \
     libzip-dev \
     icu-dev \
+    curl-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql mbstring zip intl gd
+    && docker-php-ext-install pdo_mysql mbstring zip intl gd curl
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 

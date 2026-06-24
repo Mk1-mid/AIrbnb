@@ -24,61 +24,64 @@
             <h1 class="text-display-lg font-display-lg text-on-background mb-2">Properties</h1>
             <p class="text-body-md font-body-md text-on-surface-variant">Manage your listings, update availability, and track performance.</p>
         </div>
-        <button class="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors flex items-center gap-2 w-fit">
+        <button class="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-primary-container hover:opacity-95 hover:shadow-[0_0_14px_rgba(242,202,80,0.18)] transition-all duration-300 flex items-center gap-2 w-fit">
             <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> List New Property
         </button>
     </header>
 
     <!-- Metrics Overview -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
-        <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
+        <div class="bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant/50 level-1-card">
             <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Total Listings</p>
-            <p class="text-headline-lg font-headline-lg text-primary">12</p>
+            <p class="text-headline-lg font-headline-lg text-primary">@Model.Properties.Count</p>
         </div>
-        <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
+        <div class="bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant/50 level-1-card">
             <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Active</p>
-            <p class="text-headline-lg font-headline-lg text-primary">10</p>
+            <p class="text-headline-lg font-headline-lg text-primary">@Model.Properties.Count(p => p.IsActive)</p>
         </div>
-        <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
+        <div class="bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant/50 level-1-card">
             <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Pending/Draft</p>
-            <p class="text-headline-lg font-headline-lg text-on-surface-variant">2</p>
+            <p class="text-headline-lg font-headline-lg text-on-surface-variant">@Model.Properties.Count(p => !p.IsActive)</p>
         </div>
     </div>
 
     <!-- Properties Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
-        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-primary/50 group">
-            <div class="h-48 w-full relative bg-surface-container">
-                <img class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1pHg0pFXO0OkqrzKYQ_mF3D5fPDx0bGtPIlBOXolV14sYr63FYV4_U6tQYQmiWOb1-Xqk0KAiAJ0UhpMVbNadoDCZZVDThAS5G-jb0sQjifdZ7t3Y4-YgD3VNaALxxzj36tflfp9IQhj10RQStR9LHmPLDHuH9IVENh2PgkkhEQe-bNGMLc00MV7puVZ8b0pDrgp5SBySzjHwvWroNmoaa_1y0ewmD3h-oPkdOtqACl9krmd9afVGxT5W2brRCrjNL_zlK4DpGxk" alt="Villa" />
-                <div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant/20 flex items-center gap-1">
-                    <div class="w-2 h-2 rounded-full bg-[#10B981]"></div> Active
-                </div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-headline-md font-headline-md text-on-background line-clamp-1">Villa Horizon</h3>
-                    <span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: 8492</span>
-                </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span> Malibu, California
-                </p>
-                <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30">
-                    <div>
-                        <p class="text-label-sm font-label-sm text-on-surface-variant">Occupancy (30d)</p>
-                        <p class="text-body-lg font-body-lg text-primary font-medium">84%</p>
-                    </div>
-                    <div>
-                        <p class="text-label-sm font-label-sm text-on-surface-variant">Revenue (30d)</p>
-                        <p class="text-body-lg font-body-lg text-primary font-medium">$12,450</p>
+        @foreach (var property in Model.Properties)
+        {
+            <div class="bg-surface-container-lowest rounded-lg border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-primary/50 group">
+                <div class="h-48 w-full relative bg-surface-container">
+                    <img class="object-cover w-full h-full" src="@(property.Images.FirstOrDefault()?.Url ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuB1pHg0pFXO0OkqrzKYQ_mF3D5fPDx0bGtPIlBOXolV14sYr63FYV4_U6tQYQmiWOb1-Xqk0KAiAJ0UhpMVbNadoDCZZVDThAS5G-jb0sQjifdZ7t3Y4-YgD3VNaALxxzj36tflfp9IQhj10RQStR9LHmPLDHuH9IVENh2PgkkhEQe-bNGMLc00MV7puVZ8b0pDrgp5SBySzjHwvWroNmoaa_1y0ewmD3h-oPkdOtqACl9krmd9afVGxT5W2brRCrjNL_zlK4DpGxk")" alt="@property.Title" />
+                    <div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-md text-label-sm font-label-sm text-primary border border-outline-variant/20 flex items-center gap-1">
+                        <div class="w-2 h-2 rounded-full @(property.IsActive ? "bg-[#10B981]" : "bg-outline-variant")"></div> @(property.IsActive ? "Active" : "Draft")
                     </div>
                 </div>
-                <div class="mt-auto flex gap-3">
-                    <a class="px-4 py-2 border border-primary text-primary rounded-lg text-label-md font-label-md hover:bg-primary hover:text-on-primary transition-colors" asp-page="/Front/PublishEditProperty">Edit Listing</a>
-                    <button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-colors" title="Deactivate">
-                        <span class="material-symbols-outlined" data-icon="block">block</span>
-                    </button>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-headline-md font-headline-md text-on-background line-clamp-1">@property.Title</h3>
+                        <span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: @property.Id.ToString()[..4]</span>
+                    </div>
+                    <p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span> @property.City
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30">
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Occupancy (30d)</p>
+                            <p class="text-body-lg font-body-lg text-primary font-medium">--</p>
+                        </div>
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Revenue (30d)</p>
+                            <p class="text-body-lg font-body-lg text-primary font-medium">@property.PricePerNight.ToString()</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto flex gap-3">
+                        <a class="px-4 py-2 border border-primary text-primary rounded-lg text-label-md font-label-md hover:bg-primary hover:text-on-primary transition-all duration-300" asp-page="/Front/PublishEditProperty" asp-route-PropertyId="@property.Id">Edit Listing</a>
+                        <button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-all duration-300" title="Deactivate" type="button">
+                            <span class="material-symbols-outlined" data-icon="block">block</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </main>

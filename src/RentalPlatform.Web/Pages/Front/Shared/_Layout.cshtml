@@ -21,8 +21,8 @@
     <div class="fixed inset-0 -z-10 pointer-events-none">
         <div class="absolute inset-0 bg-background"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-[#0b1b2b] via-background to-background opacity-80"></div>
-        <div class="absolute -top-40 right-0 h-[32rem] w-[32rem] rounded-full bg-primary/5 blur-[120px]"></div>
-        <div class="absolute bottom-0 left-0 h-[28rem] w-[28rem] rounded-full bg-secondary/5 blur-[120px]"></div>
+        <div class="absolute -top-40 right-0 h-[32rem] w-[32rem] rounded-full bg-primary/5 blur-2xl"></div>
+        <div class="absolute bottom-0 left-0 h-[28rem] w-[28rem] rounded-full bg-secondary/5 blur-2xl"></div>
     </div>
     @await Html.PartialAsync("~/Pages/Front/Shared/_FrontNavigation.cshtml")
 
@@ -37,10 +37,10 @@
                 <p class="mt-2 text-body-sm font-body-sm text-on-surface-variant max-w-md">Atmósfera editorial, hospitalidad de alto nivel y una experiencia de reserva coherente en todo el front.</p>
             </div>
             <div class="flex flex-wrap items-center gap-md text-label-sm font-label-sm uppercase tracking-widest">
-                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/Index">Discover</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/GuestReservations">Reservations</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/OwnerDashboard">Dashboard</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" asp-page="/Privacy">Privacy</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all duration-300" asp-page="/Front/Index">Discover</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all duration-300" asp-page="/Front/GuestReservations">Reservations</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all duration-300" asp-page="/Front/OwnerDashboard">Dashboard</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all duration-300" asp-page="/Privacy">Privacy</a>
             </div>
         </div>
         <div class="border-t border-outline-variant/10">

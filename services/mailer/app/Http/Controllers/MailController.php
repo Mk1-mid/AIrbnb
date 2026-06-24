@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Mail\Message;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class MailController extends Controller
 {
@@ -17,10 +17,9 @@ class MailController extends Controller
             'body' => 'required|string',
         ]);
 
-        Mail::send([], [], function (Message $message) use ($request) {
+        Mail::raw($request->input('body'), function (Message $message) use ($request) {
             $message->to($request->input('to'))
-                ->subject($request->input('subject'))
-                ->setBody($request->input('body'));
+                ->subject($request->input('subject'));
         });
 
         return response()->json(['status' => 'sent'], 200);

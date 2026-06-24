@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.8",
+        "mailtrap/smtp": "^1.0"
     },
     "autoload": {
         "psr-4": {

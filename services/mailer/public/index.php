@@ -1,30 +1,65 @@
 <?php
 
-use Illuminate\Routing\Router;
-use Illuminate\Http\Request;
-
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = require __DIR__ . '/../bootstrap/app.php';
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
-$router = new Router($app['events'], $app);
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
 
-$router->post('/send-email', function (Request $request) {
-    $request->validate([
-        'to' => 'required|email',
-        'subject' => 'required|string|max:255',
-        'body' => 'required|string',
+if ($path === '/send-email' && $method === 'POST') {
+    $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    $body = file_get_contents('php://input');
+    $data = json_decode($body, true);
+
+    if (empty($data['to']) || empty($data['subject']) || empty($data['body'])) {
+        http_response_code(400);
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => 'Missing fields: to, subject, body']);
+        exit;
+    }
+
+    $client = new Client([
+        'timeout' => 10,
+        'headers' => [
+            'Authorization' => 'Bearer 66567d83ddc8b67660288f04bc391655',
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ],
     ]);
 
-    Mail::send([], [], function ($message) use ($request) {
-        $message->to($request->input('to'))
-            ->subject($request->input('subject'))
-            ->setBody($request->input('body'));
-    });
+    $payload = [
+        'from' => [
+            'email' => 'noreply@rentalplatform.com',
+            'name' => 'RentalPlatform',
+        ],
+        'to' => [
+            [
+                'email' => $data['to'],
+            ],
+        ],
+        'subject' => $data['subject'],
+        'text' => $data['body'],
+        'category' => 'RentalPlatform',
+    ];
 
-    return response()->json(['status' => 'sent'], 200);
-});
+    try {
+        $client->post('https://send.api.mailtrap.io/api/send', [
+            'json' => $payload,
+        ]);
+    } catch (GuzzleException $e) {
+        http_response_code(500);
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        exit;
+    }
 
-$request = Illuminate\Http\Request::capture();
-$response = $router->dispatch($request);
-$response->send();
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'sent']);
+    exit;
+}
+
+http_response_code(404);
+header('Content-Type: application/json');
+echo json_encode(['status' => 'not found']);

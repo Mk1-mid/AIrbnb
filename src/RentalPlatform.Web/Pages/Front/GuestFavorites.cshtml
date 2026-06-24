@@ -1,60 +1,57 @@
 @page
 @model RentalPlatform.Web.Pages.Front.GuestFavoritesModel
 @{
-    ViewData["Title"] = "Mis Favoritos - LuxeStay";
+    ViewData["Title"] = "Guest Favorites - LuxeStay";
     ViewData["HtmlLang"] = "en";
     ViewData["HtmlClass"] = "dark";
-    ViewData["BodyClass"] = "bg-background text-on-background font-body-md min-h-screen flex flex-col md:flex-row";
+    ViewData["BodyClass"] = "bg-background text-on-background font-body-md min-h-screen flex flex-col";
     ViewData["FrontNavVariant"] = "guest";
     ViewData["FrontActiveNav"] = "favorites";
 }
 
-<!-- Main Content Canvas -->
-<main class="flex-grow md:ml-64 w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<main class="relative flex-grow md:ml-64 w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#0B1B2B] via-background to-background"></div>
     <header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
         <div>
-            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg font-bold text-on-background mb-2">Mis Favoritos</h1>
+            <span class="text-label-sm font-label-sm uppercase tracking-widest text-primary">Guest Suite</span>
+            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg font-bold text-on-surface mb-2">Mis Favoritos</h1>
             <p class="text-body-md font-body-md text-on-surface-variant">Your curated collection of premium short-term rentals.</p>
         </div>
-        <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors flex items-center gap-2 bg-surface-container-lowest">
-            <span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span> Filter
+        <button class="px-4 py-2 border border-outline-variant/40 rounded-lg text-label-md font-label-md text-on-surface-variant hover:border-primary hover:text-primary hover:bg-surface-container-lowest/90 transition-all duration-300 flex items-center gap-2 bg-surface-container-lowest/80" type="button">
+            <span class="material-symbols-outlined text-[18px]">filter_list</span> Filtrar
         </button>
     </header>
 
-    <!-- Bento Grid of Favorites -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-        <article class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_1px_3px_rgba(15,23,42,0.05)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] hover:border-primary/50 transition-all duration-200 overflow-hidden group flex flex-col h-full">
-            <div class="relative w-full h-48 md:h-56 bg-surface-variant overflow-hidden">
-                <img alt="Villa Luna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJMvHCuY-qRCYT7PBqPcgrB5Ns0tzQUog7XLUsPGrmuz1Nj3juoEyCyosDv-4gJw2C55A8QUbai6-lCY4x7cmXP5hkwF5eIm14uWCVLzxmixFS4IW903iz6bqYmoh8Qel26WweXWkRXGIAxwNNYmjgevQM4WDRbRvLhlHqlhR-qovytPRwCEGQOMhRh4mxTrAFmP4HrnxOQVvsJi_Y_bkfkwJMuQkBODf4IcnHN6NxQxdwgqPM_DA-VnHubD0ilW80SkzMpYHXuLY" />
-                <button aria-label="Remove from favorites" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-primary hover:bg-surface-container-lowest transition-colors border border-outline-variant/50 shadow-sm">
-                    <span class="material-symbols-outlined text-[20px]" data-icon="heart_broken">heart_broken</span>
-                </button>
-                <div class="absolute bottom-4 left-4 flex gap-2">
-                    <span class="bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-on-surface shadow-sm">Villa</span>
-                </div>
-            </div>
-            <div class="p-6 flex flex-col flex-grow">
-                <div class="flex justify-between items-start mb-2">
-                    <h2 class="text-headline-md font-headline-md text-on-background line-clamp-1">Villa Luna</h2>
-                    <div class="flex items-center gap-1 text-on-background">
-                        <span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="text-label-md font-label-md font-bold">4.9</span>
+        @foreach (var favorite in Model.Favorites)
+        {
+            <article class="glass-panel border border-outline-variant/20 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.35)] hover:border-primary/50 transition-all duration-200 overflow-hidden group flex flex-col h-full">
+                <div class="relative w-full h-48 md:h-56 bg-surface-variant overflow-hidden">
+                    <img alt="@favorite.Property.Title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="@(favorite.Property.Images.FirstOrDefault()?.Url ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuAJMvHCuY-qRCYT7PBqPcgrB5Ns0tzQUog7XLUsPGrmuz1Nj3juoEyCyosDv-4gJw2C55A8QUbai6-lCY4x7cmXP5hkwF5eIm14uWCVLzxmixFS4IW903iz6bqYmoh8Qel26WweXWkRXGIAxwNNYmjgevQM4WDRbRvLhlHqlhR-qovytPRwCEGQOMhRh4mxTrAFmP4HrnxOQVvsJi_Y_bkfkwJMuQkBODf4IcnHN6NxQxdwgqPM_DA-VnHubD0ilW80SkzMpYHXuLY")" />
+                    <form method="post" asp-page-handler="Remove">
+                        <input type="hidden" name="propertyId" value="@favorite.PropertyId" />
+                        <button aria-label="Remove from favorites" class="absolute top-4 right-4 w-8 h-8 rounded-md bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-primary hover:bg-surface-container-lowest hover:border-primary/50 transition-all duration-300 border border-outline-variant/50 shadow-sm" type="submit">
+                            <span class="material-symbols-outlined text-[20px]">heart_broken</span>
+                        </button>
+                    </form>
+                    <div class="absolute bottom-4 left-4 flex gap-2">
+                        <span class="bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface shadow-sm">@favorite.Property.City</span>
                     </div>
                 </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Los Angeles, California</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant border border-[#F1F5F9]">4 Beds</span>
-                    <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant border border-[#F1F5F9]">3 Baths</span>
-                    <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant border border-[#F1F5F9]">Pool</span>
-                </div>
-                <div class="mt-auto flex justify-between items-center pt-4 border-t border-[#F1F5F9]">
-                    <div>
-                        <span class="text-headline-md font-headline-md text-on-background font-bold">$850</span>
-                        <span class="text-body-sm font-body-sm text-on-surface-variant">/night</span>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-headline-md font-headline-md text-on-surface line-clamp-1">@favorite.Property.Title</h2>
                     </div>
-                    <button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-label-md font-label-md hover:bg-primary/90 transition-colors">Book Now</button>
+                    <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">@favorite.Property.Description</p>
+                    <div class="mt-auto flex justify-between items-center pt-4 border-t border-outline-variant/20">
+                        <div>
+                            <span class="text-headline-md font-headline-md text-on-surface font-bold">@favorite.Property.PricePerNight.Amount</span>
+                            <span class="text-body-sm font-body-sm text-on-surface-variant">/night</span>
+                        </div>
+                        <button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-label-md font-label-md hover:bg-primary-container hover:opacity-95 hover:shadow-[0_0_14px_rgba(242,202,80,0.18)] transition-all duration-300" type="button">Reservar</button>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        }
     </div>
 </main>

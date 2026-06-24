@@ -10,62 +10,40 @@
     ViewData["FrontActiveNav"] = "verification";
 }
 
-@section Head {
-<style>
-    .glass-panel {
-        background-color: rgba(11, 27, 43, 0.4);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-    }
-</style>
-}
+<main class="relative flex-1">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#0B1B2B] via-background to-background"></div>
+    <div class="absolute top-0 right-0 -z-10 h-80 w-80 rounded-full bg-primary/5 blur-2xl"></div>
 
-<!-- TopNavBar -->
-<header class="bg-background/80 backdrop-blur-xl font-headline-sm text-headline-sm font-label-md text-label-md font-body-md text-body-md docked full-width top-0 sticky shadow-sm border-b border-primary/20 z-50">
-    <div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-full">
-        <a class="font-headline-md text-headline-md text-on-surface tracking-wide" asp-area="" asp-page="/Front/Index">LuxeStay</a>
-        <nav class="hidden md:flex space-x-lg">
-            <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/Index">Discover</a>
-            <a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/IdentityVerification">Verification</a>
-        </nav>
-        <div class="flex items-center space-x-md">
-            <button aria-label="notifications" class="text-on-surface hover:text-primary transition-colors duration-300 focus:outline-none">
-                <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <button aria-label="User Profile" class="focus:outline-none hover:ring-1 hover:ring-primary rounded-full transition-all">
-                <img class="w-10 h-10 rounded-full object-cover border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfvB3EbEuF0zgkA53vBmMN_MJ_8wuIIouCHSq0eT9IDGClqHFWFuu_TmjlM1GSD-Z9zem5nhdgIuxb-YveIuvKxuYmLS6qsBcbHc7X4Qz8vn8wpaoFYjQFYoqSYopMkUCVLKZQk5HwCe1GFzSqgylL5tL1FVnda3Jxz3cCT_fA3JTFHIfTwHIMs-Msz-ss2I9sGg8lAVKWbo4yWT6d4shdxerq8Yj2HWRCIzqCCjLN3YC5d20QDG_S34YLKE6_VCJBOF9t1Ym_h-w" alt="Profile" />
-            </button>
-        </div>
-    </div>
-</header>
-
-<main class="flex-1 flex flex-col items-center p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto">
-    <div class="w-full max-w-2xl mb-stack-lg text-center">
-        <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-stack-sm">Identity Verification</h1>
-        <p class="text-body-md font-body-md text-on-surface-variant">Upload a government-issued ID so we can verify your identity before booking.</p>
-    </div>
-
-    <div class="w-full max-w-2xl mb-stack-lg rounded-xl border border-outline-variant bg-surface-container-lowest p-stack-md shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
-        <h2 class="text-headline-md font-headline-md text-on-surface">Status:
-            <span class="@(Model.Status == KycStatus.Approved ? "text-[#10b981]" : Model.Status == KycStatus.Rejected ? "text-error" : "text-secondary")">
-                @(Model.Status?.ToString() ?? "Pending")
-            </span>
-        </h2>
-        <p class="mt-1 text-body-sm font-body-sm text-on-surface-variant">@Model.Message</p>
-    </div>
-
-    <form class="w-full max-w-2xl bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_1px_3px_rgba(15,23,42,0.05)] flex flex-col gap-stack-lg" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="All" class="text-error text-body-sm"></div>
-
-        <div class="flex flex-col gap-stack-sm">
-            <label class="text-label-md font-label-md text-on-surface" for="Document">Upload Document</label>
-            <input asp-for="Document" type="file" accept="image/png, image/jpeg, application/pdf" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-body-md font-body-md text-on-surface" />
+    <div class="flex flex-col items-center p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto">
+        <div class="w-full max-w-2xl mb-stack-lg text-center">
+            <span class="text-label-sm font-label-sm uppercase tracking-widest text-primary">Guest Suite</span>
+            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-stack-sm">Verificación de identidad</h1>
+            <p class="text-body-md font-body-md text-on-surface-variant">Sube un documento oficial para validar tu perfil antes de reservar.</p>
         </div>
 
-        <div class="flex justify-end pt-stack-md border-t border-outline-variant mt-stack-sm">
-            <button class="px-6 py-3 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-container transition-colors shadow-[0_0_15px_rgba(242,202,80,0.3)]" type="submit">
-                Submit Verification
-            </button>
+        <div class="w-full max-w-2xl mb-stack-lg rounded-lg border border-outline-variant/20 bg-surface-container-lowest/80 p-stack-md shadow-[0_0_30px_rgba(0,0,0,0.35)]">
+            <h2 class="text-headline-md font-headline-md text-on-surface">
+                Status:
+                <span class="@(Model.Status == KycStatus.Approved ? "text-[#10b981]" : Model.Status == KycStatus.Rejected ? "text-error" : "text-secondary")">
+                    @(Model.Status?.ToString() ?? "Pending")
+                </span>
+            </h2>
+            <p class="mt-1 text-body-sm font-body-sm text-on-surface-variant">@Model.Message</p>
         </div>
-    </form>
+
+        <form class="w-full max-w-2xl glass-panel border border-primary/20 rounded-lg p-stack-lg shadow-[0_0_30px_rgba(0,0,0,0.35)] flex flex-col gap-stack-lg" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-error text-body-sm"></div>
+
+            <div class="flex flex-col gap-stack-sm">
+                <label class="text-label-md font-label-md text-on-surface" for="Document">Upload Document</label>
+                <input asp-for="Document" type="file" accept="image/png, image/jpeg, application/pdf" class="w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg px-4 py-3 text-body-md font-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-amber-500/50 focus:border-primary transition-all duration-300" />
+            </div>
+
+            <div class="flex justify-end pt-stack-md border-t border-outline-variant/20 mt-stack-sm">
+                <button class="px-6 py-3 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-container hover:opacity-95 hover:shadow-[0_0_14px_rgba(242,202,80,0.18)] transition-all duration-300 shadow-[0_0_15px_rgba(242,202,80,0.3)]" type="submit">
+                    Enviar verificación
+                </button>
+            </div>
+        </form>
+    </div>
 </main>

@@ -1,4 +1,5 @@
 @page
+@model RentalPlatform.Web.Pages.Front.RegisterModel
 @{
     ViewData["Title"] = "Register - LuxeStay";
     ViewData["HtmlLang"] = "es";
@@ -18,7 +19,6 @@
 </style>
 }
 
-<!-- Side Image (Desktop) -->
 <div class="hidden md:block md:w-5/12 lg:w-1/2 relative bg-surface-variant">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDg0y4eN6b_cyKyW-1HD6Pp9dtkSWy1eKM43TiVC3CukuKPKwWYxcG6ricPY_WzKxAcke7x8NoYP4PA56Jm1gfIp2J1ggCo_RFQxdET3n-eh0Apc-P-_0Y8rDgFvKd-WUZrRhHpRVjSj0GixcOmfaAxNlVa6LKF3YT2hWS2c88CqDWkLLVf-HpKk5EUDdnsIVy3fyL0HT2pObl_0IPHvlqXfmXEKun65F2NAnvLB8ci5y8febOCPpQ1U2pNfoNTUaMXfwp7L5T-p20')"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
@@ -28,28 +28,27 @@
     </div>
 </div>
 
-<!-- Form Column -->
 <div class="w-full md:w-7/12 lg:w-1/2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-stack-lg min-h-screen overflow-y-auto">
     <div class="w-full max-w-md mx-auto">
         <div class="mb-stack-lg flex items-center">
             <span class="text-headline-md font-headline-md font-bold text-primary">LuxeStay</span>
         </div>
         <div class="mb-stack-lg">
-            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-stack-sm">Crear una cuenta</h1>
-            <p class="text-body-md font-body-md text-on-surface-variant">Ingresa tus datos para registrarte.</p>
+            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-stack-sm">Crear una cuenta</h1>
+            <p class="text-body-md font-body-md text-on-surface-variant">Completa tus datos para entrar a la red LuxeStay.</p>
         </div>
 
-        <form class="flex flex-col gap-stack-md" method="post">
+        <form class="flex flex-col gap-stack-md" method="post" asp-page-handler="Register">
             <div>
                 <label class="block text-label-sm font-label-sm text-on-surface mb-base" for="role">Tipo de cuenta</label>
                 <div class="grid grid-cols-2 gap-stack-sm bg-surface-container p-1 rounded-lg">
                     <label class="cursor-pointer">
-                        <input checked class="peer sr-only" name="role" type="radio" value="guest" />
-                        <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-200 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">Huésped</div>
+                        <input checked class="peer sr-only" asp-for="Role" type="radio" value="guest" />
+                        <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-300 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">Huésped</div>
                     </label>
                     <label class="cursor-pointer">
-                        <input class="peer sr-only" name="role" type="radio" value="owner" />
-                        <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-200 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">Propietario</div>
+                        <input class="peer sr-only" asp-for="Role" type="radio" value="owner" />
+                        <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-300 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">Propietario</div>
                     </label>
                 </div>
             </div>
@@ -57,26 +56,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
                 <div>
                     <label class="block text-label-sm font-label-sm text-on-surface mb-base" for="firstName">Nombre</label>
-                    <input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="firstName" name="firstName" placeholder="Tu nombre" required type="text" />
+                    <input asp-for="FirstName" class="w-full px-4 py-2 border border-outline-variant/50 rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300" placeholder="Tu nombre" required type="text" />
                 </div>
                 <div>
                     <label class="block text-label-sm font-label-sm text-on-surface mb-base" for="lastName">Apellidos</label>
-                    <input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="lastName" name="lastName" placeholder="Tus apellidos" required type="text" />
+                    <input asp-for="LastName" class="w-full px-4 py-2 border border-outline-variant/50 rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300" placeholder="Tus apellidos" required type="text" />
                 </div>
             </div>
 
             <div>
                 <label class="block text-label-sm font-label-sm text-on-surface mb-base" for="email">Correo electrónico</label>
-                <input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="email" name="email" placeholder="nombre@ejemplo.com" required type="email" />
+                <input asp-for="Email" class="w-full px-4 py-2 border border-outline-variant/50 rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300" placeholder="nombre@ejemplo.com" required type="email" />
             </div>
 
             <div>
                 <label class="block text-label-sm font-label-sm text-on-surface mb-base" for="password">Contraseña</label>
-                <input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="password" name="password" placeholder="••••••••" required type="password" />
+                <input asp-for="Password" class="w-full px-4 py-2 border border-outline-variant/50 rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-amber-500/50 transition-all duration-300" placeholder="••••••••" required type="password" />
             </div>
 
-            <button class="mt-4 w-full bg-primary text-on-primary py-3 px-4 rounded-lg text-label-md font-label-md hover:bg-primary-container transition-all shadow-[0_0_15px_rgba(242,202,80,0.3)]" type="submit">
-                Create Account
+            <button class="mt-4 w-full bg-primary text-on-primary py-3 px-4 rounded-lg text-label-md font-label-md hover:bg-primary-container hover:opacity-95 hover:shadow-[0_0_14px_rgba(242,202,80,0.18)] transition-all duration-300 shadow-[0_0_15px_rgba(242,202,80,0.3)]" type="submit">
+                Crear cuenta
             </button>
         </form>
     </div>
