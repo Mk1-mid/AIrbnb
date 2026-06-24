@@ -11,6 +11,14 @@ COPY RentalPlatform.sln .
 RUN dotnet restore RentalPlatform.sln
 
 COPY . .
+
+RUN apt-get update && apt-get install -y curl gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install && npm run build:css
+
 RUN dotnet publish src/RentalPlatform.Web/RentalPlatform.Web.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
