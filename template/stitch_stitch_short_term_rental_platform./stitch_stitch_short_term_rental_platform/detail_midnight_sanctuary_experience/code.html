@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LuxeStay - Property Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed": "#d4e4fa",
+                        "outline-variant": "#4d4635",
+                        "error": "#ffb4ab",
+                        "surface": "#131313",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#574500",
+                        "secondary-fixed-dim": "#b8c8de",
+                        "on-secondary": "#233242",
+                        "primary": "#f2ca50",
+                        "outline": "#99907c",
+                        "on-secondary-container": "#a7b6cc",
+                        "primary-fixed": "#ffe088",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#151b2d",
+                        "primary-container": "#d4af37",
+                        "surface-container": "#201f1f",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary-fixed-variant": "#40465a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#2a3043",
+                        "tertiary-fixed": "#dce1fb",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface-variant": "#d0c5af",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-container": "#adb2ca",
+                        "on-secondary-fixed": "#0d1d2d",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c0c6de",
+                        "on-primary": "#3c2f00",
+                        "surface-container-highest": "#353534",
+                        "on-primary-container": "#554300",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#c8cee6",
+                        "surface-tint": "#e9c349",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#3f4459",
+                        "primary-fixed-dim": "#e9c349",
+                        "background": "#131313",
+                        "secondary-container": "#39485a",
+                        "secondary": "#b8c8de",
+                        "surface-bright": "#3a3939"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "2xl": "64px",
+                        "base": "4px",
+                        "margin-desktop": "48px",
+                        "xl": "40px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["DM Sans"],
+                        "body-lg": ["DM Sans"],
+                        "label-sm": ["DM Sans"],
+                        "label-md": ["DM Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #050505; color: #e5e2e1; }
+        .glass-panel { background: rgba(11, 27, 43, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(242, 202, 80, 0.3); }
+        .golden-glow:hover { box-shadow: 0 0 15px rgba(242, 202, 80, 0.15); }
+        .btn-primary { background-color: #f2ca50; color: #050505; font-weight: 600; letter-spacing: 0.05em; transition: all 0.3s ease; }
+        .btn-primary:hover { opacity: 0.9; box-shadow: 0 0 20px rgba(242, 202, 80, 0.2); }
+        .text-gold { color: #f2ca50; }
+        .border-gold-subtle { border-color: rgba(242, 202, 80, 0.2); }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-2xl">
+<!-- Top Navigation (From JSON) -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-primary/20 shadow-[0_0_15px_rgba(212,175,55,0.1)] flex justify-between items-center px-margin-desktop py-md hidden md:flex">
+<div class="font-headline-md text-headline-md text-primary uppercase tracking-widest">LuxeStay</div>
+<div class="flex gap-lg font-headline-sm text-headline-sm tracking-wide">
+<a class="text-primary border-b-2 border-primary pb-1 opacity-80 scale-95 duration-200" href="#">Residences</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:text-primary-fixed-dim" href="#">Experiences</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:text-primary-fixed-dim" href="#">Concierge</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:text-primary-fixed-dim" href="#">Membership</a>
+</div>
+<div class="flex items-center gap-md text-primary">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-all">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-all">shopping_bag</span>
+<img class="w-10 h-10 rounded-full border border-primary/30 object-cover ml-md" data-alt="A small, elegant circular profile picture of a high-end user, subtly lit with a warm golden hue against a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOJTN57yum9eakXLwOcjgH2v0G9UDDG4Tv9_7A089X9DHVK7GICIMIVHg68wIgMCnxy8xDF2qnggJrNt47eJEE1ayoEgcKv1v80iqv450FHb9WMAxpI2jAMTw8p9k4DticOwhUcSqE3a7ih0b7Q7pcZIgYLVxabs9FvO7IZY9zpQEUTrtCXrwiwKnrshg8cnMrxcY7s0NLE_78CNLQILqDixwVTyEpudhbXYgy3KwD0Qtls_ksaDb00W9mPAzxsRUgNL3RnLKnjls"/>
+</div>
+</nav>
+<!-- Mobile Nav Header -->
+<nav class="fixed top-0 w-full z-50 glass-panel flex justify-between items-center px-margin-mobile py-md md:hidden border-b-0">
+<div class="font-headline-md text-headline-md text-primary uppercase tracking-widest">LuxeStay</div>
+<span class="material-symbols-outlined text-primary">menu</span>
+</nav>
+<main class="max-w-[1600px] mx-auto pt-24 md:pt-32 px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Content Column -->
+<div class="lg:col-span-8 flex flex-col gap-xl">
+<!-- Header Section -->
+<header>
+<div class="flex items-center gap-sm mb-sm">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Beverly Hills, California</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">The Obsidian Estate</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">An architectural masterpiece defined by stark geometric lines and floor-to-ceiling glass, offering uninterrupted views of the Los Angeles skyline enveloped in a midnight ambiance.</p>
+</header>
+<!-- Cinematic Gallery -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-md h-[600px]">
+<div class="md:col-span-2 h-[400px] relative rounded-xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A breathtaking, cinematic wide shot of a modern luxury estate at night. The architecture features dark, sleek materials, expansive glass walls revealing warmly lit interiors, and an infinity pool reflecting the starry sky. High-contrast, moody lighting with elegant golden accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtM8UofTDkqBe5JlwJI-YU2AR4aiL73HFxKOAxNhwlb026KrXD4kKwtAS7-wZjdxz5Jw4f5g2QaMaPqHwaPcAzslcSX9yNWA181lk4kLlEfpl4rHN4X5h7AFdv0g1KGjHfDp29W-nFbKfa-w74xflMJUxI2IwVQwpJ4d5ZtCJOfqBna3Ek6JQW8Elijdkv2FHqMXBEApQGAQI87id5H_A0C3o8BlJZDfUqevWMCeYgwh1AuYy8X2fuzvIes1D7Q2NlYtr4A-9D3Gg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="h-[200px] relative rounded-xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up view of a luxurious, minimalist living room interior at night. Dark charcoal walls contrast with plush, warm-toned furniture and a glowing modern fireplace. Subdued, atmospheric lighting creates an intimate, high-end editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSCyYAgAAhY5FHGrpDL3iiTk7LRzYAkvG6hNtFltGzWyFREgFxSMbWLflgznaH5tho6aiHfTnkisSop75_QwYVr1DaC0bJWlXeSMjQGBFMga4Fe4yP3buMwvJAhhC612lAvC9c4TMm4UpWLPOQWarVxduA2zq9hhgrtJ5sCsJXWqotkw3pJ9whOQGq69eQZiwiidYL9o6HXqJMtWxF9g8zUecWTRrh67zukQdwZ08PY55rtK2tlrpEe3xsW3QvSZ79EpLm9FkslKA"/>
+</div>
+<div class="h-[200px] relative rounded-xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A dramatic shot of a high-end spa bathroom featuring dark slate tiles, a freestanding black marble tub, and subtle golden fixtures. Atmospheric, moody lighting highlights the luxurious textures and creates a serene, exclusive sanctuary vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5hPhq-UmsHJtQgtRtT0C9ysbat2_wYjtbGKkXCF3xTDWLR7UjccsRhiLG1Y-gpGPxTJ3B-NdNWPWhm-bzcCHWypQjR1mARmnupgwxPCFs7pWKLUDccoY2JryNIP6VLc9xczfdTENjw2bl4PcNTdA3TghRum4J73MB6Z0D7rWPLRM0E_wx4kbm4VNgkthW-iSpvlu_bYz1LM03XYhp94vkKnN9uLiqk7-VzmPVQXnvjX_LiR6iXTjV_SaX1PSq-VaGzPTFVp0FnYE"/>
+<div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest flex items-center gap-xs"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">collections</span> View Gallery</span>
+</div>
+</div>
+</section>
+<!-- Bespoke Services -->
+<section class="mt-xl">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-lg border-b border-gold-subtle pb-sm">Bespoke Services</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="glass-panel p-md rounded-lg flex flex-col items-center justify-center text-center gap-sm golden-glow transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">restaurant_menu</span>
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Private Chef</span>
+</div>
+<div class="glass-panel p-md rounded-lg flex flex-col items-center justify-center text-center gap-sm golden-glow transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">directions_car</span>
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Chauffeur</span>
+</div>
+<div class="glass-panel p-md rounded-lg flex flex-col items-center justify-center text-center gap-sm golden-glow transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">spa</span>
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">In-Villa Spa</span>
+</div>
+<div class="glass-panel p-md rounded-lg flex flex-col items-center justify-center text-center gap-sm golden-glow transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">wine_bar</span>
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Sommelier</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Booking Column -->
+<div class="lg:col-span-4 relative mt-xl lg:mt-0">
+<div class="sticky top-32 glass-panel rounded-xl p-lg flex flex-col gap-lg shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-baseline border-b border-gold-subtle pb-md">
+<span class="font-headline-md text-headline-md text-on-surface">$12,500 <span class="font-body-md text-body-md text-on-surface-variant">/ night</span></span>
+<span class="font-label-md text-label-md flex items-center gap-xs text-primary"><span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span> 5.0 Editorial Rating</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">CHECK-IN</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 15, 2024</span>
+</div>
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">CHECK-OUT</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 22, 2024</span>
+</div>
+</div>
+<div class="border border-gold-subtle/50 rounded-lg p-sm cursor-pointer hover:bg-white/5 transition-colors flex justify-between items-center">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">GUESTS</span>
+<span class="font-body-md text-body-md text-on-surface">4 Guests</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<button class="w-full py-md rounded-lg btn-primary font-label-md text-label-md uppercase mt-sm">Request Booking</button>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center mt-xs">A concierge will contact you within 1 hour to finalize.</p>
+</div>
+</div>
+</main>
+<!-- Footer (From JSON) -->
+<footer class="w-full py-2xl bg-surface-container-lowest border-t border-white/10 mt-2xl">
+<div class="max-w-7xl mx-auto px-margin-desktop flex flex-col items-center gap-md">
+<div class="font-headline-sm text-headline-sm text-on-surface">LuxeStay</div>
+<div class="flex gap-lg font-label-sm text-label-sm tracking-tighter">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Press</a>
+</div>
+<div class="font-label-sm text-label-sm tracking-tighter text-on-surface-variant mt-sm">© 2024 LuxeStay Global. All rights reserved.</div>
+</div>
+</footer>
+</body></html>

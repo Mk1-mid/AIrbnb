@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LuxeStay - Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed": "#d4e4fa",
+                    "outline-variant": "#4d4635",
+                    "error": "#ffb4ab",
+                    "surface": "#131313",
+                    "error-container": "#93000a",
+                    "on-primary-fixed-variant": "#574500",
+                    "secondary-fixed-dim": "#b8c8de",
+                    "on-secondary": "#233242",
+                    "primary": "#f2ca50",
+                    "outline": "#99907c",
+                    "on-secondary-container": "#a7b6cc",
+                    "primary-fixed": "#ffe088",
+                    "on-surface": "#e5e2e1",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed": "#151b2d",
+                    "primary-container": "#d4af37",
+                    "surface-container": "#201f1f",
+                    "inverse-primary": "#735c00",
+                    "on-tertiary-fixed-variant": "#40465a",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary": "#2a3043",
+                    "tertiary-fixed": "#dce1fb",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-container": "#adb2ca",
+                    "on-secondary-fixed": "#0d1d2d",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#c0c6de",
+                    "on-primary": "#3c2f00",
+                    "surface-container-highest": "#353534",
+                    "on-primary-container": "#554300",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#c8cee6",
+                    "surface-tint": "#e9c349",
+                    "surface-dim": "#131313",
+                    "on-tertiary-container": "#3f4459",
+                    "primary-fixed-dim": "#e9c349",
+                    "background": "#131313",
+                    "secondary-container": "#39485a",
+                    "secondary": "#b8c8de",
+                    "surface-bright": "#3a3939"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "2xl": "64px",
+                    "base": "4px",
+                    "margin-desktop": "48px",
+                    "xl": "40px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "DM Sans"
+                    ],
+                    "body-lg": [
+                            "DM Sans"
+                    ],
+                    "label-sm": [
+                            "DM Sans"
+                    ],
+                    "label-md": [
+                            "DM Sans"
+                    ],
+                    "headline-sm": [
+                            "Playfair Display"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "display-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "display-lg": [
+                            "Playfair Display"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.08em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .golden-glow:focus-within {
+            box-shadow: 0 0 15px rgba(212,175,55,0.15);
+            border-color: rgba(212,175,55,0.5);
+        }
+        .golden-gradient-border {
+            border-top: 1px solid transparent;
+            border-image: linear-gradient(to right, transparent, rgba(212,175,55,0.5), transparent) 1;
+        }
+        .bg-blur-overlay {
+            background-color: rgba(11, 27, 43, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- Background Texture -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-30 mix-blend-luminosity" data-alt="A moody, high-fashion architectural shot of a luxury hotel lobby at midnight. Deep infinite blacks contrast with subtle, razor-sharp golden lighting accents illuminating sleek marble and glass surfaces. The composition is highly symmetrical, evoking a sense of exclusive, authoritative sophistication with a sophisticated palette of deep midnight indigo and pristine gold. The mood is serene, wealthy, and atmospheric." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2mlPnJwoncaQxnEN4jylCscjrx1swwOWoFEAcv3zsMGYFe8d7OU0Y4sshLwN4JjGfF-F8_OqL7HvOSgXqx0i5yKOwHJZTpcWBSu9Kowb2tILSn1ioWGwEynoVhL1UqFwyhwE-Np_D9txnFOZ7QP0ZD-BIzPrbwLYVGu-3-qhrUuVZkTJo3R0FH9PW3VJtK8hLns8W1CFzZlcrNpoF0-OloLkJz8cIN9TcaGCHSdq65A6LfzhhB47NS3k2fgHHOYEbGzVwk5owJS8')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface/80 to-transparent"></div>
+</div>
+<!-- Main Container -->
+<main class="w-full max-w-5xl z-10 grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[600px] shadow-[0_0_50px_rgba(0,0,0,0.5)] rounded-xl overflow-hidden relative border border-primary/10">
+<!-- Left Panel: Brand / Image -->
+<section class="hidden md:flex flex-col justify-between p-margin-desktop relative">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="A close-up, highly detailed shot of a premium golden room key resting on a polished dark obsidian surface. A subtle, sharp rim light catches the edge of the key, highlighting its intricate design against the deep, infinite black background. The overall aesthetic is 'Midnight Luxury' with a focus on high-contrast minimalism, featuring a palette of deep blacks, midnight indigos, and glowing golden accents. The mood is exclusive and atmospheric." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2GHsjGKxO0cJ-BwumATceLId1FZHIK86ENbeCKWxHA8tX_f7imMx39nT_0_bhSdOJsOY-c4bONrpSxT-ZsljEh0elJM516umkVBuuCek7AJVEitcTa4V_nIJqBlSJa0OA--9JOcld1e0PkxH2eeikjgxJm9qsk0aPq4KzCwdH07EfwNCY4IKd3bktovYP_qjlL-LFLFRRbUlRuTRQ_9DTFZ1qcQIBQwJv7frL7YCgOEsiWSzgLKcRspiSld5uBwOOpRcQs--ADdU')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/80 to-transparent"></div>
+</div>
+<div class="z-10 mt-xl">
+<h1 class="font-headline-md text-headline-md text-primary uppercase tracking-widest mb-sm">LuxeStay</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm">Experience the pinnacle of atmospheric opulence. Access your personalized concierge and exclusive residences.</p>
+</div>
+<div class="z-10 mb-xl">
+<div class="flex items-center gap-md">
+<span class="w-8 h-[1px] bg-primary/50"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Global Elite</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: Login Form -->
+<section class="bg-blur-overlay p-margin-desktop flex flex-col justify-center relative border-l border-primary/10">
+<div class="w-full max-w-sm mx-auto">
+<div class="text-center md:text-left mb-xl">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your credentials to access the portal.</p>
+</div>
+<!-- Role Selector -->
+<div class="flex gap-xs mb-lg bg-surface-container-low p-xs rounded-lg border border-outline-variant/30">
+<button class="flex-1 py-sm px-md text-center rounded-md bg-primary/10 border border-primary/50 font-label-md text-label-md text-primary transition-all shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                        Guest
+                    </button>
+<button class="flex-1 py-sm px-md text-center rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-all">
+                        Owner
+                    </button>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-md">
+<!-- Email Input -->
+<div class="relative group">
+<label class="absolute left-0 -top-5 font-label-sm text-label-sm text-on-surface-variant uppercase transition-all group-focus-within:text-primary" for="email">Email Address</label>
+<div class="flex items-center border-b border-outline-variant/50 group-focus-within:border-primary/50 transition-colors pb-sm golden-glow pt-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm text-[20px]" data-icon="mail">mail</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder-on-surface-variant/50 p-0" id="email" placeholder="Enter your email" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="relative group mt-lg">
+<label class="absolute left-0 -top-5 font-label-sm text-label-sm text-on-surface-variant uppercase transition-all group-focus-within:text-primary" for="password">Password</label>
+<div class="flex items-center border-b border-outline-variant/50 group-focus-within:border-primary/50 transition-colors pb-sm golden-glow pt-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm text-[20px]" data-icon="lock">lock</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder-on-surface-variant/50 p-0" id="password" placeholder="••••••••" type="password"/>
+<button class="text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility_off">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Options -->
+<div class="flex items-center justify-between mt-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<div class="w-4 h-4 rounded-sm border border-outline-variant/50 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[12px] text-transparent group-hover:text-primary/50" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-[14px]">Remember me</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim transition-colors uppercase" href="#">Forgot Password?</a>
+</div>
+<!-- Actions -->
+<div class="mt-lg flex flex-col gap-md">
+<button class="w-full bg-primary text-on-primary py-md px-lg rounded-DEFAULT font-label-md text-label-md uppercase tracking-widest hover:bg-primary-fixed-dim transition-colors shadow-[0_4px_15px_rgba(212,175,55,0.2)]" type="submit">
+                            Sign In
+                        </button>
+<button class="w-full bg-transparent border border-primary/50 text-primary py-md px-lg rounded-DEFAULT font-label-md text-label-md uppercase tracking-widest hover:bg-primary/5 transition-colors" type="button">
+                            Request Access
+                        </button>
+</div>
+</form>
+<div class="mt-xl text-center">
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Protected by LuxeStay Global Security</p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple micro-interaction for input fields
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('border-primary');
+                input.parentElement.classList.remove('border-outline-variant/50');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('border-primary');
+                input.parentElement.classList.add('border-outline-variant/50');
+            });
+        });
+    </script>
+</body></html>

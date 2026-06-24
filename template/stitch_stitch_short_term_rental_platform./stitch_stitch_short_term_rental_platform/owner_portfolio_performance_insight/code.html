@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Dashboard - LuxeStay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed": "#d4e4fa",
+                        "outline-variant": "#4d4635",
+                        "error": "#ffb4ab",
+                        "surface": "#131313",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#574500",
+                        "secondary-fixed-dim": "#b8c8de",
+                        "on-secondary": "#233242",
+                        "primary": "#f2ca50",
+                        "outline": "#99907c",
+                        "on-secondary-container": "#a7b6cc",
+                        "primary-fixed": "#ffe088",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#151b2d",
+                        "primary-container": "#d4af37",
+                        "surface-container": "#201f1f",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary-fixed-variant": "#40465a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#2a3043",
+                        "tertiary-fixed": "#dce1fb",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface-variant": "#d0c5af",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-container": "#adb2ca",
+                        "on-secondary-fixed": "#0d1d2d",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c0c6de",
+                        "on-primary": "#3c2f00",
+                        "surface-container-highest": "#353534",
+                        "on-primary-container": "#554300",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#c8cee6",
+                        "surface-tint": "#e9c349",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#3f4459",
+                        "primary-fixed-dim": "#e9c349",
+                        "background": "#131313",
+                        "secondary-container": "#39485a",
+                        "secondary": "#b8c8de",
+                        "surface-bright": "#3a3939"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "2xl": "64px",
+                        "base": "4px",
+                        "margin-desktop": "48px",
+                        "xl": "40px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["DM Sans"],
+                        "body-lg": ["DM Sans"],
+                        "label-sm": ["DM Sans"],
+                        "label-md": ["DM Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+        }
+        .glass-panel {
+            background: rgba(11, 27, 43, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(242, 202, 80, 0.2);
+            border-left: 1px solid rgba(242, 202, 80, 0.05);
+        }
+        .golden-glow {
+            box-shadow: 0 0 15px rgba(242, 202, 80, 0.1);
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(242, 202, 80, 0.15) 0%, rgba(242, 202, 80, 0) 100%);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/60 backdrop-blur-2xl border-r border-primary/10 flex flex-col h-full py-xl z-50 hidden md:flex">
+<div class="px-md mb-xl flex flex-col items-center">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-primary/30 mb-sm">
+<img alt="Property Manager" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a sophisticated property manager in a sharp charcoal suit. The lighting is cinematic and moody, highlighting professional competence. The background is a deeply blurred luxury hotel lobby with subtle golden warm light accents. Shot on 85mm lens, high contrast, elegant corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeyf0J3rfpDHARsVsxnOtnJO_4AspaxQ5ZPJE1GW5PPkEKGsWYHXt3XG2gXxNWsuTeRsGIPoZGaZiEg4Q_gz3g4aEPazFfdFLMNcp_-zSLpAVceJbnV9emBdm7cWPuRgluXU2Igw0CNhvM_eYAxCXeKi7gEEnvrueP-xfwO9hh-KSVZGvKmi7--9-5HP_HAGNd2KYsMObxCRsYX2nj74_RCVOjRQQ7NSNCoOfCawum4l3CV3Ga2v1qt52ICLWZ2cclh_dwkU116H4"/>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary text-center">The Grand Plaza</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-xs">Elite Tier</p>
+</div>
+<div class="flex-1 flex flex-col gap-sm px-sm">
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-primary bg-primary/5 border-l-4 border-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Bookings</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">hotel</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Inventory</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Analytics</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Settings</span>
+</a>
+</div>
+<div class="px-md mt-auto mb-lg">
+<button class="w-full py-sm border border-primary/50 text-primary font-label-md text-label-md uppercase tracking-widest rounded-DEFAULT hover:bg-primary/10 transition-colors">Upgrade Suite</button>
+</div>
+<div class="px-sm flex flex-col gap-xs pt-md border-t border-primary/10">
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Support</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant/30 hover:bg-primary/10 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto w-full h-full">
+<!-- Header -->
+<header class="flex justify-between items-end mb-lg pb-md border-b border-primary/20">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">Performance Overview</h1>
+<p class="text-on-surface-variant">Real-time metrics for Q3 2024</p>
+</div>
+<div class="hidden sm:flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm glass-panel rounded-DEFAULT hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">download</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Export</span>
+</button>
+</div>
+</header>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- Metric Card 1 -->
+<div class="glass-panel p-md rounded-lg relative overflow-hidden group hover:golden-glow transition-all duration-500">
+<div class="absolute top-0 right-0 p-sm opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">account_balance_wallet</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Total Income</h3>
+<div class="font-headline-md text-headline-md text-primary mb-sm">$142,500</div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm">+12.4% vs last month</span>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="glass-panel p-md rounded-lg relative overflow-hidden group hover:golden-glow transition-all duration-500">
+<div class="absolute top-0 right-0 p-sm opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">king_bed</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Occupancy</h3>
+<div class="font-headline-md text-headline-md text-primary mb-sm">87%</div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm">+4.2% vs last month</span>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="glass-panel p-md rounded-lg relative overflow-hidden group hover:golden-glow transition-all duration-500">
+<div class="absolute top-0 right-0 p-sm opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">confirmation_number</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Total Bookings</h3>
+<div class="font-headline-md text-headline-md text-primary mb-sm">124</div>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">trending_flat</span>
+<span class="font-label-sm text-label-sm">Stable vs last month</span>
+</div>
+</div>
+</div>
+<!-- Main Chart Area -->
+<div class="glass-panel rounded-lg p-lg mb-lg">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Revenue Trajectory</h3>
+<div class="flex gap-sm">
+<button class="px-sm py-xs border border-primary/20 rounded text-label-sm text-on-surface-variant hover:text-primary transition-colors">1W</button>
+<button class="px-sm py-xs border border-primary/50 bg-primary/10 rounded text-label-sm text-primary transition-colors">1M</button>
+<button class="px-sm py-xs border border-primary/20 rounded text-label-sm text-on-surface-variant hover:text-primary transition-colors">1Y</button>
+</div>
+</div>
+<div class="h-64 w-full relative mt-md flex items-end">
+<!-- Decorative Chart Background Grid -->
+<div class="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-10 pointer-events-none">
+<div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-primary"></div>
+<div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-primary"></div>
+<div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-r border-primary"></div><div class="border-b border-primary"></div>
+<div class="border-r border-primary"></div><div class="border-r border-primary"></div><div class="border-r border-primary"></div><div class="border-r border-primary"></div><div class="border-r border-primary"></div><div></div>
+</div>
+<!-- SVG Chart Line (Mockup) -->
+<svg class="w-full h-full absolute bottom-0 left-0 preserve-aspect-ratio-none" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="glow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#f2ca50" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#f2ca50" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,250 L0,150 C100,140 200,180 300,120 C400,60 500,140 600,100 C700,60 800,90 900,40 C950,20 1000,30 1000,30 L1000,250 Z" fill="url(#glow)"></path>
+<path d="M0,150 C100,140 200,180 300,120 C400,60 500,140 600,100 C700,60 800,90 900,40 C950,20 1000,30 1000,30" fill="none" filter="drop-shadow(0px 4px 6px rgba(242, 202, 80, 0.4))" stroke="#f2ca50" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+</main>
+</body></html>
