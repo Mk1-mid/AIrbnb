@@ -5,6 +5,7 @@ obj/
 # IDE
 .vs/
 .idea/
+.vscode/mcp.json
 *.swp
 *.swo
 
