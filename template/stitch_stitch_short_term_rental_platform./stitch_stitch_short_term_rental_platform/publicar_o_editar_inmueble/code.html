@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LuxeStay - Publicar/Editar Inmueble</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#bec6e0",
+                        "background": "#f8f9ff",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#00201e",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed": "#d5e3fd",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "tertiary-fixed-dim": "#66d8d2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#57657b",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#dae2fd",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#00201e",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#213145",
+                        "secondary": "#515f74",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d5e3fd",
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed": "#84f5ee",
+                        "outline": "#76777d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-tertiary-container": "#00938e",
+                        "on-primary-fixed": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-headline, .font-label { font-family: 'Geist', sans-serif; }
+        
+        /* Ambient shadows as per style guidance */
+        .ambient-shadow-lvl1 { box-shadow: 0px 1px 3px 0px rgba(15, 23, 42, 0.05); }
+        .ambient-shadow-lvl2 { box-shadow: 0px 4px 12px 0px rgba(15, 23, 42, 0.08); }
+        .hover-lift:hover { box-shadow: 0px 4px 12px 0px rgba(15, 23, 42, 0.08); border-color: #CBD5E1; transform: translateY(-2px); transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex font-body-md text-body-md">
+<!-- SideNavBar (Owner Dashboard Layout) -->
+<nav class="bg-surface-container-low dark:bg-surface-container-low text-primary dark:text-primary-fixed-dim Headlines: text-headline-sm font-headline-sm. Labels: text-label-md font-label-md h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-low flat no shadows flex flex-col h-full p-stack-md gap-stack-sm z-50 border-r border-outline-variant hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-stack-sm mb-stack-lg p-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-md font-bold overflow-hidden shrink-0">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a property manager in a well-lit, modern corporate environment. The person is smiling confidently, wearing smart business attire. The background is slightly blurred showing subtle architectural lines of an office. The lighting is bright and clean, fitting a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy2Mpf1UbBOOqkiAkFIV3vwkEjn_ensZtXiZJWhoDX0wtEXI9kSfh6unOQJf2zcyc5nbuEzHXFthgmGvXxoiwdvxS_wkB-8TEAsrpyS99XQX0LQk6F-6AaRzvlS0V4eg4OZ2hVM_vJJXieoX77nM7CkKJlmdlShm4iSXOkwb1_eIuxCToebW3M0SOSpEvmwBNNDb2HxVlwigLWmBG4_PijLvxP9cKcYJ9NJ8sCMZ35-XiVpN2OhYs_Emg1DT1XhiAz5clDPKEwLXo"/>
+</div>
+<div>
+<div class="text-label-md font-label-md font-bold text-primary dark:text-primary-fixed-dim">Management</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Property Owner</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-md font-label-md">My Bookings</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-lg font-bold px-4 py-2 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home_work" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home_work</span>
+<span class="text-label-md font-label-md">Properties</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<button class="bg-primary text-on-primary text-label-md font-label-md py-3 px-4 rounded-lg mt-auto mb-stack-md hover:bg-primary/90 transition-colors">
+            List New Property
+        </button>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-1 pt-stack-sm border-t border-outline-variant">
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-high rounded-lg transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen">
+<!-- Top App Bar for Mobile (Hidden on Desktop) -->
+<header class="md:hidden flex items-center justify-between p-margin-mobile bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="text-headline-md font-headline-md font-bold text-primary">LuxeStay</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden">
+<img alt="Manager Avatar Mobile" class="w-full h-full object-cover" data-alt="A professional headshot of a property manager in a well-lit, modern corporate environment. The person is smiling confidently, wearing smart business attire. The background is slightly blurred showing subtle architectural lines of an office. The lighting is bright and clean, fitting a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdNL83_zgi0LDNW7lDkX4eiZan2XTQE1j_KeLaoBCXs1pTO3PDmCQSteZUB4X1W5QmXgLT9Elc5dzc1Ut-aUkedbk0w65PSb6s3vcrlYSXXAS8GKynv71FHbWsti2m8YKz-iPecXxRQrx-J7rt2Lo3d8c10-H-lZ-vwokyJ7km0fMUWK-Mc_3-U9eKj1vsht6DEypw2u7crGHGwhMQnMalrpaW0pumxvKIkB5mlZ8uD7K0jByOwMe2B0YLEQdta7X15oJpZunRWsI"/>
+</div>
+</header>
+<div class="max-w-container-max mx-auto p-margin-mobile md:p-margin-desktop space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md border-b border-outline-variant pb-stack-md">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<a class="text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Back to Properties</a>
+</div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Edit Property Listing</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Update the details, pricing, and availability of your luxury rental.</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="px-4 py-2 text-label-md font-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors bg-surface-container-lowest" type="button">Cancel</button>
+<button class="px-4 py-2 text-label-md font-label-md text-on-primary bg-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm" form="property-form" type="submit">Save Changes</button>
+</div>
+</div>
+<!-- Form Layout (Bento Grid Style) -->
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-gutter" id="property-form">
+<!-- Main Details Column -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Basic Info Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<h2 class="text-headline-md font-headline-md text-primary mb-stack-md">Basic Details</h2>
+<div class="space-y-stack-md">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="title">Property Title</label>
+<input class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-on-surface-variant/50" id="title" name="title" placeholder="e.g. Modern Loft in Downtown" type="text" value="Villa Océanique - Luxury Cliffside Retreat"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="description">Description</label>
+<textarea class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-on-surface-variant/50" id="description" name="description" placeholder="Describe the key features and atmosphere..." rows="5">Experience unparalleled luxury in this stunning cliffside villa overlooking the Pacific. Featuring floor-to-ceiling windows, an infinity pool, and modern minimalist architecture. Perfect for discerning guests seeking privacy and architectural beauty.</textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="city">City / Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px]">location_on</span>
+<input class="w-full pl-10 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="city" name="city" type="text" value="Malibu, California"/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="property_type">Property Type</label>
+<select class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none" id="property_type" name="property_type">
+<option selected="" value="villa">Villa</option>
+<option value="apartment">Luxury Apartment</option>
+<option value="house">House</option>
+<option value="estate">Estate</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Media Upload Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<div class="flex items-center justify-between mb-stack-md">
+<h2 class="text-headline-md font-headline-md text-primary">Media Gallery</h2>
+<span class="text-label-sm font-label-sm text-on-surface-variant">5 Photos</span>
+</div>
+<!-- Upload Dropzone -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center bg-surface-container-low mb-stack-md hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant mb-2 group-hover:text-primary transition-colors">cloud_upload</span>
+<div class="text-label-md font-label-md text-primary mb-1">Click to upload or drag and drop</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">High-resolution JPEG, PNG (max 10MB per image)</div>
+</div>
+<!-- Existing Photos Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-sm">
+<!-- Hero Image -->
+<div class="col-span-2 row-span-2 relative rounded-lg overflow-hidden group border border-outline-variant">
+<img alt="Hero Photo" class="w-full h-full object-cover" data-alt="A sweeping wide-angle architectural shot of a modern luxury villa perched on a cliff edge at sunset. The building features massive floor-to-ceiling glass windows reflecting the warm orange light. An infinity pool seamlessly blends with the distant ocean horizon. The interior lighting is warm, contrasting with the cool twilight exterior. High-end, minimal, architectural style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqbGGxrNVeUKf6DUB0vdCVgFr1KGED5dmJAjLNT-HTTkjVaLn28EaBiF2MSKHApD7GUfdjVOtiUQZkt6W36MFVcJTUwmNIJwDNzhIps3eH66ltBRrffMpnW5N_gFTpb_otULMZsq8PSSwRQgijfyIugrxauGMV4JNjmMF8jbBDi01pkvQdxu5n0vPAozmNqkn-aYSDBIMPNd-6T1YH2qFM026iK7u7Z1Z7-iWdWlfX1gw3gHVLDp_eQP_Atf8uBeXMGZWMUOKTRlI"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface hover:text-primary shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">star</span></button>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+<div class="absolute top-2 left-2 bg-primary text-on-primary text-label-sm font-label-sm px-2 py-1 rounded">Hero</div>
+</div>
+<!-- Thumbnail 1 -->
+<div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
+<img alt="Living Room" class="w-full h-full object-cover" data-alt="Interior shot of a minimalist luxury living room. Wide plank oak flooring, a sleek low-profile light grey sofa, and a sculptural stone coffee table. Massive windows offer a view of the ocean. Bright, natural lighting, clean lines, professional real estate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCySVzA9EsbDnOYPLN4RSIToU0oJ1JE94nf1183-4oOj5NnIv6ER3ZaZsiel5YTHEuWXoKkGfirZzwDcu76iuTNdKsLRoeFfM7Dii4D4sXQvx0P8iI7ztgofxuMkKH0GYZ82GMsdxjSSzvh_dJjrHzyOeWN-rsG4Fx00DEPyxfTa55TMIkXLdEUlmMFC6Nv2Lu240EnJSupFu5NDmNf7NJmzb1VpBG1tfZ0Ou1czAZvTvce5FA9MS7lUjFyh6VUnE1hrNIvwOyuGz0"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+<!-- Thumbnail 2 -->
+<div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
+<img alt="Kitchen" class="w-full h-full object-cover" data-alt="Close up architectural detail of a modern designer kitchen. Dark matte charcoal cabinetry contrasts with a stark white marble island. Sleek, handleless design. Professional, high-contrast, clean corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsilZ62fh9FQrMVG8IM-b4EPU5Txc87FyvXQ8XIvDpyUjbdHcGJSGjIDVFQR3ewxeF_IKA2AXCHdhr7-tKWt6xiefWa9hChLYVzI1Sf3CrzPDNYloTRygKt1NFlA7kTCVgR8ozdaV3KWZN8C-XAfA9Jwg9XhJaEDSnDOKj_vNx2szw6Y2KU1_cT5Q6DleY-SkLO0PCIpEAMj9PLVe2xMnseXpFb0wQNRl95edJzf6JRjAfdJ3_oZQh97VSJ98awB-ZVm_u5onS43U"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+<!-- Thumbnail 3 -->
+<div class="relative rounded-lg overflow-hidden group border border-outline-variant aspect-square">
+<img alt="Bedroom" class="w-full h-full object-cover" data-alt="A tranquil, high-end master bedroom. Minimalist platform bed with crisp white linens. A subtle textured beige accent wall. Large sliding glass doors lead to a private balcony. Soft, diffused daylight creating a serene, restful mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAchnEJV9LwZYU8cUbllUxYifKqI2HwMs8xsLz-Hvqv5rqKxZqarsOyFrHgK7jL-JER_9DBSOTP_WhH0UPhijClvXztMrAosVMOGyYewBXD9bqHI5H077dqrWTtc_Z1QFINNZ5s5xubNFUTJMHlUNR5eFCgQlN4pOFQ-G6a4nIAQYGY96RKnq1FshgSJEX05tWtdbYjLsL-JpWtllLg6dLIMoOPqdhwn2MjFy9mkpgAZee6r8hpwKXgYXUjqcHRQF1Zpp_g2Jc6kzI"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error hover:text-error/80 shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+<!-- Thumbnail 4 (Add more) -->
+<div class="relative rounded-lg overflow-hidden border border-dashed border-outline-variant aspect-square flex flex-col items-center justify-center bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">add_photo_alternate</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar / Secondary Details Column -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Publishing Status Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<h2 class="text-headline-md font-headline-md text-primary mb-stack-md border-b border-outline-variant pb-2">Status & Pricing</h2>
+<!-- Toggle Switch -->
+<div class="flex items-center justify-between mb-stack-lg bg-surface-container-low p-4 rounded-lg border border-outline-variant">
+<div>
+<div class="text-label-md font-label-md text-primary font-bold">Listing Status</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Currently visible to guests</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-label-sm font-label-sm text-primary">Active</span>
+</label>
+</div>
+<!-- Pricing -->
+<div class="space-y-stack-md">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1" for="price">Base Nightly Rate</label>
+<div class="relative">
+<span class="absolute left-3 top-2.5 text-on-surface-variant font-label-md">$</span>
+<input class="w-full pl-8 pr-3 py-2 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 font-mono transition-all" id="price" name="price" type="number" value="1250"/>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-2">
+<span class="text-on-surface-variant">Service Fee (15%)</span>
+<span class="text-primary font-mono">-$187.50</span>
+</div>
+<div class="flex items-center justify-between text-label-md font-label-md font-bold">
+<span class="text-primary">Your Payout (Est.)</span>
+<span class="text-primary font-mono">$1,062.50</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Amenities Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
+<h2 class="text-headline-md font-headline-md text-primary mb-stack-md">Key Amenities</h2>
+<div class="flex flex-wrap gap-2">
+<!-- Selected Chips -->
+<div class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">wifi</span>
+<span class="text-label-sm font-label-sm text-on-surface">High-Speed WiFi</span>
+<button class="ml-1 text-on-surface-variant hover:text-error" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<div class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pool</span>
+<span class="text-label-sm font-label-sm text-on-surface">Infinity Pool</span>
+<button class="ml-1 text-on-surface-variant hover:text-error" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<div class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">directions_car</span>
+<span class="text-label-sm font-label-sm text-on-surface">Private Parking</span>
+<button class="ml-1 text-on-surface-variant hover:text-error" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<!-- Add New -->
+<button class="inline-flex items-center gap-1 bg-surface px-3 py-1 rounded border border-dashed border-outline-variant hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">add</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Add Amenity</span>
+</button>
+</div>
+</section>
+</div>
+</form>
+</div>
+</main>
+</body></html>

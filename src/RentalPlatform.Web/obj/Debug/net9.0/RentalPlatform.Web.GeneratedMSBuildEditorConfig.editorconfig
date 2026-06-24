@@ -15,8 +15,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.TargetFrameworkIdentifier = .NETCoreApp
-build_property.TargetFrameworkVersion = v9.0
 build_property.RootNamespace = RentalPlatform.Web
 build_property.RootNamespace = RentalPlatform.Web
 build_property.ProjectDir = /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/
@@ -102,8 +100,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/_ViewImports.cshtml]
@@ -113,7 +111,3 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-fviz1o6it1
