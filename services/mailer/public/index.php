@@ -2,14 +2,15 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
 
 if ($path === '/send-email' && $method === 'POST') {
-    $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
     $body = file_get_contents('php://input');
     $data = json_decode($body, true);
 
@@ -20,35 +21,25 @@ if ($path === '/send-email' && $method === 'POST') {
         exit;
     }
 
-    $client = new Client([
-        'timeout' => 10,
-        'headers' => [
-            'Authorization' => 'Bearer 66567d83ddc8b67660288f04bc391655',
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ],
-    ]);
+    $transport = (new EsmtpTransportFactory())->create(
+        host: getenv('MAIL_HOST') ?: 'live.smtp.mailtrap.io',
+        port: (int) (getenv('MAIL_PORT') ?: 587),
+        encryption: getenv('MAIL_ENCRYPTION') ?: 'tls',
+        username: getenv('MAIL_USERNAME') ?: 'api',
+        password: (string) (getenv('MAIL_PASSWORD') ?: '')
+    );
 
-    $payload = [
-        'from' => [
-            'email' => 'noreply@rentalplatform.com',
-            'name' => 'RentalPlatform',
-        ],
-        'to' => [
-            [
-                'email' => $data['to'],
-            ],
-        ],
-        'subject' => $data['subject'],
-        'text' => $data['body'],
-        'category' => 'RentalPlatform',
-    ];
+    $mailer = new Mailer($transport);
+
+    $email = (new Email())
+        ->from(new Address(getenv('MAIL_FROM_ADDRESS') ?: 'noreply@rentalplatform.com', getenv('MAIL_FROM_NAME') ?: 'RentalPlatform'))
+        ->to(new Address($data['to']))
+        ->subject($data['subject'])
+        ->text($data['body']);
 
     try {
-        $client->post('https://send.api.mailtrap.io/api/send', [
-            'json' => $payload,
-        ]);
-    } catch (GuzzleException $e) {
+        $mailer->send($email);
+    } catch (Throwable $e) {
         http_response_code(500);
         header('Content-Type: application/json');
         echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);

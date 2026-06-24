@@ -35,11 +35,7 @@ services:
     build:
       context: services/mailer
       dockerfile: Dockerfile
-    environment:
-      MAIL_HOST: sandbox.smtp.mailtrap.io
-      MAIL_PORT: 2525
-      MAIL_USERNAME: ${MAIL_USERNAME:-}
-      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
-      MAIL_ENCRYPTION: tls
+    env_file:
+      - services/mailer/.env
     ports:
       - "8081:8081"
