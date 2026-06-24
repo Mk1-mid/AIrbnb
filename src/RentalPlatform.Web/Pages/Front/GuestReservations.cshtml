@@ -1,111 +1,79 @@
 @page
 @model RentalPlatform.Web.Pages.Front.GuestReservationsModel
 @{
-    ViewData["Title"] = "Mis Reservas - LuxeStay";
+    ViewData["Title"] = "Guest Reservations - LuxeStay";
     ViewData["HtmlLang"] = "en";
     ViewData["HtmlClass"] = "dark";
-    ViewData["BodyClass"] = "bg-background text-on-background antialiased flex h-screen overflow-hidden font-body-md";
+    ViewData["BodyClass"] = "bg-background text-on-background antialiased flex min-h-screen flex-col";
     ViewData["FrontNavVariant"] = "guest";
     ViewData["FrontActiveNav"] = "reservations";
 }
 
 @section Head {
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .icon-fill {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+    .glass-panel {
+        background-color: rgba(11, 27, 43, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .golden-glow {
+        box-shadow: 0 0 20px 0 rgba(242, 202, 80, 0.15);
+    }
+</style>
 }
 
-<!-- SideNavBar (Desktop Only) -->
-<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low p-stack-md gap-stack-sm z-40 border-r border-outline-variant/30">
-    <div class="flex items-center gap-stack-sm mb-stack-lg">
-        <span class="material-symbols-outlined text-headline-md font-headline-md font-bold text-primary" data-icon="home_work">home_work</span>
-        <span class="text-headline-md font-headline-md font-bold text-primary">LuxeStay</span>
-    </div>
-    <div class="flex flex-col gap-2 flex-grow">
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/Index">
-            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
-        </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/GuestReservations">
-            <span class="material-symbols-outlined icon-fill" data-icon="calendar_today">calendar_today</span> My Bookings
-        </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/Index">
-            <span class="material-symbols-outlined" data-icon="explore">explore</span> Explore
-        </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/GuestFavorites">
-            <span class="material-symbols-outlined" data-icon="favorite">favorite</span> Favorites
-        </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" asp-area="" asp-page="/Front/IdentityVerification">
-            <span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
-        </a>
-    </div>
-    <div class="mt-auto flex flex-col gap-2 border-t border-outline-variant pt-stack-md">
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" href="#">
-            <span class="material-symbols-outlined" data-icon="help">help</span> Help Center
-        </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md" href="#">
-            <span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
-        </a>
-    </div>
-</nav>
+<main class="relative flex-1 md:ml-64 overflow-y-auto">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#0B1B2B] via-background to-background"></div>
+    <div class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-primary/5 blur-3xl"></div>
 
-<!-- Main Content Area -->
-<main class="flex-1 md:ml-64 overflow-y-auto bg-surface-container-lowest relative">
-    <div class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
-        <!-- Page Header -->
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
         <header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
             <div>
-                <h1 class="text-display-lg font-display-lg text-primary">Mis Reservas</h1>
+                <span class="text-label-sm font-label-sm uppercase tracking-widest text-primary">Guest Suite</span>
+                <h1 class="text-display-lg font-display-lg text-on-surface">Mis Reservas</h1>
                 <p class="text-body-lg font-body-lg text-on-surface-variant">Manage your upcoming and past stays.</p>
             </div>
-            <!-- Filter Tabs -->
             <div class="hidden md:flex gap-base bg-surface-container-low p-1 rounded-lg border border-outline-variant/30">
-                <button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface rounded-md shadow-sm text-label-md font-label-md font-bold">Todas</button>
-                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Próximas</button>
-                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Completadas</button>
+                <button class="px-4 py-1.5 bg-surface-container-lowest text-on-surface rounded-md shadow-sm text-label-md font-label-md font-bold" type="button">Todas</button>
+                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors" type="button">Próximas</button>
+                <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors" type="button">Completadas</button>
             </div>
         </header>
 
-        <!-- Bookings List -->
         <div class="flex flex-col gap-stack-md">
-            <!-- Booking Card: Confirmada -->
-            <article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
+            <article class="glass-panel flex flex-col md:flex-row gap-gutter p-stack-md border border-outline-variant/20 rounded-xl shadow-[0_0_30px_rgba(0,0,0,0.35)] transition-all duration-200 group">
                 <div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
                     <img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSJu88aKTbMee8PPT0XU78YPvG7Vci2UFsalZA1MZvYMoU6qbAYOh-Ze6KaLhbyWRnQxWPOZ2KaD0o9DDLurRy8wC6lymqrz4_sdC_FJU_TijY8D71kjdYoMdxR1e3C9b-uoHWeCipggyInntPdpoNaw1jlTOGLrTEw95Vh-uoIt47jwauLopIsFdKB9H5XgykRRfKHP6Fple1XF4jmRfswJHePgpY0gmov0C4qbw1oklZCv5E3kqrgFruFXg0j4a87es_FkwDw6Y" alt="Property" />
                 </div>
                 <div class="flex flex-col justify-between flex-1 py-1">
                     <div>
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="text-headline-md font-headline-md text-primary">The Glass Pavilion</h3>
+                            <h3 class="text-headline-md font-headline-md text-on-surface">The Glass Pavilion</h3>
                             <span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container border border-tertiary-fixed-dim/30">Confirmada</span>
                         </div>
                         <p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[18px]">location_on</span> Beverly Hills, California
+                            <span class="material-symbols-outlined text-[18px] text-primary">location_on</span> Beverly Hills, California
                         </p>
                     </div>
                     <div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30">
                         <div>
                             <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
-                            <p class="text-body-md font-body-md font-medium text-primary">Oct 12, 2024</p>
+                            <p class="text-body-md font-body-md font-medium text-on-surface">Oct 12, 2024</p>
                             <p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
                                 <span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
                             </p>
                         </div>
                         <div>
                             <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
-                            <p class="text-body-md font-body-md font-medium text-primary">Oct 18, 2024</p>
+                            <p class="text-body-md font-body-md font-medium text-on-surface">Oct 18, 2024</p>
                             <p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
                                 <span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
                             </p>
                         </div>
                     </div>
                     <div class="flex gap-stack-sm mt-stack-md justify-end">
-                        <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Contact Host</button>
-                        <button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors">View Itinerary</button>
+                        <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors" type="button">Contact Host</button>
+                        <button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors" type="button">View Itinerary</button>
                     </div>
                 </div>
             </article>

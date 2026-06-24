@@ -1,7 +1,7 @@
 @page
 @model RentalPlatform.Web.Pages.Front.OwnerReportsModel
 @{
-    ViewData["Title"] = "Reports - LuxeStay";
+    ViewData["Title"] = "Owner Reports - LuxeStay";
     ViewData["HtmlLang"] = "en";
     ViewData["HtmlClass"] = "dark";
     ViewData["BodyClass"] = "bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen flex flex-col";
@@ -21,111 +21,107 @@
 </style>
 }
 
-<!-- TopNavBar -->
-<header class="bg-background/80 backdrop-blur-xl font-headline-sm text-headline-sm font-label-md text-label-md font-body-md text-body-md docked full-width top-0 sticky shadow-sm border-b border-primary/20 z-50">
-    <div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-full">
-        <a class="font-headline-md text-headline-md text-on-surface tracking-wide" asp-area="" asp-page="/Front/Index">LuxeStay</a>
-        <nav class="hidden md:flex space-x-lg">
-            <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/Index">Discover</a>
-            <a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/OwnerDashboard">Dashboard</a>
-            <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/OwnerProperties">Properties</a>
-            <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" asp-area="" asp-page="/Front/OwnerReports">Reports</a>
-        </nav>
-        <div class="flex items-center space-x-md">
-            <button aria-label="notifications" class="text-on-surface hover:text-primary transition-colors duration-300 focus:outline-none">
-                <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <button aria-label="User Profile" class="focus:outline-none hover:ring-1 hover:ring-primary rounded-full transition-all">
-                <img class="w-10 h-10 rounded-full object-cover border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfvB3EbEuF0zgkA53vBmMN_MJ_8wuIIouCHSq0eT9IDGClqHFWFuu_TmjlM1GSD-Z9zem5nhdgIuxb-YveIuvKxuYmLS6qsBcbHc7X4Qz8vn8wpaoFYjQFYoqSYopMkUCVLKZQk5HwCe1GFzSqgylL5tL1FVnda3Jxz3cCT_fA3JTFHIfTwHIMs-Msz-ss2I9sGg8lAVKWbo4yWT6d4shdxerq8Yj2HWRCIzqCCjLN3YC5d20QDG_S34YLKE6_VCJBOF9t1Ym_h-w" alt="Profile" />
-            </button>
-        </div>
-    </div>
-</header>
-
 <main class="flex-grow">
-    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full">
-        <div class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
-            <div>
-                <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Reports</h1>
-                <p class="text-body-md font-body-md text-on-surface-variant mt-1">Export and review portfolio performance.</p>
-            </div>
-        </div>
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B1B2B] via-background to-background pointer-events-none"></div>
+        <div class="absolute -top-24 right-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none"></div>
 
-        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 shadow-[0_1px_3px_rgba(15,23,42,0.05)] max-w-4xl">
-            <form method="post" asp-page-handler="Export" class="space-y-stack-lg">
-                <section>
-                    <h2 class="text-headline-md font-headline-md text-primary mb-stack-md flex items-center gap-2">
-                        <span class="material-symbols-outlined" data-icon="summarize">summarize</span>
-                        Report Type
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
-                        <label class="relative flex flex-col bg-surface border border-outline-variant rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-colors group">
-                            <input checked class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="financial" />
-                            <span class="material-symbols-outlined text-secondary mb-2" data-icon="account_balance">account_balance</span>
-                            <span class="text-label-md font-label-md text-primary mb-1">Financial Summary</span>
-                            <span class="text-body-sm font-body-sm text-on-surface-variant">Revenue, fees, and net payouts.</span>
-                        </label>
-                        <label class="relative flex flex-col bg-surface border border-outline-variant rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-colors group">
-                            <input class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="occupancy" />
-                            <span class="material-symbols-outlined text-secondary mb-2" data-icon="hotel">hotel</span>
-                            <span class="text-label-md font-label-md text-primary mb-1">Occupancy Metrics</span>
-                            <span class="text-body-sm font-body-sm text-on-surface-variant">Booking rates and guest demographics.</span>
-                        </label>
-                        <label class="relative flex flex-col bg-surface border border-outline-variant rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-colors group">
-                            <input class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="maintenance" />
-                            <span class="material-symbols-outlined text-secondary mb-2" data-icon="handyman">handyman</span>
-                            <span class="text-label-md font-label-md text-primary mb-1">Maintenance Logs</span>
-                            <span class="text-body-sm font-body-sm text-on-surface-variant">Service requests and resolution times.</span>
-                        </label>
+        <div class="relative max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full">
+            <div class="mb-stack-lg flex flex-col gap-stack-sm">
+                <span class="text-label-sm font-label-sm uppercase tracking-widest text-primary">Owner Suite</span>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+                    <div>
+                        <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">Reports</h1>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">Export and review portfolio performance.</p>
                     </div>
-                </section>
-                <div class="border-t border-outline-variant/30 w-full"></div>
-                <section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-                    <div class="space-y-stack-sm">
-                        <label class="text-label-md font-label-md text-primary flex items-center gap-2">
-                            <span class="material-symbols-outlined text-on-surface-variant" data-icon="date_range">date_range</span>
-                            Date Range
-                        </label>
-                        <div class="flex items-center gap-2">
-                            <div class="flex-1 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 flex items-center transition-colors">
-                                <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" name="From" value="2023-01-01" required />
-                            </div>
-                            <span class="text-on-surface-variant">to</span>
-                            <div class="flex-1 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 flex items-center transition-colors">
-                                <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary" type="date" name="To" value="2023-12-31" required />
+                    <div class="flex items-center gap-2 text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        Midnight Sanctuary analytics
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel border border-primary/20 rounded-xl p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.35)] max-w-4xl">
+                <form method="post" asp-page-handler="Export" class="space-y-stack-lg">
+                    <section>
+                        <h2 class="text-headline-md font-headline-md text-primary mb-stack-md flex items-center gap-2">
+                            <span class="material-symbols-outlined">summarize</span>
+                            Report Type
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+                            <label class="relative flex flex-col rounded-lg border border-outline-variant/40 bg-surface-container-low p-4 cursor-pointer transition-colors hover:border-primary/50 hover:bg-primary/5">
+                                <input checked class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="financial" />
+                                <span class="material-symbols-outlined text-primary mb-2">account_balance</span>
+                                <span class="text-label-md font-label-md text-on-surface mb-1">Financial Summary</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant">Revenue, fees, and net payouts.</span>
+                            </label>
+                            <label class="relative flex flex-col rounded-lg border border-outline-variant/40 bg-surface-container-low p-4 cursor-pointer transition-colors hover:border-primary/50 hover:bg-primary/5">
+                                <input class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="occupancy" />
+                                <span class="material-symbols-outlined text-primary mb-2">hotel</span>
+                                <span class="text-label-md font-label-md text-on-surface mb-1">Occupancy Metrics</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant">Booking rates and guest demographics.</span>
+                            </label>
+                            <label class="relative flex flex-col rounded-lg border border-outline-variant/40 bg-surface-container-low p-4 cursor-pointer transition-colors hover:border-primary/50 hover:bg-primary/5">
+                                <input class="absolute right-4 top-4 text-primary focus:ring-primary" name="reportType" type="radio" value="maintenance" />
+                                <span class="material-symbols-outlined text-primary mb-2">handyman</span>
+                                <span class="text-label-md font-label-md text-on-surface mb-1">Maintenance Logs</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant">Service requests and resolution times.</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <div class="border-t border-outline-variant/20 w-full"></div>
+
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                        <div class="space-y-stack-sm">
+                            <label class="text-label-md font-label-md text-primary flex items-center gap-2">
+                                <span class="material-symbols-outlined text-on-surface-variant">date_range</span>
+                                Date Range
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div class="golden-glow-focus flex items-center rounded-lg border border-outline-variant/40 bg-surface-container-low px-3 py-2">
+                                    <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface" type="date" name="From" value="2023-01-01" required />
+                                </div>
+                                <div class="golden-glow-focus flex items-center rounded-lg border border-outline-variant/40 bg-surface-container-low px-3 py-2">
+                                    <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface" type="date" name="To" value="2023-12-31" required />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="space-y-stack-sm">
-                        <label class="text-label-md font-label-md text-primary flex items-center gap-2">
-                            <span class="material-symbols-outlined text-on-surface-variant" data-icon="real_estate_agent">real_estate_agent</span>
-                            Property Selection
-                        </label>
-                        <div class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 flex items-center transition-colors relative">
-                            <select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-primary appearance-none pr-8" name="PropertyId">
-                                <option value="">All Properties (Portfolio Wide)</option>
-                            </select>
-                            <span class="material-symbols-outlined absolute right-3 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+
+                        <div class="space-y-stack-sm">
+                            <label class="text-label-md font-label-md text-primary flex items-center gap-2">
+                                <span class="material-symbols-outlined text-on-surface-variant">real_estate_agent</span>
+                                Property Selection
+                            </label>
+                            <div class="relative rounded-lg border border-outline-variant/40 bg-surface-container-low px-3 py-2">
+                                <select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface appearance-none pr-8" name="PropertyId">
+                                    <option value="">All Properties (Portfolio Wide)</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <div class="border-t border-outline-variant/30 w-full"></div>
-                <section class="flex flex-col sm:flex-row items-center justify-between gap-stack-md pt-2">
-                    <div class="flex items-center gap-2 text-on-surface-variant text-body-sm font-body-sm">
-                        <span class="material-symbols-outlined text-outline" data-icon="info">info</span>
-                        Estimated generation time: ~15 seconds.
-                    </div>
-                    <div class="flex gap-4 w-full sm:w-auto">
-                        <button class="flex-1 sm:flex-none px-6 py-3 border border-outline-variant text-secondary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors bg-transparent" type="button">
-                            Preview Data
-                        </button>
-                        <button class="flex-1 sm:flex-none px-8 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2" type="submit">
-                            <span class="material-symbols-outlined" data-icon="download">download</span>
-                            Descargar Excel
-                        </button>
-                    </div>
-                </section>
-            </form>
+                    </section>
+
+                    <div class="border-t border-outline-variant/20 w-full"></div>
+
+                    <section class="flex flex-col sm:flex-row items-center justify-between gap-stack-md pt-2">
+                        <div class="flex items-center gap-2 text-on-surface-variant text-body-sm font-body-sm">
+                            <span class="material-symbols-outlined text-primary">info</span>
+                            Estimated generation time: ~15 seconds.
+                        </div>
+                        <div class="flex gap-4 w-full sm:w-auto">
+                            <button class="flex-1 sm:flex-none px-6 py-3 border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors bg-transparent" type="button">
+                                Preview Data
+                            </button>
+                            <button class="flex-1 sm:flex-none px-8 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-[0_0_15px_rgba(242,202,80,0.25)] hover:bg-primary-container transition-colors flex items-center justify-center gap-2" type="submit">
+                                <span class="material-symbols-outlined">download</span>
+                                Descargar Excel
+                            </button>
+                        </div>
+                    </section>
+                </form>
+            </div>
         </div>
     </div>
 </main>

@@ -12,9 +12,9 @@ test.describe('RentalPlatform E2E', () => {
   test('2. Página de Registro carga y tiene formulario', async ({ page }) => {
     await page.goto(`${BASE_URL}/Front/Register`);
     await expect(page.locator('form[method="post"]')).toBeVisible({ timeout: 10000 });
-    // Actual field names in rendered HTML: name, surname, email, password
-    await expect(page.locator('input[name="name"]')).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('input[name="surname"]')).toBeVisible();
+    // Current field names: firstName, lastName, email, password
+    await expect(page.locator('input[name="firstName"]')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('input[name="lastName"]')).toBeVisible();
     await expect(page.locator('input[name="email"]')).toBeVisible();
     await expect(page.locator('input[name="password"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
@@ -28,17 +28,15 @@ test.describe('RentalPlatform E2E', () => {
     await expect(page.locator('button[type="submit"]')).toBeVisible();
   });
 
-  test('4. Favoritos sin auth → error 500/401 (Auth requerido)', async ({ page }) => {
-    // [Authorize] without valid JWT returns 500 (no challenge handler configured)
-    const response = await page.goto(`${BASE_URL}/Front/GuestFavorites`, { waitUntil: 'domcontentloaded' }).catch(() => null);
-    // If navigation throws, check if it's an auth-related error
-    const isAuthError = response === null || [401, 403, 500].includes(response?.status() ?? 0);
-    expect(isAuthError).toBeTruthy();
+  test('4. Favoritos sin auth → redirect a SignIn', async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/Front/GuestFavorites`, { waitUntil: 'networkidle' });
+    // Cookie auth redirects to SignIn with ReturnUrl (200 on final page)
+    await expect(page).toHaveURL(/.*SignIn\?ReturnUrl=.*GuestFavorites/);
   });
 
-  test('5. PropertyDetails sin auth → error 500/401 (Auth requerido)', async ({ page }) => {
-    const response = await page.goto(`${BASE_URL}/Front/PropertyDetails/${PROPERTY_ID}`, { waitUntil: 'domcontentloaded' }).catch(() => null);
-    const isAuthError = response === null || [401, 403, 500].includes(response?.status() ?? 0);
-    expect(isAuthError).toBeTruthy();
+  test('5. PropertyDetails sin auth → redirect a SignIn', async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/Front/PropertyDetails/${PROPERTY_ID}`, { waitUntil: 'networkidle' });
+    // Cookie auth redirects to SignIn with ReturnUrl (200 on final page)
+    await expect(page).toHaveURL(/.*SignIn\?ReturnUrl=.*PropertyDetails/);
   });
 });

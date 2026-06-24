@@ -3,40 +3,60 @@
 @using RentalPlatform.Domain.Entities
 @using RentalPlatform.Domain.Enums
 @{
-    Layout = "Shared/_Layout";
-    ViewData["Title"] = "Mis Notificaciones";
+    ViewData["Title"] = "Guest Notifications - LuxeStay";
+    ViewData["HtmlLang"] = "en";
+    ViewData["HtmlClass"] = "dark";
+    ViewData["BodyClass"] = "bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen flex flex-col";
     ViewData["FrontNavVariant"] = "guest";
     ViewData["FrontActiveNav"] = "notifications";
 }
 
-<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
-    <h1 class="text-headline-lg font-headline-lg text-primary mb-stack-lg">Notificaciones</h1>
+<main class="relative flex-grow">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0B1B2B] via-background to-background pointer-events-none"></div>
+    <div class="absolute top-0 right-0 h-80 w-80 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
 
-    @if (!Model.Notifications.Any())
-    {
-        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 text-center">
-            <span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-4 block">notifications_off</span>
-            <p class="text-body-md font-body-md text-on-surface-variant">No tienes notificaciones nuevas.</p>
-        </div>
-    }
-    else
-    {
-        <div class="flex flex-col gap-stack-sm">
-            @foreach (var n in Model.Notifications)
-            {
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-start gap-4">
-                    <span class="material-symbols-outlined text-[24px] text-primary mt-0.5">
-                        @(n.Type == NotificationType.KycApproved ? "check_circle" :
-                          n.Type == NotificationType.KycRejected ? "cancel" :
-                          n.Type == NotificationType.ReservationConfirmed ? "event_available" :
-                          "info")
-                    </span>
-                    <div class="flex-1">
-                        <p class="text-body-md font-body-md text-primary">@n.Message</p>
-                        <span class="text-label-sm font-label-sm text-on-surface-variant">@n.CreatedAt.ToString("g")</span>
-                    </div>
+    <div class="relative w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+        <div class="mb-stack-lg flex flex-col gap-stack-sm">
+            <span class="text-label-sm font-label-sm uppercase tracking-widest text-primary">Guest Suite</span>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+                <div>
+                    <h1 class="text-headline-lg font-headline-lg text-on-surface">Notifications</h1>
+                    <p class="text-body-md font-body-md text-on-surface-variant mt-1">Keep track of your reservation updates and account activity.</p>
                 </div>
-            }
+                <div class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">
+                    Midnight Sanctuary feed
+                </div>
+            </div>
         </div>
-    }
+
+        @if (!Model.Notifications.Any())
+        {
+            <div class="glass-panel border border-primary/20 rounded-xl p-8 text-center shadow-[0_0_30px_rgba(0,0,0,0.35)]">
+                <span class="material-symbols-outlined text-[48px] text-primary mb-4 block">notifications_off</span>
+                <p class="text-body-md font-body-md text-on-surface-variant">No tienes notificaciones nuevas.</p>
+            </div>
+        }
+        else
+        {
+            <div class="flex flex-col gap-stack-sm">
+                @foreach (var n in Model.Notifications)
+                {
+                    <div class="glass-panel border border-outline-variant/20 rounded-xl p-stack-md flex items-start gap-4 hover:border-primary/40 transition-colors">
+                        <div class="mt-0.5 flex h-11 w-11 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary">
+                            <span class="material-symbols-outlined text-[24px]">
+                                @(n.Type == NotificationType.KycApproved ? "check_circle" :
+                                  n.Type == NotificationType.KycRejected ? "cancel" :
+                                  n.Type == NotificationType.ReservationConfirmed ? "event_available" :
+                                  "info")
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-body-md font-body-md text-on-surface">@n.Message</p>
+                            <span class="text-label-sm font-label-sm text-on-surface-variant">@n.CreatedAt.ToString("g")</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
 </main>

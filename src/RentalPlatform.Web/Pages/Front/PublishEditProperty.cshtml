@@ -3,7 +3,7 @@
     Layout = "Shared/_Layout";
     ViewData["Title"] = "LuxeStay - Publicar/Editar Inmueble";
     ViewData["HtmlLang"] = "es";
-    ViewData["HtmlClass"] = "light";
+    ViewData["HtmlClass"] = "dark";
     ViewData["BodyClass"] = "bg-surface text-on-surface antialiased min-h-screen flex font-body-md text-body-md";
     ViewData["FrontNavVariant"] = "owner";
     ViewData["FrontActiveNav"] = "publish";
@@ -11,18 +11,16 @@
 
 @section Head {
 <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6, .font-display, .font-headline, .font-label { font-family: 'Geist', sans-serif; }
-        
-        /* Ambient shadows as per style guidance */
-        .ambient-shadow-lvl1 { box-shadow: 0px 1px 3px 0px rgba(15, 23, 42, 0.05); }
-        .ambient-shadow-lvl2 { box-shadow: 0px 4px 12px 0px rgba(15, 23, 42, 0.08); }
-        .hover-lift:hover { box-shadow: 0px 4px 12px 0px rgba(15, 23, 42, 0.08); border-color: #CBD5E1; transform: translateY(-2px); transition: all 0.2s ease; }
+        body { font-family: 'DM Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-headline, .font-label { font-family: 'Playfair Display', serif; }
+        .ambient-shadow-lvl1 { box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); }
+        .ambient-shadow-lvl2 { box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08); }
+        .hover-lift:hover { box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08); border-color: #CBD5E1; transform: translateY(-2px); transition: all 0.2s ease; }
     </style>
 }
 
 <!-- Main Content Canvas -->
-<main class="flex-1 md:ml-64 bg-background min-h-screen">
+<main class="flex-1 md:ml-64 bg-surface-container-low min-h-screen">
 <!-- Top App Bar for Mobile (Hidden on Desktop) -->
 <header class="md:hidden flex items-center justify-between p-margin-mobile bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
 <div class="flex items-center gap-2">
@@ -142,7 +140,7 @@
 <div class="lg:col-span-4 space-y-gutter">
 <!-- Publishing Status Card -->
 <section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 ambient-shadow-lvl1">
-<h2 class="text-headline-md font-headline-md text-primary mb-stack-md border-b border-outline-variant pb-2">Status & Pricing</h2>
+<h2 class="text-headline-md font-headline-md text-primary mb-stack-md border-b border-outline-variant pb-2">Status &amp; Pricing</h2>
 <!-- Toggle Switch -->
 <div class="flex items-center justify-between mb-stack-lg bg-surface-container-low p-4 rounded-lg border border-outline-variant">
 <div>
@@ -207,4 +205,3 @@
 </form>
 </div>
 </main>
-
