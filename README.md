@@ -64,6 +64,25 @@ The Stitch export lives in `front/` as the original design source. The runnable 
 
 If you later extract shared styles or scripts from the Stitch pages, place them in `src/RentalPlatform.Web/wwwroot/` and reference them from the Razor pages.
 
+## Features
+
+| Feature | Status |
+|---------|--------|
+| Property catalog with city/date filters | ✅ |
+| Anonymous browsing | ✅ |
+| Deferred authentication | ✅ |
+| Guest registration & login (JWT) | ✅ |
+| Wishlist / Favorites | ✅ |
+| KYC identity validation with Gemini Vision AI | ✅ |
+| Double booking prevention (serializable transaction) | ✅ |
+| Fixed check-in 2:00 PM / check-out 12:00 PM | ✅ |
+| Owner property management | ✅ |
+| Performance dashboard with real metrics | ✅ |
+| Excel report export (ClosedXML) | ✅ |
+| Omnichannel notifications (in-app + email) | ✅ |
+| Seed data (8 users, 10 properties) | ✅ |
+| E2E tests with Playwright (5/5 passing) | ✅ |
+
 ## Architecture
 
 ### Clean Architecture
@@ -158,3 +177,4 @@ docker compose run web dotnet test
 | Laravel      | Email microservice                        |
 | Tailwind CSS | UI styling                                |
 | Docker Compose | Full environment orchestration          |
+| Playwright   | E2E testing (5/5 passing)                 |
