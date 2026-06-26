@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RentalPlatform.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa1973c703904842fc47d4ddc98ac1318f251892")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fd5dcd138e96c36f9439146fbaec4ad3bc7f04c")]
 [assembly: System.Reflection.AssemblyProductAttribute("RentalPlatform.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RentalPlatform.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

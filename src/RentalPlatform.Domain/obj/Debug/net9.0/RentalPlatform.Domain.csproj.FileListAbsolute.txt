@@ -10,3 +10,15 @@
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/refint/RentalPlatform.Domain.dll
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.pdb
 /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/ref/RentalPlatform.Domain.dll
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/bin/Debug/net9.0/RentalPlatform.Domain.deps.json
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/bin/Debug/net9.0/RentalPlatform.Domain.dll
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/bin/Debug/net9.0/RentalPlatform.Domain.pdb
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.AssemblyInfoInputs.cache
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.AssemblyInfo.cs
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.csproj.CoreCompileInputs.cache
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.sourcelink.json
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.dll
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/refint/RentalPlatform.Domain.dll
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/RentalPlatform.Domain.pdb
+/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/Debug/net9.0/ref/RentalPlatform.Domain.dll

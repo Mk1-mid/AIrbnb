@@ -28,14 +28,6 @@
             <p class="text-body-sm font-body-sm text-on-surface-variant">Sign in to manage your bookings and properties.</p>
         </div>
 
-        @if (Model.Result is not null)
-        {
-            <div class="mb-stack-md rounded-lg border border-secondary-container bg-secondary-container p-stack-md text-body-sm text-on-secondary-container">
-                Login OK. Token generated for @Model.Result.Email as @Model.Result.Role.
-            </div>
-            <pre class="mb-stack-md overflow-x-auto rounded-lg bg-surface-container-low p-stack-md text-xs">@Model.Result.Token</pre>
-        }
-
         @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
         {
             <div class="mb-stack-md rounded-lg border border-error/30 bg-error-container p-stack-md text-body-sm text-error">@Model.ErrorMessage</div>

@@ -4,11 +4,8 @@
     var variant = (ViewData["FrontNavVariant"] as string ?? "public").ToLowerInvariant();
     var active = (ViewData["FrontActiveNav"] as string ?? string.Empty).ToLowerInvariant();
 
-    string NavClass(string key, string baseClass, string activeClass = "") =>
-        active == key ? $"{baseClass} {activeClass}" : baseClass;
-
     var unreadCount = 0;
-    if (User.Identity.IsAuthenticated)
+    if (User.Identity?.IsAuthenticated == true)
     {
         var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
         if (Guid.TryParse(userIdClaim, out var userId))
@@ -21,10 +18,10 @@
 @if (variant == "auth")
 {
     <header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md flex items-center justify-between">
+        <div class="max-w-container-max mx-auto px-4 md:px-6 lg:px-8 py-3 flex items-center justify-between">
             <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
-                LuxeStay
+                <span class="hidden sm:inline">LuxeStay</span>
             </a>
             <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Index">
                 Explore stays
@@ -39,75 +36,113 @@ else if (variant == "guest" || variant == "owner")
         {
             ("dashboard", "Dashboard", "/Front/OwnerDashboard", "dashboard"),
             ("properties", "Mis inmuebles", "/Front/OwnerProperties", "home"),
-            ("publish", "Publicar inmueble", "/Front/PublishEditProperty", "add_box"),
+            ("publish", "Publicar", "/Front/PublishEditProperty", "add_box"),
             ("reports", "Reportes", "/Front/OwnerReports", "summarize"),
         }
         : new[]
         {
             ("browse", "Explorar", "/Index", "search"),
-            ("reservations", "Mis reservas", "/Front/GuestReservations", "event_note"),
+            ("reservations", "Reservas", "/Front/GuestReservations", "event_note"),
             ("favorites", "Favoritos", "/Front/GuestFavorites", "favorite"),
             ("notifications", "Notificaciones", "/Front/GuestNotifications", "notifications"),
             ("verification", "Verificación", "/Front/IdentityVerification", "badge"),
         };
 
-    <header class="md:hidden w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
-        <div class="px-margin-mobile py-stack-md flex items-center justify-between">
+    <!-- Mobile Header -->
+    <header class="md:hidden w-full sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+        <div class="px-4 py-3 flex items-center justify-between">
             <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
-                LuxeStay
+                <span>LuxeStay</span>
             </a>
-            <button type="button" class="text-on-surface-variant">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+            <div class="flex items-center gap-2">
+                @if (variant == "guest" && unreadCount > 0)
+                {
+                    <div class="relative">
+                        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+                        <span class="absolute -top-1 -right-1 bg-error text-on-error text-[10px] font-bold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center">@unreadCount</span>
+                    </div>
+                }
+                <button type="button" class="text-on-surface-variant p-2" onclick="toggleMobileMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-surface-container-lowest border-t border-outline-variant shadow-lg md:hidden">
+            <nav class="flex flex-col p-2 gap-1">
+                @foreach (var item in navItems)
+                {
+                    var isActive = active == item.Item1;
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors @(isActive ? "bg-secondary-container text-on-secondary-container font-bold" : "text-on-surface-variant hover:bg-surface-container-high")" asp-page="@item.Item3" onclick="toggleMobileMenu()">
+                        <span class="material-symbols-outlined text-[20px]">@item.Item4</span>
+                        <span class="text-label-md">@item.Item2</span>
+                    </a>
+                }
+                <a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container rounded-lg transition-colors" asp-page="/Front/SignIn">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-label-md">Sign Out</span>
+                </a>
+            </nav>
         </div>
     </header>
 
-    <aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low p-stack-md gap-stack-sm z-40 border-r border-outline-variant/30">
-        <div class="flex items-center gap-stack-sm p-stack-sm mb-stack-md">
-            <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center">
-                <span class="material-symbols-outlined">home</span>
+    <!-- Desktop Sidebar -->
+    <aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low px-3 py-4 z-30 border-r border-outline-variant/30 shadow-sm">
+        <div class="flex items-center gap-3 p-3 mb-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary-fixed-dim/10 border border-primary/20">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-fixed-dim text-on-primary flex items-center justify-center shadow-md">
+                <span class="material-symbols-outlined text-[20px]">home</span>
             </div>
-            <div>
-                <div class="text-headline-md font-headline-md text-primary leading-tight">LuxeStay</div>
-                <div class="text-label-sm font-label-sm text-on-surface-variant">Rental platform</div>
+            <div class="min-w-0">
+                <div class="text-headline-md font-headline-md text-primary leading-tight font-bold truncate">LuxeStay</div>
+                <div class="text-label-sm font-label-sm text-on-surface-variant capitalize">@variant</div>
             </div>
         </div>
 
-        <nav class="flex flex-col gap-base">
+        <nav class="flex flex-col gap-1 flex-1 overflow-y-auto">
             @foreach (var item in navItems)
             {
-                var linkClass = NavClass(item.Item1, "flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-transform duration-150 text-label-md font-label-md", "bg-secondary-container text-on-secondary-container font-bold");
-                <a class="@linkClass" asp-page="@item.Item3">
-                    <span class="material-symbols-outlined text-[20px]">@item.Item4</span>
-                    @item.Item2
+                var isActive = active == item.Item1;
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all @(isActive ? "bg-secondary-container text-on-secondary-container font-bold shadow-sm" : "text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1")" asp-page="@item.Item3">
+                    <span class="material-symbols-outlined text-[20px] flex-shrink-0">@item.Item4</span>
+                    <span class="text-label-md truncate">@item.Item2</span>
                 </a>
             }
         </nav>
-        @if (variant == "guest" && unreadCount > 0)
-        {
-            <div class="mt-auto pt-4 border-t border-outline-variant/30">
-                <div class="flex items-center gap-3 px-4 py-2 text-on-surface-variant">
-                    <span class="material-symbols-outlined text-[20px]">notifications</span>
-                    <span class="text-label-md font-label-md">Notificaciones</span>
-                    <span class="ml-auto bg-error text-on-error text-label-sm font-label-sm px-2 py-0.5 rounded-full">@unreadCount</span>
-                </div>
-            </div>
-        }
+        
+        <div class="mt-auto pt-4 border-t border-outline-variant/30">
+            <a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container rounded-lg transition-colors" asp-page="/Front/SignIn">
+                <span class="material-symbols-outlined text-[20px] flex-shrink-0">logout</span>
+                <span class="text-label-md">Sign Out</span>
+            </a>
+        </div>
     </aside>
+    
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 }
 else
 {
     <nav class="bg-surface-container-lowest w-full top-0 sticky border-b border-outline-variant shadow-sm z-50">
-        <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-md max-w-container-max mx-auto">
+        <div class="flex justify-between items-center w-full px-4 md:px-6 lg:px-8 py-3 max-w-container-max mx-auto">
             <a class="text-headline-md font-headline-md font-bold text-primary flex items-center gap-2" asp-page="/Index">
                 <span class="material-symbols-outlined text-[22px]">home</span>
-                LuxeStay
+                <span class="hidden sm:inline">LuxeStay</span>
             </a>
-            <div class="hidden md:flex items-center space-x-stack-lg">
-                <a class="text-label-md font-label-md text-primary border-b-2 border-primary pb-1" asp-page="/Index">Explore</a>
+            <div class="flex md:hidden items-center gap-2">
+                <a class="text-label-md font-label-md text-on-surface-variant p-2" asp-page="/Front/SignIn">
+                    <span class="material-symbols-outlined">person</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a class="text-label-md font-label-md text-primary border-b-2 border-primary pb-1 font-medium" asp-page="/Index">Explore</a>
                 <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/GuestFavorites">Favorites</a>
                 <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" asp-page="/Front/SignIn">Sign In</a>
+                <a class="text-label-md font-label-md text-on-primary bg-primary rounded-lg px-5 py-2.5 hover:bg-primary/90 transition-all shadow-sm hover:shadow-md font-medium" asp-page="/Front/Register">Sign Up</a>
             </div>
         </div>
     </nav>

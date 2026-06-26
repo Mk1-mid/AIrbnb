@@ -23,137 +23,94 @@
 }
 
 <!-- Main Content Canvas -->
-<main class="ml-64 flex-1 p-margin-desktop bg-background min-h-screen">
+<main class="md:ml-64 flex-1 p-4 md:p-margin-desktop bg-background min-h-screen">
 <!-- Header Section -->
 <header class="flex flex-col md:flex-row md:items-end justify-between mb-stack-lg gap-stack-md">
 <div>
 <h1 class="text-display-lg font-display-lg text-on-background mb-2">Properties</h1>
 <p class="text-body-md font-body-md text-on-surface-variant">Manage your listings, update availability, and track performance.</p>
 </div>
-<button class="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-inverse-surface transition-colors flex items-center gap-2 w-fit">
+<a href="/Front/PublishEditProperty" class="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-inverse-surface transition-colors flex items-center gap-2 w-fit">
 <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
                 List New Property
-            </button>
+            </a>
 </header>
 <!-- Metrics Overview (Bento-style summary) -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
 <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
 <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Total Listings</p>
-<p class="text-headline-lg font-headline-lg text-primary">12</p>
+<p class="text-headline-lg font-headline-lg text-primary">@Model.Properties.Count()</p>
 </div>
 <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
 <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Active</p>
-<p class="text-headline-lg font-headline-lg text-primary">10</p>
+<p class="text-headline-lg font-headline-lg text-primary">@Model.Properties.Count(p => true)</p>
 </div>
 <div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/50 level-1-card">
 <p class="text-label-sm font-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Pending/Draft</p>
-<p class="text-headline-lg font-headline-lg text-on-surface-variant">2</p>
+<p class="text-headline-lg font-headline-lg text-on-surface-variant">0</p>
 </div>
 </div>
-<!-- Properties Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
-<!-- Property Card 1 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-outline-variant group">
-<div class="h-48 w-full relative bg-surface-container">
-<img class="object-cover w-full h-full" data-alt="A striking architectural modern luxury villa exterior shot during golden hour. The building features clean horizontal lines, expansive floor-to-ceiling glass windows, and a minimalist concrete facade. It is situated on a subtle hill overlooking a serene, reflective infinity pool. The lighting is warm and inviting, emphasizing a high-end, professional real estate aesthetic with deep contrast and pristine clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1pHg0pFXO0OkqrzKYQ_mF3D5fPDx0bGtPIlBOXolV14sYr63FYV4_U6tQYQmiWOb1-Xqk0KAiAJ0UhpMVbNadoDCZZVDThAS5G-jb0sQjifdZ7t3Y4-YgD3VNaALxxzj36tflfp9IQhj10RQStR9LHmPLDHuH9IVENh2PgkkhEQe-bNGMLc00MV7puVZ8b0pDrgp5SBySzjHwvWroNmoaa_1y0ewmD3h-oPkdOtqACl9krmd9afVGxT5W2brRCrjNL_zlK4DpGxk"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant/20 flex items-center gap-1">
-<div class="w-2 h-2 rounded-full bg-[#10B981]"></div> Active
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="mb-stack-md rounded-lg border border-error/30 bg-error-container p-stack-md text-body-md text-error">@Model.ErrorMessage</div>
+}
+
+@if (!Model.Properties.Any())
+{
+    <div class="text-center py-20">
+        <p class="text-body-lg text-on-surface-variant">No properties yet. Start by listing your first property!</p>
+        <a href="/Front/PublishEditProperty" class="text-primary underline mt-4 inline-block">List New Property</a>
+    </div>
+}
+else
+{
+    <!-- Properties Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
+        @foreach (var property in Model.Properties)
+        {
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-outline-variant group">
+                <div class="h-48 w-full relative bg-surface-container">
+                    <img class="object-cover w-full h-full" src="https://picsum.photos/seed/@property.Id/600/400" alt="@property.Title" />
+                    <div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm border border-outline-variant/20 flex items-center gap-1">
+                        <div class="w-2 h-2 rounded-full @(property.IsActive ? "bg-[#10B981]" : "bg-orange-500")"></div> @(property.IsActive ? "Active" : "Inactive")
                     </div>
-</div>
-<div class="p-6 flex-1 flex flex-col">
-<div class="flex justify-between items-start mb-2">
-<h3 class="text-headline-md font-headline-md text-on-background line-clamp-1">Villa Horizon</h3>
-<span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: 8492</span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
-                        Malibu, California
-                    </p>
-<div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30">
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Occupancy (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">84%</p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Revenue (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">$12,450</p>
-</div>
-</div>
-<div class="mt-auto flex gap-3">
-<button class="flex-1 bg-transparent border border-outline-variant text-on-surface-variant text-label-md font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors text-center">Edit Listing</button>
-<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-colors" title="Deactivate">
-<span class="material-symbols-outlined" data-icon="block">block</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Property Card 2 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-outline-variant group">
-<div class="h-48 w-full relative bg-surface-container">
-<img class="object-cover w-full h-full" data-alt="A pristine, minimalist high-rise apartment interior living room. The space is defined by strict architectural alignment, featuring a sleek, low-profile designer sofa in charcoal grey against crisp white walls. Large geometric windows reveal a distant, muted cityscape in daylight. The overall mood is sophisticated, sterile yet comfortable, representing a modern corporate executive suite aesthetic with high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ifL3ptX-vU-AJBjCQm-PrrGgyXUef3SXCvsVyy3HotyJFMs6_xtQGKe2AIVHmKFppsPaBUBy_EGJ6v-fJfRtUABqKV6umlpaGW3sK8W642rbPbqDOlSmu9MCk-F_wjRlf2DOa27sNTYFSKuvJPbUwdSm9mp3wMOwZIJPj8XHQ1nxFDrdjONDy-l1OCdnlbOVVL7m7jtvB8mkFFqbYNj3L00fm4LrQWSKE9TxkoK0WkfMXUF_3iuXc-oEN2i9xHyRLOoGIh2W1kk"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant/20 flex items-center gap-1">
-<div class="w-2 h-2 rounded-full bg-[#10B981]"></div> Active
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-headline-md font-headline-md text-on-background line-clamp-1">@property.Title</h3>
+                        <span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: @property.Id.ToString().Substring(0, 4)</span>
                     </div>
-</div>
-<div class="p-6 flex-1 flex flex-col">
-<div class="flex justify-between items-start mb-2">
-<h3 class="text-headline-md font-headline-md text-on-background line-clamp-1">The Apex Suite</h3>
-<span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: 3021</span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
-                        Downtown Metro
+                    <p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                        @property.City
                     </p>
-<div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30">
+                    <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30">
 <div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Occupancy (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">92%</p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Revenue (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">$8,100</p>
-</div>
-</div>
-<div class="mt-auto flex gap-3">
-<button class="flex-1 bg-transparent border border-outline-variant text-on-surface-variant text-label-md font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors text-center">Edit Listing</button>
-<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-colors" title="Deactivate">
-<span class="material-symbols-outlined" data-icon="block">block</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Property Card 3 (Draft/Inactive) -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden flex flex-col level-1-card transition-all hover:shadow-md hover:border-outline-variant group opacity-80">
-<div class="h-48 w-full relative bg-surface-container">
-<img class="object-cover w-full h-full grayscale-[30%]" data-alt="An architectural, modular cabin nestled in a dense pine forest. The structure features matte black corrugated steel siding and a large framed glass front reflecting the surrounding trees. The lighting suggests early morning mist, creating a serene, isolated atmosphere. The design emphasizes utilitarian minimalism and integration with nature, maintaining a strict professional photographic style without overly saturated vacation colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHzTElriPOIuAS-62FEeNcU5ySq6vhZdmPZTO92EY2YSyHcKmsisFvixqyqE_CWuNSnQIiDGhKPRX4Ko_4troci9rLW6h8nQQzkjTZhWiur5Cl5-skKOcdFqjJ7xV6keP38ijmGCXg4FuaH6Pp2Bnpydu58GYSJYpeMc47uthvQSD_ZetgFH_1aE6c7v99tV3hk3LgglemEYoyoWLd20DQmpzroYx3JejYNQloxKMUPrmEaNzxD6xaMv_9oohd6mggNGh8io0bqJM"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant border border-outline-variant/20 flex items-center gap-1">
-<div class="w-2 h-2 rounded-full bg-outline"></div> Draft
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Price/Night</p>
+                            <p class="text-body-lg font-body-lg text-primary font-medium">$@property.PricePerNight.Amount</p>
+                        </div>
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant mb-2">Status</p>
+                            <form method="post" asp-page-handler="ToggleStatus" asp-route-id="@property.Id">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" @(property.IsActive ? "checked" : "") onchange="this.form.submit()">
+                                    <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                    <span class="ml-2 text-sm @(property.IsActive ? "text-primary font-bold" : "text-on-surface-variant")">@(property.IsActive ? "Active" : "Inactive")</span>
+                                </label>
+                            </form>
+                        </div>
                     </div>
-</div>
-<div class="p-6 flex-1 flex flex-col">
-<div class="flex justify-between items-start mb-2">
-<h3 class="text-headline-md font-headline-md text-on-background line-clamp-1 text-on-surface-variant">Nordic Retreat</h3>
-<span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2 py-1 rounded">ID: --</span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
-                        Aspen, Colorado
-                    </p>
-<div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-outline-variant/30 opacity-50">
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Occupancy (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">--</p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Revenue (30d)</p>
-<p class="text-body-lg font-body-lg text-primary font-medium">--</p>
-</div>
-</div>
-<div class="mt-auto flex gap-3">
-<button class="flex-1 bg-transparent border border-outline-variant text-on-surface-variant text-label-md font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors text-center">Continue Editing</button>
-</div>
-</div>
-</div>
-</div>
+                    <div class="mt-auto flex gap-3">
+                        <a asp-page="/Front/PublishEditProperty" asp-route-id="@property.Id" class="flex-1 bg-transparent border border-outline-variant text-on-surface-variant text-label-md font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors text-center">Edit Listing</a>
+                        <a href="/Front/PropertyDetails/@property.Id" class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-primary-container hover:text-primary transition-colors" title="View">
+                            <span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
 </main>
 

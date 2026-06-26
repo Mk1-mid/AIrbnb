@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {}
+    "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {}
   },
   "projects": {
-    "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {
+    "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj",
+        "projectUniqueName": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj",
         "projectName": "RentalPlatform.Domain",
-        "projectPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj",
-        "packagesPath": "/home/cohorte6/.nuget/packages/",
-        "outputPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/obj/",
+        "projectPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj",
+        "packagesPath": "/home/mk1/.nuget/packages/",
+        "outputPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/cohorte6/.nuget/NuGet/NuGet.Config"
+          "/home/mk1/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

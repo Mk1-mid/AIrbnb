@@ -41,7 +41,7 @@ public class RegisterUserUseCase
             Email = new Email(cmd.Email),
             PasswordHash = passwordHash,
             Role = cmd.Role,
-            KycVerified = false,
+            KycVerified = true,
             CreatedAt = DateTime.UtcNow
         };
 

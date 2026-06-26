@@ -1,62 +1,79 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RentalPlatform.Application.Interfaces;
+using RentalPlatform.Domain.Entities;
 using RentalPlatform.Application.UseCases.Reservations;
 using System.Security.Claims;
 
 namespace RentalPlatform.Web.Pages.Front;
 
-[Authorize]
 public class PropertyDetailsModel : PageModel
 {
-    private readonly CreateReservationUseCase _createReservationUseCase;
+    private readonly IPropertyRepository _properties;
+    private readonly IReservationRepository _reservations;
+    private readonly CreateReservationUseCase _createReservation;
 
-    public PropertyDetailsModel(CreateReservationUseCase createReservationUseCase)
+    public PropertyDetailsModel(
+        IPropertyRepository properties,
+        IReservationRepository reservations,
+        CreateReservationUseCase createReservation)
     {
-        _createReservationUseCase = createReservationUseCase;
+        _properties = properties;
+        _reservations = reservations;
+        _createReservation = createReservation;
     }
 
-    [BindProperty(SupportsGet = true)]
-    public Guid PropertyId { get; set; }
+    public Property? Property { get; private set; }
 
     [BindProperty]
-    public DateTime CheckIn { get; set; }
+    public DateTime CheckIn { get; set; } = DateTime.Today.AddDays(1);
 
     [BindProperty]
-    public DateTime CheckOut { get; set; }
+    public DateTime CheckOut { get; set; } = DateTime.Today.AddDays(2);
 
-    public void OnGet()
+    public string? ErrorMessage { get; private set; }
+    public string? SuccessMessage { get; private set; }
+
+    public async Task<IActionResult> OnGetAsync(Guid id)
     {
-    }
-
-    public async Task<IActionResult> OnPostReserveAsync()
-    {
-        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier)
-            ?? User.FindFirst("sub")?.Value;
-
-        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+        Property = await _properties.GetByIdAsync(id);
+        if (Property == null)
         {
-            ModelState.AddModelError(string.Empty, "Usuario no autenticado.");
-            return Page();
+            return NotFound();
+        }
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync(Guid id)
+    {
+        Property = await _properties.GetByIdAsync(id);
+        if (Property == null)
+        {
+            return NotFound();
         }
 
-        if (CheckOut <= CheckIn)
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
+        if (!Guid.TryParse(userIdClaim, out var guestId))
         {
-            ModelState.AddModelError(string.Empty, "La fecha de salida debe ser posterior a la de entrada.");
+            ErrorMessage = "You must be signed in to make a reservation";
             return Page();
         }
 
         try
         {
-            var result = await _createReservationUseCase.ExecuteAsync(
-                new CreateReservationCommand(PropertyId, userId, CheckIn, CheckOut));
+            var result = await _createReservation.ExecuteAsync(new CreateReservationCommand(
+                id,
+                guestId,
+                CheckIn,
+                CheckOut
+            ));
 
-            TempData["Success"] = "Reserva creada correctamente.";
-            return RedirectToPage("/Front/GuestReservations");
+            SuccessMessage = $"Reservation confirmed! Total: {result.TotalAmount:C}";
+            return Page();
         }
-        catch (InvalidOperationException ex)
+        catch (Exception ex)
         {
-            ModelState.AddModelError(string.Empty, ex.Message);
+            ErrorMessage = ex.Message;
             return Page();
         }
     }

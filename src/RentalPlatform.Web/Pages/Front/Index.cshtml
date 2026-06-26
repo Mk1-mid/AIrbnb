@@ -12,121 +12,170 @@
         <p class="text-body-md font-body-md text-on-surface-variant">Discover exceptional properties tailored for discerning travelers.</p>
     </header>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
-        <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
-            <div class="relative w-full h-64 overflow-hidden">
-                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/villa1/600/400')"></div>
-                <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
-                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                </button>
-                <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary">Superhost</div>
-            </div>
-            <div class="p-stack-md flex flex-col flex-1">
-                <div class="flex justify-between items-start mb-1">
-                    <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">The Glass House Retreat</h2>
-                    <div class="flex items-center gap-1 text-label-sm font-label-sm">
-                        <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span>4.98</span>
+    @if (!Model.Properties.Any())
+    {
+        <!-- Placeholder Data - Muestra propiedades de ejemplo cuando no hay datos en BD -->
+        <div class="mb-6 p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/50">
+            <p class="text-body-sm text-on-surface-variant">✨ Explore our curated collection of premium properties. <a href="/Front/Register" class="text-primary underline font-bold">Sign up</a> to start booking!</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+            <!-- Placeholder Property 1 -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
+                <a href="/Front/SignIn" class="block">
+                    <div class="relative w-full h-64 overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/villa1/600/400')"></div>
+                        <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary">Superhost</div>
                     </div>
-                </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Kyoto, Japan</p>
-                <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
-                    <div>
-                        <span class="text-body-lg font-body-lg font-semibold text-primary">$450</span>
-                        <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                    <div class="p-stack-md flex flex-col flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">The Glass House Retreat</h2>
+                            <div class="flex items-center gap-1 text-label-sm font-label-sm">
+                                <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span>4.98</span>
+                            </div>
+                        </div>
+                        <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Kyoto, Japan</p>
+                        <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
+                            <div>
+                                <span class="text-body-lg font-body-lg font-semibold text-primary">$450</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">WiFi</span>
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">Pool</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+                </a>
+            </article>
 
-        <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
-            <div class="relative w-full h-64 overflow-hidden">
-                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/loft1/600/400')"></div>
-                <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
-                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                </button>
-            </div>
-            <div class="p-stack-md flex flex-col flex-1">
-                <div class="flex justify-between items-start mb-1">
-                    <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Urban Minimalist Loft</h2>
-                    <div class="flex items-center gap-1 text-label-sm font-label-sm">
-                        <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span>4.85</span>
+            <!-- Placeholder Property 2 -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
+                <a href="/Front/SignIn" class="block">
+                    <div class="relative w-full h-64 overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/loft1/600/400')"></div>
+                        <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
                     </div>
-                </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Berlin, Germany</p>
-                <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
-                    <div>
-                        <span class="text-body-lg font-body-lg font-semibold text-primary">$180</span>
-                        <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                    <div class="p-stack-md flex flex-col flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Urban Minimalist Loft</h2>
+                            <div class="flex items-center gap-1 text-label-sm font-label-sm">
+                                <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span>4.85</span>
+                            </div>
+                        </div>
+                        <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Berlin, Germany</p>
+                        <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
+                            <div>
+                                <span class="text-body-lg font-body-lg font-semibold text-primary">$180</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">Gym</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+                </a>
+            </article>
 
-        <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
-            <div class="relative w-full h-64 overflow-hidden">
-                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/cliff1/600/400')"></div>
-                <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
-                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                </button>
-                <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary">Rare Find</div>
-            </div>
-            <div class="p-stack-md flex flex-col flex-1">
-                <div class="flex justify-between items-start mb-1">
-                    <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Cliffside Ocean View</h2>
-                    <div class="flex items-center gap-1 text-label-sm font-label-sm">
-                        <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span>5.0</span>
+            <!-- Placeholder Property 3 -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
+                <a href="/Front/SignIn" class="block">
+                    <div class="relative w-full h-64 overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/cliff1/600/400')"></div>
+                        <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary">Rare Find</div>
                     </div>
-                </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Santorini, Greece</p>
-                <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
-                    <div>
-                        <span class="text-body-lg font-body-lg font-semibold text-primary">$850</span>
-                        <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                    <div class="p-stack-md flex flex-col flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Cliffside Ocean View</h2>
+                            <div class="flex items-center gap-1 text-label-sm font-label-sm">
+                                <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Santorini, Greece</p>
+                        <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
+                            <div>
+                                <span class="text-body-lg font-body-lg font-semibold text-primary">$850</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">View</span>
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">Pool</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+                </a>
+            </article>
 
-        <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
-            <div class="relative w-full h-64 overflow-hidden">
-                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/cabin1/600/400')"></div>
-                <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
-                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                </button>
+            <!-- Placeholder Property 4 -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col">
+                <a href="/Front/SignIn" class="block">
+                    <div class="relative w-full h-64 overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/cabin1/600/400')"></div>
+                        <button class="absolute top-3 right-3 p-2 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm hover:bg-surface-container-lowest transition-colors text-on-surface-variant hover:text-error">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-stack-md flex flex-col flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Geometric Pine Cabin</h2>
+                            <div class="flex items-center gap-1 text-label-sm font-label-sm">
+                                <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span>4.92</span>
+                            </div>
+                        </div>
+                        <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Aspen, Colorado</p>
+                        <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
+                            <div>
+                                <span class="text-body-lg font-body-lg font-semibold text-primary">$320</span>
+                                <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        </div>
+    }
+    else
+    {
+        <!-- Real Data from Database - Muestra propiedades reales + placeholder extra -->
+        <div class="mb-6 p-4 bg-secondary-container/30 rounded-lg border border-secondary-fixed-dim/30 flex items-center justify-between">
+            <div>
+                <p class="text-body-sm text-on-surface-variant">✨ Showing <span class="font-bold text-primary">@Model.Properties.Count()</span> real properties from our database</p>
             </div>
-            <div class="p-stack-md flex flex-col flex-1">
-                <div class="flex justify-between items-start mb-1">
-                    <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">Geometric Pine Cabin</h2>
-                    <div class="flex items-center gap-1 text-label-sm font-label-sm">
-                        <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span>4.92</span>
-                    </div>
-                </div>
-                <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Aspen, Colorado</p>
-                <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
-                    <div>
-                        <span class="text-body-lg font-body-lg font-semibold text-primary">$320</span>
-                        <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <span class="bg-surface-container-low px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">Fireplace</span>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>
+            <a href="/Front/PublishEditProperty" class="text-label-sm font-label-sm text-primary underline hover:text-primary/80">+ List your property</a>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+            @foreach (var property in Model.Properties)
+            {
+                <article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow-lvl1 ambient-shadow-lvl1-hover transition-all duration-200 group cursor-pointer flex flex-col" data-property-id="@property.Id">
+                    <a asp-page="./PropertyDetails" asp-route-id="@property.Id" class="block">
+                        <div class="relative w-full h-64 overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://picsum.photos/seed/@property.Id/600/400')"></div>
+                            @if (property.PricePerNight.Amount > 500)
+                            {
+                                <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-label-sm font-label-sm text-primary">Superhost</div>
+                            }
+                        </div>
+                        <div class="p-stack-md flex flex-col flex-1">
+                            <div class="flex justify-between items-start mb-1">
+                                <h2 class="text-body-lg font-body-lg font-semibold text-primary truncate pr-2">@property.Title</h2>
+                                <div class="flex items-center gap-1 text-label-sm font-label-sm">
+                                    <span class="material-symbols-outlined text-[16px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                            <p class="text-body-sm font-body-sm text-on-surface-variant mb-4">@property.City</p>
+                            <div class="mt-auto pt-stack-sm border-t border-surface-container-highest flex justify-between items-end">
+                                <div>
+                                    <span class="text-body-lg font-body-lg font-semibold text-primary">@property.PricePerNight.Amount.ToString("N0")</span>
+                                    <span class="text-body-sm font-body-sm text-on-surface-variant"> / night</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+        </div>
+    }
 </section>

@@ -1,4 +1,5 @@
 @page
+@model RentalPlatform.Web.Pages.Front.RegisterModel
 @{
     Layout = "Shared/_Layout";
     ViewData["Title"] = "LuxeStay - Registro";
@@ -15,6 +16,20 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="w-full md:w-7/12 lg:w-1/2 max-w-md mx-auto pt-stack-lg">
+        <div class="rounded-lg border border-error/30 bg-error-container p-stack-md text-body-sm text-error">@Model.ErrorMessage</div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="w-full md:w-7/12 lg:w-1/2 max-w-md mx-auto pt-stack-lg">
+        <div class="rounded-lg border border-tertiary/30 bg-tertiary-container p-stack-md text-body-sm text-tertiary">@Model.SuccessMessage</div>
+    </div>
 }
 
 <div class="hidden md:block md:w-5/12 lg:w-1/2 relative bg-surface-variant">
@@ -38,47 +53,47 @@
 <p class="text-body-md font-body-md text-on-surface-variant">Ingresa tus datos para registrarte.</p>
 </div>
 <!-- Form -->
-<form action="#" class="space-y-stack-md" method="POST">
+<form class="space-y-stack-md" method="post">
 <!-- Role Selector -->
 <div class="mb-stack-lg">
 <label class="block text-label-sm font-label-sm text-on-surface-variant mb-stack-sm uppercase tracking-wider">Tipo de cuenta</label>
 <div class="grid grid-cols-2 gap-stack-sm bg-surface-container p-1 rounded-lg">
 <label class="cursor-pointer">
-<input checked="" class="peer sr-only" name="role" type="radio" value="guest"/>
+<input @(Model.Role == "guest" ? "checked" : "") class="peer sr-only" name="Role" type="radio" value="guest"/>
 <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-200 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">
-                                Huésped
-                            </div>
+    Huésped
+</div>
 </label>
 <label class="cursor-pointer">
-<input class="peer sr-only" name="role" type="radio" value="owner"/>
+<input @(Model.Role == "owner" ? "checked" : "") class="peer sr-only" name="Role" type="radio" value="owner"/>
 <div class="text-center py-2 rounded-md text-label-md font-label-md transition-all duration-200 peer-checked:bg-surface-container-lowest peer-checked:text-primary peer-checked:shadow-sm text-on-surface-variant hover:text-primary">
-                                Propietario
-                            </div>
+    Propietario
+</div>
 </label>
 </div>
 </div>
 <!-- Name & Surname -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
 <div>
-<label class="block text-label-sm font-label-sm text-on-surface mb-base" for="name">Nombre</label>
-<input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" id="name" name="name" placeholder="Tu nombre" required="" type="text"/>
+<label class="block text-label-sm font-label-sm text-on-surface mb-base" asp-for="FirstName">Nombre</label>
+<input asp-for="FirstName" class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" placeholder="Tu nombre" required="" type="text"/>
 </div>
 <div>
-<label class="block text-label-sm font-label-sm text-on-surface mb-base" for="surname">Apellidos</label>
-<input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" id="surname" name="surname" placeholder="Tus apellidos" required="" type="text"/>
+<label class="block text-label-sm font-label-sm text-on-surface mb-base" asp-for="LastName">Apellidos</label>
+<input asp-for="LastName" class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" placeholder="Tus apellidos" required="" type="text"/>
 </div>
 </div>
 <!-- Email -->
 <div>
-<label class="block text-label-sm font-label-sm text-on-surface mb-base" for="email">Correo electrónico</label>
-<input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" id="email" name="email" placeholder="nombre&#64;ejemplo.com" required="" type="email"/>
+<label class="block text-label-sm font-label-sm text-on-surface mb-base" asp-for="Email">Correo electrónico</label>
+<input asp-for="Email" class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" placeholder="nombre@ejemplo.com" required="" type="email"/>
 </div>
 <!-- Password -->
 <div>
-<label class="block text-label-sm font-label-sm text-on-surface mb-base" for="password">Contraseña</label>
+<label class="block text-label-sm font-label-sm text-on-surface mb-base" asp-for="Password">Contraseña</label>
 <div class="relative">
-<input class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
-<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary transition-colors" type="button">
+<input asp-for="Password" class="w-full px-4 py-2 border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed focus:outline-none transition-colors" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary transition-colors" type="button" onclick="togglePassword()">
 <span class="material-symbols-outlined text-[20px]">visibility_off</span>
 </button>
 </div>
@@ -87,20 +102,28 @@
 <!-- Submit Action -->
 <div class="pt-stack-md">
 <button class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-label-md font-label-md text-on-primary bg-primary hover:bg-inverse-surface focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors" type="submit">
-                        Completar registro
-                    </button>
+    Completar registro
+</button>
 </div>
 </form>
 <!-- Footer Links -->
 <div class="mt-stack-lg text-center">
 <p class="text-body-sm font-body-sm text-on-surface-variant">
-                    ¿Ya tienes una cuenta? 
-                    <a class="font-bold text-primary hover:underline transition-all" href="#">Inicia sesión</a>
+    ¿Ya tienes una cuenta? 
+    <a class="font-bold text-primary hover:underline transition-all" href="/Front/SignIn">Inicia sesión</a>
 </p>
 <p class="mt-stack-sm text-label-sm font-label-sm text-outline">
-                    Al registrarte, aceptas nuestros <a class="underline hover:text-primary transition-colors" href="#">Términos</a> y <a class="underline hover:text-primary transition-colors" href="#">Política de Privacidad</a>.
-                </p>
+    Al registrarte, aceptas nuestros <a class="underline hover:text-primary transition-colors" href="#">Términos</a> y <a class="underline hover:text-primary transition-colors" href="#">Política de Privacidad</a>.
+</p>
 </div>
 </div>
 </div>
 
+<script>
+    function togglePassword() {
+        const passwordInput = document.querySelector('input[asp-for="Password"], input[name="Password"]');
+        if (passwordInput) {
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        }
+    }
+</script>

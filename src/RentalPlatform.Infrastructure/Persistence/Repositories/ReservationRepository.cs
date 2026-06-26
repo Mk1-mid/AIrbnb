@@ -17,7 +17,10 @@ public class ReservationRepository : IReservationRepository
         await _context.Reservations.Where(r => r.PropertyId == propertyId).ToListAsync();
 
     public async Task<IEnumerable<Reservation>> GetByGuestIdAsync(Guid guestId) =>
-        await _context.Reservations.Where(r => r.GuestId == guestId).ToListAsync();
+        await _context.Reservations
+            .Include(r => r.Property)
+            .Where(r => r.GuestId == guestId)
+            .ToListAsync();
 
     public Task AddAsync(Reservation reservation) =>
         _context.Reservations.AddAsync(reservation).AsTask();

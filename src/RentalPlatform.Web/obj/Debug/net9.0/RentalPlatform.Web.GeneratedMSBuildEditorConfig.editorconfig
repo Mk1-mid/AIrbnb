@@ -19,101 +19,101 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v9.0
 build_property.RootNamespace = RentalPlatform.Web
 build_property.RootNamespace = RentalPlatform.Web
-build_property.ProjectDir = /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/
+build_property.ProjectDir = /home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web
+build_property.MSBuildProjectDirectory = /home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Error.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestFavorites.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestFavorites.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3RGYXZvcml0ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestNotifications.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestNotifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3ROb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestReservations.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/GuestReservations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvR3Vlc3RSZXNlcnZhdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/IdentityVerification.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/IdentityVerification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvSWRlbnRpdHlWZXJpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Index.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerDashboard.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvT3duZXJEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerProperties.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerProperties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvT3duZXJQcm9wZXJ0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerReports.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/OwnerReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvT3duZXJSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/PropertyDetails.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/PropertyDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvUHJvcGVydHlEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/PublishEditProperty.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/PublishEditProperty.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvUHVibGlzaEVkaXRQcm9wZXJ0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Register.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_FrontNavigation.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_FrontNavigation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2hhcmVkL19Gcm9udE5hdmlnYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_Layout.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/SignIn.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvU2lnbkluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Front/_ViewStart.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Front/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRnJvbnQvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Index.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Privacy.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/_ViewImports.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/_ViewStart.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_Layout.cshtml]
+[/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Web/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fviz1o6it1

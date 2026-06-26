@@ -26,8 +26,19 @@ public class PropertyRepository : IPropertyRepository
         return await query.ToListAsync();
     }
 
+    public async Task<IEnumerable<Property>> GetByOwnerIdAsync(Guid ownerId)
+    {
+        return await _context.Properties.Where(p => p.OwnerId == ownerId).ToListAsync();
+    }
+
     public Task AddAsync(Property property) =>
         _context.Properties.AddAsync(property).AsTask();
+
+    public Task UpdateAsync(Property property)
+    {
+        _context.Properties.Update(property);
+        return Task.CompletedTask;
+    }
 
     public Task SaveChangesAsync() => _context.SaveChangesAsync();
 }

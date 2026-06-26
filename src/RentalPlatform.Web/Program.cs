@@ -2,11 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using RentalPlatform.Application.Interfaces;
+using RentalPlatform.Application.UseCases.Dashboard;
 using RentalPlatform.Application.UseCases.Identity;
 using RentalPlatform.Application.UseCases.Kyc;
 using RentalPlatform.Application.UseCases.Reports;
+using RentalPlatform.Application.UseCases.Properties;
 using RentalPlatform.Application.UseCases.Reservations;
+using RentalPlatform.Domain.Services;
 using RentalPlatform.Infrastructure.Persistence;
 using RentalPlatform.Infrastructure.Persistence.Repositories;
 using RentalPlatform.Infrastructure.Kyc;
@@ -24,7 +28,13 @@ builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<ReservationDomainService>();
+builder.Services.AddScoped<CreateReservationUseCase>();
+builder.Services.AddScoped<CreatePropertyUseCase>();
+builder.Services.AddScoped<UpdatePropertyUseCase>();
 builder.Services.AddScoped<ExportReportUseCase>();
+builder.Services.AddScoped<GetOwnerDashboardUseCase>();
 builder.Services.AddScoped<INotificationService, PersistentNotificationService>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 builder.Services.AddHttpClient<IOcrService, GeminiVisionService>();
@@ -32,10 +42,11 @@ builder.Services.AddScoped<IOcrService, GeminiVisionService>();
 builder.Services.AddScoped<LoginUserUseCase>();
 builder.Services.AddScoped<RegisterUserUseCase>();
 builder.Services.AddScoped<ProcessKycUseCase>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("OwnerOnly", policy =>
-        policy.RequireClaim("role", "Owner"));
+        policy.RequireClaim(ClaimTypes.Role, "Owner"));
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -52,7 +63,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = issuer,
             ValidAudience = audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+            NameClaimType = ClaimTypes.NameIdentifier,
+            RoleClaimType = ClaimTypes.Role
         };
 
         options.Events = new JwtBearerEvents

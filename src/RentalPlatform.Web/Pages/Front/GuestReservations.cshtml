@@ -21,8 +21,10 @@
     </style>
 }
 
+@using RentalPlatform.Domain.Enums
+
 <!-- Main Content Area -->
-<main class="flex-1 ml-64 overflow-y-auto bg-surface-container-lowest relative">
+<main class="flex-1 md:ml-64 overflow-y-auto bg-surface-container-lowest relative">
 <div class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
 <!-- Page Header -->
 <header class="mb-stack-lg flex justify-between items-end">
@@ -37,142 +39,87 @@
 <button class="px-4 py-1.5 text-on-surface-variant hover:text-on-surface rounded-md text-label-md font-label-md transition-colors">Completadas</button>
 </div>
 </header>
-<!-- Bookings List -->
-<div class="flex flex-col gap-stack-md">
-<!-- Booking Card: Confirmada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
-<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A striking exterior shot of a modern, minimalist glass-and-steel architectural villa perched on a subtle hillside. The lighting is pristine daylight, casting sharp, clean shadows. The aesthetic is extremely high-end, utilizing a crisp corporate color palette of neutral whites, cool grays, and architectural steel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSJu88aKTbMee8PPT0XU78YPvG7Vci2UFsalZA1MZvYMoU6qbAYOh-Ze6KaLhbyWRnQxWPOZ2KaD0o9DDLurRy8wC6lymqrz4_sdC_FJU_TijY8D71kjdYoMdxR1e3C9b-uoHWeCipggyInntPdpoNaw1jlTOGLrTEw95Vh-uoIt47jwauLopIsFdKB9H5XgykRRfKHP6Fple1XF4jmRfswJHePgpY0gmov0C4qbw1oklZCv5E3kqrgFruFXg0j4a87es_FkwDw6Y"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-primary">The Glass Pavilion</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container border border-tertiary-fixed-dim/30">Confirmada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Beverly Hills, California
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30">
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md font-medium text-primary">Oct 12, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
-                                </p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md font-medium text-primary">Oct 18, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
-                                </p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Contact Host</button>
-<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity">View Itinerary</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Pendiente -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
-<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="An interior shot of a sophisticated, minimalist urban loft living room. Large industrial windows let in soft, diffused white light. The furniture consists of low-profile, structured pieces in muted charcoal and pristine white. The mood is calm, professional, and meticulously organized." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfETqDQAgE81ufI4wHvQ2N1NFq1UvT4VfNPo3-fyhFG0iSdI3293tFLytdQJhEy1glyKXpc8zaQldc_co4BdOGoaTjRFP0tMCcIsnwkCc8Z-HqJlNyizVpZkvBdUixYUgwljG1qXEO6Q9y1oxqVafjFqP7dtLHmLaYO3p4N2KBqRi_aQzswh-xJuKPtniHsYWsV9ctav1P_MJpp_1MMFlIPp4wQH9E52bMjbFJpZXtvP6PRtg9KUHUlHnsLk4DgYMdiLk5wcl8OPM"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-primary">Urban Loft 402</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-surface-variant text-on-surface border border-outline-variant/50">Pendiente</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Downtown Seattle, WA
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30 opacity-80">
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md font-medium text-primary">Nov 05, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 2:00 PM
-                                </p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md font-medium text-primary">Nov 08, 2024</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">schedule</span> 12:00 PM
-                                </p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Cancel Request</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Completada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-low/30 border border-outline-variant/50 rounded-xl transition-all duration-200">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20 opacity-80 grayscale-[20%]">
-<img class="w-full h-full object-cover" data-alt="A serene, high-end bedroom interior in a modern coastal property. Crisp white linens on a minimalist bed frame, with abstract geometric art on the wall. The lighting is soft and inviting, emphasizing a clean, institutional quality over cluttered hominess." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-DoPpickgoMzQRSqEYxO6C6vtb9lGVyxJCF_KM5JlE4kwUbWbIKiN_eCUUkeUjmkM_2XnKIfqMR-qi7wsPiLwYXuon3dVyourxohpvbbECoFdQdVeJTployuQji5vZcX444yq228vtGz8ACLnl_fNqxF-Po17qGUkHNM_ulVM-ltju3RZKFFIhX-YdPIUdc6jL6tduyFvxbF3mtFOZ6UDhKKppYcs5Br_5q3KXsROFKsX1ZTREcj_1nmOjy5jPn7tonOEJHOdADE"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-on-surface-variant">Coastal Minimalist Retreat</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-secondary-container text-on-secondary-container border border-secondary-fixed-dim/30">Completada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant/80 flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Malibu, CA
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md p-4 rounded-lg">
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">CHECK-IN</p>
-<p class="text-body-md font-body-md text-on-surface-variant">Sep 01, 2024</p>
-</div>
-<div>
-<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">CHECK-OUT</p>
-<p class="text-body-md font-body-md text-on-surface-variant">Sep 07, 2024</p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Book Again</button>
-</div>
-</div>
-</article>
-<!-- Booking Card: Cancelada -->
-<article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
-<div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20 opacity-70">
-<img class="w-full h-full object-cover" data-alt="An abstract architectural detail shot of a concrete and glass facade. The lines are extremely rigid and structural, conveying a stark, corporate modernism. The lighting is overcast, creating a flat, low-contrast monochromatic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcXJYJoujAXkAC48fVJE2ZLD3Z24WYIIjIaD0FOFGqkD0pmim_NEqVMJ0NrmjmuvvYwv8ETFHfyzYaj2njo2ekGnzmXwzkhmcpiQwQr7h6DwU93GnpzZdqkIt5p-wLsZLMLeds2KuFuSBG89pN8-DIVfOCzqVHrGyTlYbeGIaup3mHJ0nUCWvXGl_cOJVS573CuCUZKuzVHJR-mPflYkAoKscwrGIvU5Q-PVeBvQj3aqs1zbCh7zmPdEnubLuWoOj5MLr-UZfFcOA"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-headline-md font-headline-md text-on-surface-variant">Alpine Corporate Chalet</h3>
-<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm bg-error-container text-on-error-container border border-error/20">Cancelada</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                                Aspen, CO
-                            </p>
-</div>
-<div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/30 p-4 rounded-lg border border-outline-variant/20">
-<div>
-<p class="text-label-sm font-label-sm text-outline mb-1">ORIGINAL CHECK-IN</p>
-<p class="text-body-md font-body-md text-on-surface-variant line-through">Dec 15, 2024</p>
-</div>
-</div>
-<div class="flex gap-stack-sm mt-stack-md justify-end">
-<button class="px-4 py-2 text-primary font-label-md text-label-md hover:underline">View Policy</button>
-</div>
-</div>
-</article>
-</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="mb-stack-md rounded-lg border border-error/30 bg-error-container p-stack-md text-body-md text-error">@Model.ErrorMessage</div>
+}
+
+@if (!Model.Reservations.Any())
+{
+    <div class="text-center py-20">
+        <p class="text-body-lg text-on-surface-variant">No reservations yet.</p>
+        <a href="/Front/Index" class="text-primary underline mt-4 inline-block">Browse properties</a>
+    </div>
+}
+else
+{
+    <!-- Bookings List -->
+    <div class="flex flex-col gap-stack-md">
+        @foreach (var reservation in Model.Reservations)
+        {
+            var statusClass = reservation.Status switch
+            {
+                ReservationStatus.Confirmed => "bg-tertiary-container text-on-tertiary-container border-tertiary-fixed-dim/30",
+                ReservationStatus.Pending => "bg-surface-variant text-on-surface border-outline-variant/50",
+                ReservationStatus.Completed => "bg-secondary-container text-on-secondary-container border-secondary-fixed-dim/30",
+                ReservationStatus.Cancelled => "bg-error-container text-on-error-container border-error/20",
+                _ => "bg-surface-variant text-on-surface border-outline-variant/50"
+            };
+
+            var statusText = reservation.Status switch
+            {
+                ReservationStatus.Confirmed => "Confirmada",
+                ReservationStatus.Pending => "Pendiente",
+                ReservationStatus.Completed => "Completada",
+                ReservationStatus.Cancelled => "Cancelada",
+                _ => reservation.Status.ToString()
+            };
+            
+            <article class="flex flex-col md:flex-row gap-gutter p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all duration-200 group">
+                <div class="w-full md:w-72 h-48 md:h-auto rounded-lg overflow-hidden shrink-0 border border-outline-variant/20">
+                    <img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/@reservation.PropertyId/600/400" alt="@reservation.Property?.Title" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-headline-md font-headline-md text-primary">@reservation.Property?.Title</h3>
+                            <span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm border @statusClass">@statusText</span>
+                        </div>
+                        <p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                            @reservation.Property?.City
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-stack-md mt-stack-md bg-surface-container-low/50 p-4 rounded-lg border border-outline-variant/30">
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-IN</p>
+                            <p class="text-body-md font-body-md font-medium text-primary">@reservation.StayPeriod.CheckIn.ToString("MMM dd, yyyy")</p>
+                        </div>
+                        <div>
+                            <p class="text-label-sm font-label-sm text-on-secondary-container mb-1">CHECK-OUT</p>
+                            <p class="text-body-md font-body-md font-medium text-primary">@reservation.StayPeriod.CheckOut.ToString("MMM dd, yyyy")</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-stack-sm mt-stack-md justify-end">
+                        @if (reservation.Status == ReservationStatus.Confirmed)
+                        {
+                            <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Contact Host</button>
+                            <button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity">View Itinerary</button>
+                        }
+                        else if (reservation.Status == ReservationStatus.Pending)
+                        {
+                            <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Cancel Request</button>
+                        }
+                        else if (reservation.Status == ReservationStatus.Completed)
+                        {
+                            <button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Book Again</button>
+                        }
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+}
 </div>
 </main>
-

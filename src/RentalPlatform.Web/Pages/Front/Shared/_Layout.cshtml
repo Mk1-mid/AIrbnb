@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL&#64;100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght&#64;400;500;600;700&family=Inter:wght&#64;400;500;600&display=swap" rel="stylesheet" />
     <style>
+        /* Material Icons */
         .material-symbols-outlined {
             font-family: 'Material Symbols Outlined';
             font-weight: normal;
@@ -32,6 +33,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Typography */
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -43,6 +45,29 @@
         .font-label-md,
         .font-label-sm {
             font-family: 'Geist', sans-serif;
+        }
+
+        /* Responsive utilities */
+        @@media (max-width: 768px) {
+            .container-max { max-width: 100%; }
+            .hide-mobile { display: none !important; }
+        }
+        
+        @@media (min-width: 769px) {
+            .hide-desktop { display: none !important; }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Better touch targets for mobile */
+        @@media (max-width: 768px) {
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
+            }
         }
     </style>
     @RenderSection("Head", required: false)

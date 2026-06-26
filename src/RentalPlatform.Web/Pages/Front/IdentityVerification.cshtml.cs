@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Security.Claims;
 using RentalPlatform.Application.UseCases.Kyc;
 using RentalPlatform.Domain.Enums;
 
@@ -23,6 +22,11 @@ public class IdentityVerificationModel : PageModel
     public KycStatus? Status { get; private set; }
     public string Message { get; private set; } = "Please upload a valid government-issued ID to complete your profile verification.";
 
+    public async Task OnGetAsync()
+    {
+        // Default message - KYC status pending
+    }
+
     public async Task OnPostAsync()
     {
         if (Document is null || Document.Length == 0)
@@ -32,7 +36,7 @@ public class IdentityVerificationModel : PageModel
             return;
         }
 
-        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userIdClaim = User.FindFirst("sub")?.Value ?? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
             ModelState.AddModelError(string.Empty, "User not authenticated.");

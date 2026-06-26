@@ -768,6 +768,7 @@
           "BCrypt.Net-Next": "4.0.3",
           "ClosedXML": "0.105.0",
           "FluentValidation": "11.10.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
           "RentalPlatform.Domain": "1.0.0"
         },
         "runtime": {

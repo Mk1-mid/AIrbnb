@@ -1223,6 +1223,7 @@
           "BCrypt.Net-Next": "4.0.3",
           "ClosedXML": "0.105.0",
           "FluentValidation": "11.10.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
           "RentalPlatform.Domain": "1.0.0"
         },
         "compile": {
@@ -3600,19 +3601,19 @@
     ]
   },
   "packageFolders": {
-    "/home/cohorte6/.nuget/packages/": {}
+    "/home/mk1/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
+      "projectUniqueName": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
       "projectName": "RentalPlatform.Infrastructure",
-      "projectPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
-      "packagesPath": "/home/cohorte6/.nuget/packages/",
-      "outputPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Infrastructure/obj/",
+      "projectPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Infrastructure/RentalPlatform.Infrastructure.csproj",
+      "packagesPath": "/home/mk1/.nuget/packages/",
+      "outputPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/cohorte6/.nuget/NuGet/NuGet.Config"
+        "/home/mk1/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3625,11 +3626,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Application/RentalPlatform.Application.csproj": {
-              "projectPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Application/RentalPlatform.Application.csproj"
+            "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Application/RentalPlatform.Application.csproj": {
+              "projectPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Application/RentalPlatform.Application.csproj"
             },
-            "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {
-              "projectPath": "/home/cohorte6/Desktop/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj"
+            "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj": {
+              "projectPath": "/home/mk1/Escritorio/AIrbnb/AIrbnb/src/RentalPlatform.Domain/RentalPlatform.Domain.csproj"
             }
           }
         }

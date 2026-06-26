@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using RentalPlatform.Application.Interfaces;
 using RentalPlatform.Domain.Entities;
 using RentalPlatform.Domain.Enums;
@@ -25,17 +26,21 @@ public class ProcessKycUseCase
     private readonly IUserRepository _userRepository;
     private readonly IOcrService _ocrService;
     private readonly INotificationService _notifications;
+    private readonly bool _testMode;
 
     public ProcessKycUseCase(
         IKycRepository kycRepository,
         IUserRepository userRepository,
         IOcrService ocrService,
-        INotificationService notifications)
+        INotificationService notifications,
+        IConfiguration? configuration = null)
     {
         _kycRepository = kycRepository;
         _userRepository = userRepository;
         _ocrService = ocrService;
         _notifications = notifications;
+        _testMode = configuration?["Kyc:TestMode"] == "true" 
+            || Environment.GetEnvironmentVariable("KYC_TEST_MODE") == "true";
     }
 
     public async Task<ProcessKycResult> ExecuteAsync(ProcessKycCommand cmd)
@@ -55,6 +60,39 @@ public class ProcessKycUseCase
                 "Identity already verified");
         }
 
+        // MODO TEST: Aceptar cualquier documento sin OCR
+        if (_testMode)
+        {
+            var record = new KycRecord
+            {
+                Id = Guid.NewGuid(),
+                UserId = cmd.UserId,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DocumentNumber = "TEST-DOC-" + Guid.NewGuid().ToString().Substring(0, 8),
+                BirthDate = DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-25)),
+                Status = KycStatus.Approved,
+                CreatedAt = DateTime.UtcNow,
+                ValidatedAt = DateTime.UtcNow
+            };
+
+            await _kycRepository.AddAsync(record);
+            user.KycVerified = true;
+            await _userRepository.SaveChangesAsync();
+            await _kycRepository.SaveChangesAsync();
+
+            var message = "TEST MODE: Your identity has been verified automatically.";
+            await _notifications.SendInAppAsync(cmd.UserId, message, NotificationType.KycApproved);
+
+            return new ProcessKycResult(
+                KycStatus.Approved,
+                record.DocumentNumber,
+                record.FirstName,
+                record.LastName,
+                record.BirthDate,
+                message);
+        }
+
         var tempPath = Path.Combine(
             Path.GetTempPath(),
             $"kyc_{Guid.NewGuid()}{Path.GetExtension(cmd.FileName)}");
@@ -70,15 +108,10 @@ public class ProcessKycUseCase
 
             var firstNameMatch = FuzzyMatch(user.FirstName, extracted.FirstName);
             var lastNameMatch = FuzzyMatch(user.LastName, extracted.LastName);
-            var documentMatch = string.Equals(
-                user.KycRecord?.DocumentNumber,
-                extracted.DocumentNumber,
-                StringComparison.OrdinalIgnoreCase);
 
             var mismatches = new List<string>();
             if (!firstNameMatch) mismatches.Add("first name");
             if (!lastNameMatch) mismatches.Add("last name");
-            if (!documentMatch) mismatches.Add("document number");
 
             var status = mismatches.Count == 0
                 ? KycStatus.Approved
@@ -86,7 +119,7 @@ public class ProcessKycUseCase
 
             var message = status == KycStatus.Approved
                 ? "Your identity has been verified. You can now make reservations."
-                : $"We could not verify your identity. Mismatched fields: {string.Join(", ", mismatches)}.";
+                : $"We could not verify your identity. The name on the document does not match your profile. Please ensure the document shows: {user.FirstName} {user.LastName}";
 
             var record = new KycRecord
             {

@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RentalPlatform.Application.UseCases.Identity;
+using RentalPlatform.Domain.Enums;
+using System.Security.Claims;
 
 namespace RentalPlatform.Web.Pages.Front;
 
@@ -19,25 +23,35 @@ public class SignInModel : PageModel
     [BindProperty]
     public string Password { get; set; } = string.Empty;
 
-    public LoginUserResult? Result { get; private set; }
     public string? ErrorMessage { get; private set; }
 
-    public async Task OnPostAsync()
+    public async Task<IActionResult> OnPostAsync()
     {
         try
         {
-            Result = await _loginUser.ExecuteAsync(new LoginUserCommand(Email, Password));
-            Response.Cookies.Append("jwt", Result.Token, new CookieOptions
+            var result = await _loginUser.ExecuteAsync(new LoginUserCommand(Email, Password));
+            
+            Response.Cookies.Append("jwt", result.Token, new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Strict,
+                Secure = false,
+                SameSite = SameSiteMode.Lax,
                 Expires = DateTimeOffset.UtcNow.AddHours(8)
             });
+
+            if (result.Role == UserRole.Owner)
+            {
+                return RedirectToPage("/Front/OwnerDashboard");
+            }
+            else
+            {
+                return RedirectToPage("/Front/GuestReservations");
+            }
         }
         catch (Exception ex)
         {
             ErrorMessage = ex.Message;
+            return Page();
         }
     }
 }

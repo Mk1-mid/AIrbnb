@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RentalPlatform.Application.Interfaces;
 using RentalPlatform.Application.UseCases.Reports;
-using System.Security.Claims;
+using RentalPlatform.Domain.Entities;
 
 namespace RentalPlatform.Web.Pages.Front;
 
@@ -10,29 +11,43 @@ namespace RentalPlatform.Web.Pages.Front;
 public class OwnerReportsModel : PageModel
 {
     private readonly ExportReportUseCase _exportReportUseCase;
+    private readonly IPropertyRepository _propertyRepository;
 
-    public OwnerReportsModel(ExportReportUseCase exportReportUseCase)
+    public OwnerReportsModel(
+        ExportReportUseCase exportReportUseCase,
+        IPropertyRepository propertyRepository)
     {
         _exportReportUseCase = exportReportUseCase;
+        _propertyRepository = propertyRepository;
     }
 
     [BindProperty]
-    public DateTime From { get; set; }
+    public DateTime From { get; set; } = DateTime.UtcNow.AddDays(-30);
 
     [BindProperty]
-    public DateTime To { get; set; }
+    public DateTime To { get; set; } = DateTime.UtcNow;
 
     [BindProperty]
     public string? PropertyId { get; set; }
 
-    public void OnGet()
+    public IEnumerable<Property> Properties { get; private set; } = new List<Property>();
+    public string? ErrorMessage { get; private set; }
+
+    public async Task OnGet()
     {
+        try
+        {
+            Properties = await _propertyRepository.SearchAsync(null, null, null);
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
     }
 
     public async Task<IActionResult> OnPostExportAsync()
     {
-        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier)
-            ?? User.FindFirst("sub")?.Value;
+        var userIdClaim = User.FindFirst("sub")?.Value ?? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var ownerId))
         {
