@@ -5,6 +5,8 @@ services:
       POSTGRES_DB: rentaldb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     healthcheck:
@@ -25,6 +27,7 @@ services:
       Jwt__Audience: RentalPlatform
       Mailer__BaseUrl: http://mailer:8081
       Gemini__ApiKey: AIzaSyAb8RN6JgQNbqheB3UJ-TJHxc1vGFPruGyEvbMJQKnM9d-lZ7Lw
+      Kyc__TestMode: "true"
     ports:
       - "8080:8080"
     depends_on:
@@ -43,3 +46,6 @@ services:
       MAIL_ENCRYPTION: tls
     ports:
       - "8081:8081"
+
+volumes:
+  postgres_data:

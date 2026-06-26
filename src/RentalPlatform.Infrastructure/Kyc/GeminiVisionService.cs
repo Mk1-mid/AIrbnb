@@ -1,31 +1,33 @@
+using System.Net.Http.Json;
+using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using RentalPlatform.Application.Interfaces;
-using RentalPlatform.Domain.Entities;
-using RentalPlatform.Domain.Enums;
 
 namespace RentalPlatform.Infrastructure.Kyc;
 
 public class GeminiVisionService : IOcrService
 {
     private readonly HttpClient _httpClient;
-    private readonly string? _apiKey;
+    private readonly IConfiguration _configuration;
 
     public GeminiVisionService(HttpClient httpClient, IConfiguration configuration)
     {
         _httpClient = httpClient;
-        _apiKey = configuration["Gemini:ApiKey"];
+        _configuration = configuration;
     }
 
     public async Task<OcrResult> ExtractAsync(string imagePath)
     {
-        // Fallback: If no API key, return the filename as mock data
-        if (string.IsNullOrEmpty(_apiKey))
+        var apiKey = _configuration["Gemini:ApiKey"];
+        
+        // Fallback: If no API key configured, return mock data
+        if (string.IsNullOrEmpty(apiKey))
         {
             return new OcrResult(
-                FirstName: "Test",
+                FirstName: "Anonymous",
                 LastName: "User",
-                DocumentNumber: "TEST-" + Guid.NewGuid().ToString().Substring(0, 8),
-                BirthDate: DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-25)));
+                DocumentNumber: "MOCK-" + Guid.NewGuid().ToString("N").Substring(0, 8),
+                BirthDate: null);
         }
 
         var base64 = Convert.ToBase64String(File.ReadAllBytes(imagePath));
@@ -48,16 +50,17 @@ public class GeminiVisionService : IOcrService
                         },
                         new
                         {
-                            text = "Extract the following fields from this ID document and return ONLY a JSON object with no markdown: { \"firstName\": \"\", \"lastName\": \"\", \"documentNumber\": \"\", \"birthDate\": \"YYYY-MM-DD\" }"
+                            text = "Extract the following fields from this ID document and return ONLY a JSON object with no markdown: { \"firstName\": \"\", \"lastName\": \"\", \"documentNumber\": \"\", \"birthDate\": \"\" }"
                         }
                     }
                 }
             }
         };
 
-        var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={_apiKey}";
+        var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={apiKey}";
 
-        using var response = await _httpClient.PostAsJsonAsync(url, payload);
+        var httpContent = JsonContent.Create(payload);
+        using var response = await _httpClient.PostAsync(url, httpContent);
         response.EnsureSuccessStatusCode();
 
         var json = await response.Content.ReadAsStringAsync();
@@ -73,19 +76,19 @@ public class GeminiVisionService : IOcrService
                           .Replace("```", string.Empty)
                           .Trim();
 
-        var parsed = JsonSerializer.Deserialize<GeminiOcrResponse>(cleaned, new JsonSerializerOptions
+        var parsed = JsonSerializer.Deserialize<OcrResponse>(cleaned, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         });
 
         return new OcrResult(
-            parsed?.FirstName ?? "Unknown",
+            parsed?.FirstName ?? "Anonymous",
             parsed?.LastName ?? "User",
             parsed?.DocumentNumber ?? string.Empty,
-            parsed?.BirthDate);
+            null);
     }
 
-    private sealed class GeminiOcrResponse
+    private class OcrResponse
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

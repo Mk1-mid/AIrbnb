@@ -51,7 +51,10 @@ public class CreateReservationUseCase
         if (!property.IsActive)
             throw new InvalidOperationException("Property is not available");
 
-        var stayPeriod = new DateRange(cmd.CheckIn, cmd.CheckOut);
+        // Convert to UTC for PostgreSQL compatibility
+        var checkInUtc = DateTime.SpecifyKind(cmd.CheckIn, DateTimeKind.Utc);
+        var checkOutUtc = DateTime.SpecifyKind(cmd.CheckOut, DateTimeKind.Utc);
+        var stayPeriod = new DateRange(checkInUtc, checkOutUtc);
 
         var existingReservations = await _reservations.GetByPropertyIdAsync(cmd.PropertyId);
 

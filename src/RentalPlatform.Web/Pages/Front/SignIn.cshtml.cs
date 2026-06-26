@@ -23,6 +23,9 @@ public class SignInModel : PageModel
     [BindProperty]
     public string Password { get; set; } = string.Empty;
 
+    [FromQuery]
+    public string? ReturnUrl { get; set; }
+
     public string? ErrorMessage { get; private set; }
 
     public async Task<IActionResult> OnPostAsync()
@@ -38,6 +41,12 @@ public class SignInModel : PageModel
                 SameSite = SameSiteMode.Lax,
                 Expires = DateTimeOffset.UtcNow.AddHours(8)
             });
+
+            // Redirigir a returnUrl si existe, sino por defecto según rol
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+            {
+                return Redirect(ReturnUrl);
+            }
 
             if (result.Role == UserRole.Owner)
             {

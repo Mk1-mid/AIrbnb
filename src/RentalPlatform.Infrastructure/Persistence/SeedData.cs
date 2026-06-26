@@ -10,61 +10,48 @@ public static class SeedData
 {
     public static async Task InitializeAsync(RentalDbContext context)
     {
-        if (await context.Users.AnyAsync())
-            return;
-
-        var users = new List<User>();
-
-        var owners = new[]
+        // Always ensure we have properties in the database
+        if (!await context.Properties.AnyAsync())
         {
-            ("Sofia", "Vega", "sofia.owner1@demo.com"),
-            ("Mateo", "Rios", "mateo.owner2@demo.com"),
-            ("Camila", "Perez", "camila.owner3@demo.com"),
-        };
-
-        var guests = new[]
-        {
-            ("Laura", "Mora", "laura.guest1@demo.com"),
-            ("Andres", "Lopez", "andres.guest2@demo.com"),
-            ("Valentina", "Diaz", "valentina.guest3@demo.com"),
-            ("Javier", "Castro", "javier.guest4@demo.com"),
-            ("Paula", "Ortiz", "paula.guest5@demo.com"),
-        };
-
-        foreach (var (firstName, lastName, email) in owners)
-        {
-            users.Add(new User
+            // Create default owner if no users exist
+            if (!await context.Users.AnyAsync())
             {
-                Id = Guid.NewGuid(),
-                FirstName = firstName,
-                LastName = lastName,
-                Email = new Email(email),
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!"),
-                Role = UserRole.Owner,
-                KycVerified = false,
-                CreatedAt = DateTime.UtcNow
-            });
-        }
+                var defaultOwner = new User
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Demo",
+                    LastName = "Owner",
+                    Email = new Email("demo.owner@luxe stay.com"),
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!"),
+                    Role = UserRole.Owner,
+                    KycVerified = true,
+                    CreatedAt = DateTime.UtcNow
+                };
 
-        foreach (var (firstName, lastName, email) in guests)
-        {
-            users.Add(new User
+                await context.Users.AddAsync(defaultOwner);
+                await context.SaveChangesAsync();
+
+                var ownerIds = new[] { defaultOwner.Id };
+                await CreatePropertiesAsync(context, ownerIds);
+            }
+            else
             {
-                Id = Guid.NewGuid(),
-                FirstName = firstName,
-                LastName = lastName,
-                Email = new Email(email),
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!"),
-                Role = UserRole.Guest,
-                KycVerified = true,
-                CreatedAt = DateTime.UtcNow
-            });
+                // Users exist but no properties - create properties for existing owners
+                var ownerIds = context.Users
+                    .Where(u => u.Role == UserRole.Owner)
+                    .Select(u => u.Id)
+                    .ToArray();
+
+                if (ownerIds.Any())
+                {
+                    await CreatePropertiesAsync(context, ownerIds);
+                }
+            }
         }
+    }
 
-        await context.Users.AddRangeAsync(users);
-        await context.SaveChangesAsync();
-
-        var ownerIds = users.Where(u => u.Role == UserRole.Owner).Select(u => u.Id).ToArray();
+    private static async Task CreatePropertiesAsync(RentalDbContext context, Guid[] ownerIds)
+    {
         var propertySpecs = new[]
         {
             ("Ocean View Loft", "Bright loft near the waterfront", "Cartagena", 180000m),

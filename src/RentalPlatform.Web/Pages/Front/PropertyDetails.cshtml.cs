@@ -55,8 +55,8 @@ public class PropertyDetailsModel : PageModel
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
         if (!Guid.TryParse(userIdClaim, out var guestId))
         {
-            ErrorMessage = "You must be signed in to make a reservation";
-            return Page();
+            // Redirigir al login con URL de retorno
+            return RedirectToPage("/Front/SignIn", new { returnUrl = $"/Front/PropertyDetails/{id}" });
         }
 
         try

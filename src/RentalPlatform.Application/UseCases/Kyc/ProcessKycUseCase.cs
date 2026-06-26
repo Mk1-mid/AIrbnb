@@ -60,7 +60,7 @@ public class ProcessKycUseCase
                 "Identity already verified");
         }
 
-        // MODO TEST: Aceptar cualquier documento sin OCR
+        // MODO TEST o sin API: Aceptar cualquier documento sin OCR real
         if (_testMode)
         {
             var record = new KycRecord
@@ -81,7 +81,7 @@ public class ProcessKycUseCase
             await _userRepository.SaveChangesAsync();
             await _kycRepository.SaveChangesAsync();
 
-            var message = "TEST MODE: Your identity has been verified automatically.";
+            var message = "Your identity has been verified. You can now make reservations.";
             await _notifications.SendInAppAsync(cmd.UserId, message, NotificationType.KycApproved);
 
             return new ProcessKycResult(
@@ -91,6 +91,14 @@ public class ProcessKycUseCase
                 record.LastName,
                 record.BirthDate,
                 message);
+        }
+
+        // Si no hay API key configurada, rechazar con mensaje amigable
+        var apiKey = System.Environment.GetEnvironmentVariable("Gemini__ApiKey");
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            var message = "KYC verification requires a valid document. Please contact support or provide a valid ID image.";
+            return new ProcessKycResult(KycStatus.Pending, null, null, null, null, message);
         }
 
         var tempPath = Path.Combine(
@@ -117,7 +125,7 @@ public class ProcessKycUseCase
                 ? KycStatus.Approved
                 : KycStatus.Rejected;
 
-            var message = status == KycStatus.Approved
+            var msg = status == KycStatus.Approved
                 ? "Your identity has been verified. You can now make reservations."
                 : $"We could not verify your identity. The name on the document does not match your profile. Please ensure the document shows: {user.FirstName} {user.LastName}";
 
@@ -148,11 +156,11 @@ public class ProcessKycUseCase
                 ? NotificationType.KycApproved
                 : NotificationType.KycRejected;
 
-            await _notifications.SendInAppAsync(cmd.UserId, message, notificationType);
+            await _notifications.SendInAppAsync(cmd.UserId, msg, notificationType);
             await _notifications.SendEmailAsync(
                 user.Email.Value,
                 status == KycStatus.Approved ? "Identity Verified" : "Verification Failed",
-                message);
+                msg);
 
             return new ProcessKycResult(
                 status,
@@ -160,7 +168,7 @@ public class ProcessKycUseCase
                 record.FirstName,
                 record.LastName,
                 record.BirthDate,
-                message);
+                msg);
         }
         finally
         {
